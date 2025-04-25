@@ -3,84 +3,86 @@ package eu.senla;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 /** Unit test for simple App. */
 public class AppTest {
+private WebDriver driver;
+
+@Test
+public void testLoginPage(){
+  driver = new ChromeDriver();
+  driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+
+
+  Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+  wait.until(d -> driver.findElement(By.name("username"))
+          .isDisplayed());
+
+  //wait.until(visibilityOf(driver.findElement(By.name("username"))));
+
+  driver.findElement(By.name("username")).sendKeys("Admin");
+  driver.findElement(By.name("password")).sendKeys("admin123");
+  driver.findElement(By.cssSelector("button[type='submit']")).click();
+}
 
   @Test
-  public void firstTest() {
-
-//    LoggingPreferences logs = new LoggingPreferences();
-//    logs.enable(LogType.DRIVER, Level.ALL);
-//
-//    ChromeOptions options = new ChromeOptions();
-//    options.setCapability( ChromeOptions.LOGGING_PREFS , logs);
-
-    WebDriver driver = new ChromeDriver();
+  public void testAddUser() {
+    driver = new ChromeDriver();
     driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
 
-    try {
-      Thread.sleep(2000);
-    } catch (InterruptedException e) {
-      throw new RuntimeException(e);
-    }
 
-      try {
-          WebElement usernameField = driver.findElement(By.name("username"));
-          usernameField.sendKeys("Admin");
-      } catch (Exception e) {
-          System.out.println("Can't find Username element");
-      }
+    Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+    wait.until(d -> driver.findElement(By.name("username"))
+            .isDisplayed());
 
-    try {
-      WebElement passwordField = driver.findElement(By.name("password"));
-      passwordField.sendKeys("admin123");
-    } catch (Exception e) {
-      System.out.println("Can't find Password element");
-    }
+    //wait.until(visibilityOf(driver.findElement(By.name("username"))));
 
-    // Locators for Login title
-    // css    - "h5"
-    // xpath  - "//h5"
-
-    // Button Login
-    // Xpath - "//button"
-    try {
-    WebElement loginButton = driver.findElement(By.cssSelector("button"));
-    loginButton.click();
-    } catch (Exception e) {
-      System.out.println("Can't find Button element");
-    }
-
-
-    try {
-      Thread.sleep(2000);
-    } catch (InterruptedException e) {
-      throw new RuntimeException(e);
-    }
+    driver.findElement(By.name("username")).sendKeys("Admin");
+    driver.findElement(By.name("password")).sendKeys("admin123");
+    driver.findElement(By.cssSelector("button[type='submit']")).click();
 
     // open admin page
-    driver.findElement(By.cssSelector("a[href$='viewAdminModule']")).click();
+    //Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+    wait.until(d->driver.findElement(By.xpath("//h6[text()='Dashboard']"))
+            .isDisplayed());
+    driver.findElement(By.cssSelector("a[href$='viewPimModule']")).click();
     driver.manage().window().maximize();
 
-    try {
-      Thread.sleep(2000);
-    } catch (InterruptedException e) {
-      throw new RuntimeException(e);
-    }
+    // button Add
+    wait.until(d->driver.findElement(By.cssSelector("button.oxd-button.oxd-button--medium.oxd-button--secondary[type='button']"))
+            .isDisplayed());
+    driver.findElement(By.cssSelector("button.oxd-button.oxd-button--medium.oxd-button--secondary[type='button']")).click();
 
+    //
+
+    wait.until(d->driver.findElement(By.xpath("//h6[text()='Add Employee']"))
+            .isDisplayed());
+
+
+    driver.findElement(By.name("firstName")).sendKeys("Alexandr");
+    driver.findElement(By.name("middleName")).sendKeys("Sergeevich");
+    driver.findElement(By.name("lastName")).sendKeys("PushyKin");
+    driver.findElement(By.xpath("//button[@type='submit']")).click();
+
+    wait.until(d->driver.findElement(By.xpath("//h6[text()='Alexandr PushyKin']")))
+            .isDisplayed();
+
+    //
     // username by CSS
-    driver.findElement(By.cssSelector("input.oxd-input.oxd-input--active:first-child")).sendKeys("AdminCypress");
+    //driver.findElement(By.cssSelector("input.oxd-input.oxd-input--active:first-child")).sendKeys("AdminCypress");
 
     // username by Xpath
     //driver.findElement(By.xpath("//div[@class=\"oxd-form-row\"]//input[@class=\"oxd-input oxd-input--active\"]")).sendKeys("New username XPath");
 
 
     // drop-down user role - Admin  by CSS
-    driver.findElement(By.cssSelector("div.oxd-grid-item.oxd-grid-item--gutters:nth-child(2) div.oxd-select-text--after")).click();
-    driver.findElement(By.cssSelector("div[role='listbox'] div:nth-of-type(2)")).click();
+    //driver.findElement(By.cssSelector("div.oxd-grid-item.oxd-grid-item--gutters:nth-child(2) div.oxd-select-text--after")).click();
+    //driver.findElement(By.cssSelector("div[role='listbox'] div:nth-of-type(2)")).click();
 
     // drop-down user role - Admin bt Xpath
     //driver.findElement(By.xpath("//label[contains(text(),'User Role')]/../..//div[@class='oxd-select-wrapper']")).click();
@@ -88,14 +90,14 @@ public class AppTest {
 
 
     // button Search by CSS
-    driver.findElement(By.cssSelector("button[type='submit']")).click();
+    //driver.findElement(By.cssSelector("button[type='submit']")).click();
 
     // button Search by Xpath
     //driver.findElement(By.xpath("//button[@type='submit']")).click();
 
 
     // button Add by CSS
-    driver.findElement(By.cssSelector("button.oxd-button.oxd-button--medium.oxd-button--secondary[type='button']")).click();
+    //driver.findElement(By.cssSelector("button.oxd-button.oxd-button--medium.oxd-button--secondary[type='button']")).click();
 
     // button Add by Xpath
     //driver.findElement(By.xpath("//div[@class='orangehrm-header-container']/button")).click();
