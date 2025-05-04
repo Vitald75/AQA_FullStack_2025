@@ -6,18 +6,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 
 /** Unit test for simple App. */
 public class AppTest {
-private WebDriver driver;
 
 @Test
-public void testLoginPage(){
-  driver = new ChromeDriver();
+public void testLoginPage() {
+  WebDriver driver = new ChromeDriver();
   driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-
 
   Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(2));
   wait.until(d -> driver.findElement(By.name("username"))
@@ -32,11 +29,11 @@ public void testLoginPage(){
 
   @Test
   public void testAddUser() {
-    driver = new ChromeDriver();
+    final int pause = 4;
+    WebDriver driver = new ChromeDriver();
     driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
 
-
-    Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+    Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(pause));
     wait.until(d -> driver.findElement(By.name("username"))
             .isDisplayed());
 
@@ -47,20 +44,20 @@ public void testLoginPage(){
     driver.findElement(By.cssSelector("button[type='submit']")).click();
 
     // open admin page
-    //Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-    wait.until(d->driver.findElement(By.xpath("//h6[text()='Dashboard']"))
+    //Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(pause));
+    wait.until(d -> driver.findElement(By.xpath("//h6[text()='Dashboard']"))
             .isDisplayed());
     driver.findElement(By.cssSelector("a[href$='viewPimModule']")).click();
     driver.manage().window().maximize();
 
     // button Add
-    wait.until(d->driver.findElement(By.cssSelector("button.oxd-button.oxd-button--medium.oxd-button--secondary[type='button']"))
+    wait.until(d -> driver.findElement(By.cssSelector("button.oxd-button.oxd-button--medium.oxd-button--secondary[type='button']"))
             .isDisplayed());
     driver.findElement(By.cssSelector("button.oxd-button.oxd-button--medium.oxd-button--secondary[type='button']")).click();
 
     //
 
-    wait.until(d->driver.findElement(By.xpath("//h6[text()='Add Employee']"))
+    wait.until(d -> driver.findElement(By.xpath("//h6[text()='Add Employee']"))
             .isDisplayed());
 
 
@@ -69,7 +66,7 @@ public void testLoginPage(){
     driver.findElement(By.name("lastName")).sendKeys("PushyKin");
     driver.findElement(By.xpath("//button[@type='submit']")).click();
 
-    wait.until(d->driver.findElement(By.xpath("//h6[text()='Alexandr PushyKin']")))
+    wait.until(d -> driver.findElement(By.xpath("//h6[text()='Alexandr PushyKin']")))
             .isDisplayed();
 
     //
@@ -77,8 +74,8 @@ public void testLoginPage(){
     //driver.findElement(By.cssSelector("input.oxd-input.oxd-input--active:first-child")).sendKeys("AdminCypress");
 
     // username by Xpath
-    //driver.findElement(By.xpath("//div[@class=\"oxd-form-row\"]//input[@class=\"oxd-input oxd-input--active\"]")).sendKeys("New username XPath");
-
+    //driver.findElement(By.xpath("//div[@class=\"oxd-form-row\"]//input[@class=\"oxd-input oxd-input--active\"]"))
+    //.sendKeys("New username XPath");
 
     // drop-down user role - Admin  by CSS
     //driver.findElement(By.cssSelector("div.oxd-grid-item.oxd-grid-item--gutters:nth-child(2) div.oxd-select-text--after")).click();
@@ -101,13 +98,6 @@ public void testLoginPage(){
 
     // button Add by Xpath
     //driver.findElement(By.xpath("//div[@class='orangehrm-header-container']/button")).click();
-
-    try {
-      Thread.sleep(5000);
-    } catch (InterruptedException e) {
-      throw new RuntimeException(e);
-    }
-
     driver.quit();
   }
 }
