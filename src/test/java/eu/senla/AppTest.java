@@ -28,7 +28,7 @@ public void testLoginPage() {
 }
 
   @Test
-  public void testAddUser() {
+  public void testPimAddEmployee() {
     final int pause = 4;
     WebDriver driver = new ChromeDriver();
     driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
@@ -37,30 +37,27 @@ public void testLoginPage() {
     wait.until(d -> driver.findElement(By.name("username"))
             .isDisplayed());
 
-    //wait.until(visibilityOf(driver.findElement(By.name("username"))));
-
+    // login
     driver.findElement(By.name("username")).sendKeys("Admin");
     driver.findElement(By.name("password")).sendKeys("admin123");
     driver.findElement(By.cssSelector("button[type='submit']")).click();
 
     // open admin page
-    //Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(pause));
     wait.until(d -> driver.findElement(By.xpath("//h6[text()='Dashboard']"))
             .isDisplayed());
+
+    // open PIM page
     driver.findElement(By.cssSelector("a[href$='viewPimModule']")).click();
     driver.manage().window().maximize();
-
-    // button Add
     wait.until(d -> driver.findElement(By.cssSelector("button.oxd-button.oxd-button--medium.oxd-button--secondary[type='button']"))
             .isDisplayed());
+
+    // click button Add
     driver.findElement(By.cssSelector("button.oxd-button.oxd-button--medium.oxd-button--secondary[type='button']")).click();
-
-    //
-
     wait.until(d -> driver.findElement(By.xpath("//h6[text()='Add Employee']"))
             .isDisplayed());
 
-
+    // fill form and click Save button
     driver.findElement(By.name("firstName")).sendKeys("Alexandr");
     driver.findElement(By.name("middleName")).sendKeys("Sergeevich");
     driver.findElement(By.name("lastName")).sendKeys("PushyKin");
@@ -69,35 +66,6 @@ public void testLoginPage() {
     wait.until(d -> driver.findElement(By.xpath("//h6[text()='Alexandr PushyKin']")))
             .isDisplayed();
 
-    //
-    // username by CSS
-    //driver.findElement(By.cssSelector("input.oxd-input.oxd-input--active:first-child")).sendKeys("AdminCypress");
-
-    // username by Xpath
-    //driver.findElement(By.xpath("//div[@class=\"oxd-form-row\"]//input[@class=\"oxd-input oxd-input--active\"]"))
-    //.sendKeys("New username XPath");
-
-    // drop-down user role - Admin  by CSS
-    //driver.findElement(By.cssSelector("div.oxd-grid-item.oxd-grid-item--gutters:nth-child(2) div.oxd-select-text--after")).click();
-    //driver.findElement(By.cssSelector("div[role='listbox'] div:nth-of-type(2)")).click();
-
-    // drop-down user role - Admin bt Xpath
-    //driver.findElement(By.xpath("//label[contains(text(),'User Role')]/../..//div[@class='oxd-select-wrapper']")).click();
-    //driver.findElement(By.xpath("//div[@role='option']/span[text()='Admin']/parent::*")).click();
-
-
-    // button Search by CSS
-    //driver.findElement(By.cssSelector("button[type='submit']")).click();
-
-    // button Search by Xpath
-    //driver.findElement(By.xpath("//button[@type='submit']")).click();
-
-
-    // button Add by CSS
-    //driver.findElement(By.cssSelector("button.oxd-button.oxd-button--medium.oxd-button--secondary[type='button']")).click();
-
-    // button Add by Xpath
-    //driver.findElement(By.xpath("//div[@class='orangehrm-header-container']/button")).click();
     driver.quit();
   }
 }
