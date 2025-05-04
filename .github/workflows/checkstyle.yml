@@ -1,5 +1,5 @@
 name: Checkstyle
-on: workflow_dispatch
+on: push
 jobs:
   checkstyle:
     runs-on: ubuntu-latest
