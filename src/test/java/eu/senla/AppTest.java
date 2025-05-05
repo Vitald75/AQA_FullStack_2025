@@ -8,8 +8,103 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
-/** Unit test for simple App. */
 public class AppTest {
+
+  @Test
+  public void testAddRecruitmentCandidate() {
+   // init and login
+    WebDriver driver = new ChromeDriver();
+    driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+
+    Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(6));
+    wait.until(d -> driver.findElement(By.name("username"))
+            .isDisplayed());
+
+    driver.findElement(By.name("username")).sendKeys("Admin");
+    driver.findElement(By.name("password")).sendKeys("admin123");
+    driver.findElement(By.cssSelector("button[type='submit']")).click();
+    wait.until(d -> driver.findElement(By.xpath("//h6[text()='Dashboard']"))
+            .isDisplayed());
+
+    // open Recruitment page
+    driver.findElement(By.xpath("//a[@href='/web/index.php/recruitment/viewRecruitmentModule']")).click();
+    driver.manage().window().maximize();
+    wait.until(d -> driver.findElement(By.xpath("//h5[text()='Candidates']"))
+            .isDisplayed());
+
+    // click Add button
+    driver.findElement(By.xpath("//button[text()=' Add ']")).click();
+    wait.until(d -> driver.findElement(By.cssSelector("button[type='submit']"))
+            .isDisplayed());
+
+    // fill the new candidate form
+    driver.findElement(By.name("firstName")).sendKeys("Twain");
+    driver.findElement(By.name("middleName")).sendKeys("Ivanovich");
+    driver.findElement(By.name("lastName")).sendKeys("Mark");
+
+    driver.findElement(By.xpath("//label[text()='Vacancy']/../following::div/div/div")).click();
+    //driver.findElement(By.cssSelector("div.oxd-select-text.oxd-select-text--focus")).click();
+    driver.findElement(By.xpath("//span[text()='Software Engineer']")).click();
+
+    driver.findElement(By.xpath("//label[text()='Email']/../following::div[1]/input")).sendKeys("test@mail.com");
+    driver.findElement(By.xpath("//label[text()='Contact Number']/../following::div[1]/input")).sendKeys("+375-29-555-44-33");
+
+  }
+
+  @Test
+  public void testAddJobTitles() {
+    //init and login
+    WebDriver driver = new ChromeDriver();
+    driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+
+    Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(6));
+    wait.until(d -> driver.findElement(By.name("username"))
+            .isDisplayed());
+
+    driver.findElement(By.name("username")).sendKeys("Admin");
+    driver.findElement(By.name("password")).sendKeys("admin123");
+    driver.findElement(By.cssSelector("button[type='submit']")).click();
+    wait.until(d -> driver.findElement(By.xpath("//h6[text()='Dashboard']"))
+            .isDisplayed());
+
+    // open Admin page
+    driver.findElement(By.xpath("//a[@href='/web/index.php/admin/viewAdminModule']")).click();
+    driver.manage().window().maximize();
+    wait.until(d -> driver.findElement(By.xpath("//h6[text()='Admin']"))
+            .isDisplayed());
+
+    //select dropdown menu Job - Job titles -
+    driver.findElement(By.xpath("//span[text()='Job ']")).click();
+    wait.until(d -> driver.findElement(By.xpath("//a[text()='Job Titles' and @role='menuitem']"))
+            .isDisplayed());
+    driver.findElement(By.xpath("//a[text()='Job Titles' and @role='menuitem']")).click();
+
+
+    // add 3 jobs
+    for (int i=1; i<4; i++) {
+      wait.until(d -> driver.findElement(By.xpath("//button[text()=' Add ']"))
+              .isDisplayed());
+      driver.findElement(By.xpath("//button[text()=' Add ']")).click();
+      wait.until(d -> driver.findElement(By.cssSelector("input.oxd-input.oxd-input--active"))
+              .isDisplayed());
+      driver.findElement(By.cssSelector("div.oxd-form-row input.oxd-input.oxd-input--active")).sendKeys("Track Driver " + i );
+
+      driver.findElement(By.cssSelector("button[type='submit']")).click();
+    }
+
+    // delete 3 jobs
+    for (int i=1; i<4; i++) {
+      wait.until(d -> driver.findElement(By.xpath("//div[contains(text(),'Track Driver')]/../..//i[@class='oxd-icon bi-trash']"))
+              .isDisplayed());
+      driver.findElement(By.xpath("//div[contains(text(),'Track Driver')]/../..//i[@class='oxd-icon bi-trash']")).click();
+
+      wait.until(d -> driver.findElement(By.xpath("//button[text()=' Yes, Delete ']"))
+              .isDisplayed());
+      driver.findElement(By.xpath("//button[text()=' Yes, Delete ']")).click();
+    }
+
+    driver.quit();
+  }
 
 @Test
 public void testLoginPage() {
