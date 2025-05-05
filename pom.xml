@@ -58,6 +58,8 @@
           <configLocation>/config/checkstyle.xml</configLocation>
           <suppressionsLocation>/config/checkstyle-suppressions.xml</suppressionsLocation>
           <includeTestSourceDirectory>true</includeTestSourceDirectory>
+          <failsOnError>true</failsOnError>
+          <consoleOutput>true</consoleOutput>
         </configuration>
         <executions>
           <execution>
