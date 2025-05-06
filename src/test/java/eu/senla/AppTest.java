@@ -16,7 +16,8 @@ public class AppTest {
     WebDriver driver = new ChromeDriver();
     driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
 
-    Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(6));
+    final int waitingTime = 6;
+    Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(waitingTime));
     wait.until(d -> driver.findElement(By.name("username"))
             .isDisplayed());
 
@@ -57,7 +58,8 @@ public class AppTest {
     WebDriver driver = new ChromeDriver();
     driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
 
-    Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(6));
+    final int waitingTime = 6;
+    Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(waitingTime));
     wait.until(d -> driver.findElement(By.name("username"))
             .isDisplayed());
 
@@ -81,19 +83,20 @@ public class AppTest {
 
 
     // add 3 jobs
-    for (int i=1; i<4; i++) {
+    final int jobsCount = 3;
+    for (int i = 1; i <= jobsCount; i++) {
       wait.until(d -> driver.findElement(By.xpath("//button[text()=' Add ']"))
               .isDisplayed());
       driver.findElement(By.xpath("//button[text()=' Add ']")).click();
       wait.until(d -> driver.findElement(By.cssSelector("input.oxd-input.oxd-input--active"))
               .isDisplayed());
-      driver.findElement(By.cssSelector("div.oxd-form-row input.oxd-input.oxd-input--active")).sendKeys("Track Driver " + i );
+      driver.findElement(By.cssSelector("div.oxd-form-row input.oxd-input.oxd-input--active")).sendKeys("Track Driver " + i);
 
       driver.findElement(By.cssSelector("button[type='submit']")).click();
     }
 
     // delete 3 jobs
-    for (int i=1; i<4; i++) {
+    for (int i = 1; i <= jobsCount; i++) {
       wait.until(d -> driver.findElement(By.xpath("//div[contains(text(),'Track Driver')]/../..//i[@class='oxd-icon bi-trash']"))
               .isDisplayed());
       driver.findElement(By.xpath("//div[contains(text(),'Track Driver')]/../..//i[@class='oxd-icon bi-trash']")).click();
