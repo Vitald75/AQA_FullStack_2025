@@ -44,11 +44,19 @@ public class AppTest {
     driver.findElement(By.name("lastName")).sendKeys("Mark");
 
     driver.findElement(By.xpath("//label[text()='Vacancy']/../following::div/div/div")).click();
-    //driver.findElement(By.cssSelector("div.oxd-select-text.oxd-select-text--focus")).click();
-    driver.findElement(By.xpath("//span[text()='Software Engineer']")).click();
 
+    //driver.findElement(By.xpath("//span[text()='Software Engineer']")).click();
+    driver.findElement(By.cssSelector("div[role='listbox'] div:nth-of-type(2) span")).click();
     driver.findElement(By.xpath("//label[text()='Email']/../following::div[1]/input")).sendKeys("test@mail.com");
     driver.findElement(By.xpath("//label[text()='Contact Number']/../following::div[1]/input")).sendKeys("+375-29-555-44-33");
+
+    // field keywords
+    driver.findElement(By.xpath("//label[text()='Keywords']/../following-sibling::div/input")).sendKeys("keyword, smart, social skilled");
+
+    // text area
+    driver.findElement(By.xpath("//textarea")).sendKeys("some notes about candidate");
+    driver.findElement(By.xpath("button[@type='submit' and text()=' Save ']")).clear();
+
 
   }
 
@@ -112,17 +120,17 @@ public class AppTest {
 @Test
 public void testLoginPage() {
   WebDriver driver = new ChromeDriver();
-  driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+  //driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+  driver.navigate().to("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
 
   Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(2));
   wait.until(d -> driver.findElement(By.name("username"))
           .isDisplayed());
 
-  //wait.until(visibilityOf(driver.findElement(By.name("username"))));
-
   driver.findElement(By.name("username")).sendKeys("Admin");
   driver.findElement(By.name("password")).sendKeys("admin123");
-  driver.findElement(By.cssSelector("button[type='submit']")).click();
+
+
 }
 
   @Test
