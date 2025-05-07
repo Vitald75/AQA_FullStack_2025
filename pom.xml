@@ -16,13 +16,19 @@
     <checkstyle.version>3.6.0</checkstyle.version>
     <spotless.version>2.44.4</spotless.version>
     <surefire.version>3.5.3</surefire.version>
-    <selenium.version>4.31.0</selenium.version>
+    <selenium.version>4.32.0</selenium.version>
   </properties>
 
   <dependencies>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
       <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>

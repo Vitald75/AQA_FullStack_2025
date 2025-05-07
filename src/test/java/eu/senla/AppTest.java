@@ -1,5 +1,7 @@
 package eu.senla;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -8,12 +10,10 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
-public class AppTest {
 
-  @Test
-  public void testAddRecruitmentCandidate() {
-   // init and login
-    WebDriver driver = new ChromeDriver();
+public class AppTest extends BaseTest{
+
+  private void loginPage() {
     driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
 
     final int waitingTime = 6;
@@ -26,7 +26,26 @@ public class AppTest {
     driver.findElement(By.cssSelector("button[type='submit']")).click();
     wait.until(d -> driver.findElement(By.xpath("//h6[text()='Dashboard']"))
             .isDisplayed());
+  }
 
+  @Test
+  public void testAddRecruitmentCandidate() {
+   // init and login
+    //WebDriver driver = new ChromeDriver();
+//    driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+//
+    final int waitingTime = 6;
+    Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(waitingTime));
+//    wait.until(d -> driver.findElement(By.name("username"))
+//            .isDisplayed());
+//
+//    driver.findElement(By.name("username")).sendKeys("Admin");
+//    driver.findElement(By.name("password")).sendKeys("admin123");
+//    driver.findElement(By.cssSelector("button[type='submit']")).click();
+//    wait.until(d -> driver.findElement(By.xpath("//h6[text()='Dashboard']"))
+//            .isDisplayed());
+
+    loginPage();
     // open Recruitment page
     driver.findElement(By.xpath("//a[@href='/web/index.php/recruitment/viewRecruitmentModule']")).click();
     driver.manage().window().maximize();
@@ -55,7 +74,7 @@ public class AppTest {
 
     // text area
     driver.findElement(By.xpath("//textarea")).sendKeys("some notes about candidate");
-    driver.findElement(By.xpath("button[@type='submit' and text()=' Save ']")).clear();
+    //driver.findElement(By.xpath("button[@type='submit' and text()=' Save ']")).clear();
 
 
   }
@@ -63,19 +82,20 @@ public class AppTest {
   @Test
   public void testAddJobTitles() {
     //init and login
-    WebDriver driver = new ChromeDriver();
-    driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+    //WebDriver driver = new ChromeDriver();
+    //driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
 
+    loginPage();
     final int waitingTime = 6;
     Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(waitingTime));
-    wait.until(d -> driver.findElement(By.name("username"))
-            .isDisplayed());
-
-    driver.findElement(By.name("username")).sendKeys("Admin");
-    driver.findElement(By.name("password")).sendKeys("admin123");
-    driver.findElement(By.cssSelector("button[type='submit']")).click();
-    wait.until(d -> driver.findElement(By.xpath("//h6[text()='Dashboard']"))
-            .isDisplayed());
+//    wait.until(d -> driver.findElement(By.name("username"))
+//            .isDisplayed());
+//
+//    driver.findElement(By.name("username")).sendKeys("Admin");
+//    driver.findElement(By.name("password")).sendKeys("admin123");
+//    driver.findElement(By.cssSelector("button[type='submit']")).click();
+//    wait.until(d -> driver.findElement(By.xpath("//h6[text()='Dashboard']"))
+//            .isDisplayed());
 
     // open Admin page
     driver.findElement(By.xpath("//a[@href='/web/index.php/admin/viewAdminModule']")).click();
@@ -114,30 +134,15 @@ public class AppTest {
       driver.findElement(By.xpath("//button[text()=' Yes, Delete ']")).click();
     }
 
-    driver.quit();
+    //driver.quit();
   }
-
-@Test
-public void testLoginPage() {
-  WebDriver driver = new ChromeDriver();
-  //driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-  driver.navigate().to("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-
-  Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-  wait.until(d -> driver.findElement(By.name("username"))
-          .isDisplayed());
-
-  driver.findElement(By.name("username")).sendKeys("Admin");
-  driver.findElement(By.name("password")).sendKeys("admin123");
-
-
-}
 
   @Test
   public void testPimAddEmployee() {
     final int pause = 4;
-    WebDriver driver = new ChromeDriver();
-    driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+    //WebDriver driver = new ChromeDriver();
+    //driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+    driver.navigate().to("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
 
     Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(pause));
     wait.until(d -> driver.findElement(By.name("username"))
@@ -172,6 +177,6 @@ public void testLoginPage() {
     wait.until(d -> driver.findElement(By.xpath("//h6[text()='Alexandr PushyKin']")))
             .isDisplayed();
 
-    driver.quit();
+    //driver.quit();
   }
 }
