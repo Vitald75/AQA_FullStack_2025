@@ -1,6 +1,8 @@
 package eu.senla;
 
 import java.time.Duration;
+
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,24 +11,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class AppTest extends BaseTest {
 
-  private void loginPage() {
-    driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-
-    final int waitingTime = 6;
-    Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(waitingTime));
-    wait.until(d -> driver.findElement(By.name("username")).isDisplayed());
-
-    driver.findElement(By.name("username")).sendKeys("Admin");
-    driver.findElement(By.name("password")).sendKeys("admin123");
-    driver.findElement(By.cssSelector("button[type='submit']")).click();
-    wait.until(d -> driver.findElement(By.xpath("//h6[text()='Dashboard']")).isDisplayed());
-  }
-
   @Test
   public void testAddRecruitmentCandidate() {
     final int waitingTime = 6;
     Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(waitingTime));
-    loginPage();
+    successfulLogin();
 
     // open Recruitment page
     driver
@@ -66,9 +55,10 @@ public class AppTest extends BaseTest {
 
   }
 
+  @DisplayName("Успешное добавление и удаление 3 Job Titles")
   @Test
   public void testAddJobTitles() {
-    loginPage();
+    successfulLogin();
     final int waitingTime = 6;
     Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(waitingTime));
 
@@ -123,26 +113,16 @@ public class AppTest extends BaseTest {
       driver.findElement(By.xpath("//button[text()=' Yes, Delete ']")).click();
     }
 
-    // driver.quit();
   }
 
+  @DisplayName("Успешной добавление PIM employee")
   @Test
   public void testPimAddEmployee() {
-    final int pause = 5;
-    // WebDriver driver = new ChromeDriver();
-    // driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+
     driver.navigate().to("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-
-    Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(pause));
-    wait.until(d -> driver.findElement(By.name("username")).isDisplayed());
-
-    // login
-    driver.findElement(By.name("username")).sendKeys("Admin");
-    driver.findElement(By.name("password")).sendKeys("admin123");
-    driver.findElement(By.cssSelector("button[type='submit']")).click();
-
-    // open admin page
-    wait.until(d -> driver.findElement(By.xpath("//h6[text()='Dashboard']")).isDisplayed());
+    final int waitingTime = 5;
+    Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(waitingTime));
+    successfulLogin();
 
     // open PIM page
     driver.findElement(By.cssSelector("a[href$='viewPimModule']")).click();
@@ -171,6 +151,5 @@ public class AppTest extends BaseTest {
 
     wait.until(d -> driver.findElement(By.xpath("//h6[text()='Alexandr PushyKin']"))).isDisplayed();
 
-    // driver.quit();
   }
 }

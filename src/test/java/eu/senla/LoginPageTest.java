@@ -5,10 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.Duration;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.openqa.selenium.By;
@@ -16,10 +13,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+@TestMethodOrder(MethodOrderer.MethodName.class)
 public final class LoginPageTest extends BaseTest {
 
   @DisplayName("Проверка успешного логина")
-  @Order(0)
   @Tag("Smoke")
   @Test
   public void testPositiveLoginPage() {
@@ -41,7 +38,6 @@ public final class LoginPageTest extends BaseTest {
   }
 
   @DisplayName("Проверка неуспешного логина")
-  @Order(1)
   @Tag("Negative")
   @ParameterizedTest
   @CsvSource({"Admin, 1234564", "WrongName, admin123", "AnyName, 43211"})
