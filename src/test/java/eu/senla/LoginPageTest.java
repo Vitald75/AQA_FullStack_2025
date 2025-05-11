@@ -13,12 +13,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-@TestMethodOrder(MethodOrderer.MethodName.class)
 public final class LoginPageTest extends BaseTest {
 
-  @DisplayName("Проверка успешного логина")
-  @Tag("Smoke")
   @Test
+  @Order(0)
+  @DisplayName("Проверка успешного логина")
+  @Tag("smoke")
   public void testPositiveLoginPage() {
     // driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
     driver.navigate().to("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
@@ -37,12 +37,17 @@ public final class LoginPageTest extends BaseTest {
         driver.findElement(By.xpath("//h6[text()='Dashboard']")).isDisplayed(), "Login failed");
   }
 
+  @ParameterizedTest()
+  @Order(1)
   @DisplayName("Проверка неуспешного логина")
-  @Tag("Negative")
-  @ParameterizedTest
-  @CsvSource({"Admin, 1234564", "WrongName, admin123", "AnyName, 43211"})
+  @Tag("extended")
+  @CsvSource({"Admin, 1234564",
+          "WrongName, admin123",
+          "AnyName, 43211"})
   public void testNegativeLoginPage(String userName, String password) {
+    driver.manage().deleteAllCookies();
     driver.navigate().to("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+    driver.navigate().refresh();
 
     Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(2));
     wait.until(d -> driver.findElement(By.name("username")).isDisplayed());
@@ -58,8 +63,8 @@ public final class LoginPageTest extends BaseTest {
         driver.findElement(By.xpath("//p[text()='Invalid credentials']")).isDisplayed(),
         "No popup message Invalid Credentials");
     assertEquals(
-        driver.getCurrentUrl(),
-        "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
-        "Successful login");
+            "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+            driver.getCurrentUrl(),
+        "Unexpected Successful login");
   }
 }

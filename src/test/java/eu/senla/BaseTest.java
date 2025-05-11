@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-@TestMethodOrder(MethodOrderer.MethodName.class)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class BaseTest {
   protected static WebDriver driver;
 
@@ -27,6 +27,7 @@ public class BaseTest {
   }
 
   public final void successfulLogin() {
+    driver.manage().deleteAllCookies();
     driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
     final int waitingTime = 6;
     Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(waitingTime));

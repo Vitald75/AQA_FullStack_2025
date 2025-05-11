@@ -10,13 +10,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class LogoutTest extends BaseTest {
 
     @DisplayName("Проверка успешного выхода из учетной записи")
-    @Tag("Smoke")
+    @Tag("smoke")
     @Test
     public void testLogout() {
         final int waitingTime = 6;
@@ -28,15 +27,15 @@ public class LogoutTest extends BaseTest {
 
         wait.until(d -> driver.findElement(By.xpath("//button[text()=' Login ']")).isDisplayed());
 
-
-        assertTrue(
+        assertAll(
+                () -> assertTrue(
                 driver.findElement(By.xpath("//button[text()=' Login ']")).isDisplayed(),
-                "Unsuccessful logout");
-
-        assertEquals(
-                "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
-                driver.getCurrentUrl());
-
-
+                "Unsuccessful logout"),
+                () -> assertTrue(
+                        driver.findElement(By.xpath("//button[text()=' Login ']")).isDisplayed(),
+                        "Unsuccessful logout"),
+                () -> assertEquals("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+                        driver.getCurrentUrl(), "URL doesn't match")
+        );
     }
 }
