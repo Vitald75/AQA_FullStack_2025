@@ -3,15 +3,10 @@ package eu.senla;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.time.Duration;
-
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public final class LoginPageTest extends BaseTest {
 
@@ -23,7 +18,6 @@ public final class LoginPageTest extends BaseTest {
     // driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
     driver.navigate().to("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
 
-    Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(2));
     wait.until(d -> driver.findElement(By.name("username")).isDisplayed());
 
     driver.findElement(By.name("username")).sendKeys("Admin");
@@ -41,15 +35,10 @@ public final class LoginPageTest extends BaseTest {
   @Order(1)
   @DisplayName("Проверка неуспешного логина")
   @Tag("extended")
-  @CsvSource({"Admin, 1234564",
-          "WrongName, admin123",
-          "AnyName, 43211"})
+  @CsvSource({"Admin, 1234564", "WrongName, admin123", "AnyName, 43211"})
   public void testNegativeLoginPage(String userName, String password) {
-    driver.manage().deleteAllCookies();
     driver.navigate().to("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-    driver.navigate().refresh();
 
-    Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(2));
     wait.until(d -> driver.findElement(By.name("username")).isDisplayed());
 
     driver.findElement(By.name("username")).sendKeys(userName);
@@ -63,8 +52,8 @@ public final class LoginPageTest extends BaseTest {
         driver.findElement(By.xpath("//p[text()='Invalid credentials']")).isDisplayed(),
         "No popup message Invalid Credentials");
     assertEquals(
-            "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
-            driver.getCurrentUrl(),
+        "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+        driver.getCurrentUrl(),
         "Unexpected Successful login");
   }
 }

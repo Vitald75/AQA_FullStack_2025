@@ -19,7 +19,6 @@
     <surefire.version>3.5.3</surefire.version>
     <selenium.version>4.32.0</selenium.version>
     <common.lang.version>2.6</common.lang.version>
-    <groups>smoke,extended</groups>
   </properties>
 
   <dependencies>

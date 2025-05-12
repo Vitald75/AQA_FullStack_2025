@@ -1,18 +1,12 @@
 package eu.senla;
 
-import java.time.Duration;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class AppTest extends BaseTest {
-
+public class PimAddEmployeeTest extends BaseTest {
 
   @DisplayName("Успешное добавление PIM employee")
   @Test
@@ -21,8 +15,6 @@ public class AppTest extends BaseTest {
   public void testPimAddEmployee() {
 
     driver.navigate().to("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-    final int waitingTime = 5;
-    Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(waitingTime));
     successfulLogin();
 
     // open PIM page
@@ -51,6 +43,5 @@ public class AppTest extends BaseTest {
     driver.findElement(By.xpath("//button[@type='submit']")).click();
 
     wait.until(d -> driver.findElement(By.xpath("//h6[text()='Alexandr PushyKin']"))).isDisplayed();
-
   }
 }
