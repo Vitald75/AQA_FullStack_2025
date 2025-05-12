@@ -1,7 +1,11 @@
 package eu.senla;
 
 import java.time.Duration;
-import org.junit.jupiter.api.*;
+//import org.junit.jupiter.api;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
