@@ -1,7 +1,5 @@
 package eu.senla;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.stream.Stream;
 import org.apache.commons.lang.RandomStringUtils;
 import org.junit.jupiter.api.DisplayName;
@@ -11,6 +9,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.By;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public final class AddRecruitmentCandidateTest extends BaseTest {
 
