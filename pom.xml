@@ -13,10 +13,12 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <junit.version>5.12.1</junit.version>
+    <junit.suite.version>1.12.1</junit.suite.version>
     <checkstyle.version>3.6.0</checkstyle.version>
     <spotless.version>2.44.4</spotless.version>
     <surefire.version>3.5.3</surefire.version>
-    <selenium.version>4.31.0</selenium.version>
+    <selenium.version>4.32.0</selenium.version>
+    <common.lang.version>2.6</common.lang.version>
   </properties>
 
   <dependencies>
@@ -27,10 +29,42 @@
       <scope>test</scope>
     </dependency>
     <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-params</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.junit.platform</groupId>
+      <artifactId>junit-platform-suite-api</artifactId>
+      <version>${junit.suite.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.platform</groupId>
+      <artifactId>junit-platform-suite-engine</artifactId>
+      <version>${junit.suite.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
       <version>${selenium.version}</version>
     </dependency>
+
+    <dependency>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+      <version>${common.lang.version}</version>
+    </dependency>
+
   </dependencies>
 
   <build>
@@ -39,6 +73,10 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>${surefire.version}</version>
+        <configuration>
+          <groups>${groups}</groups>
+        </configuration>
+
         <executions>
           <execution>
             <phase>test</phase>
