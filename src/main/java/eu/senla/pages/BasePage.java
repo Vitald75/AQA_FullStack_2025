@@ -1,5 +1,6 @@
 package eu.senla.pages;
 
+import eu.senla.core.Driver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -13,7 +14,7 @@ public abstract class BasePage {
         protected WebDriverWait wait;
 
         public BasePage(WebDriver driver) {
-            this.driver = driver;
+            this.driver = Driver.getInstance();
             //this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
             //PageFactory.initElements(driver, this);
         }

@@ -3,7 +3,7 @@ package eu.senla.core;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class Driver {
+public final class Driver {
     private static WebDriver driver;
 
     private Driver() {

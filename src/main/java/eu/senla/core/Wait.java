@@ -20,4 +20,5 @@ public final class Wait {
     public static WebElement waitVisibilityOfElementLocated(final By locator) {
         return wait(ExpectedConditions.visibilityOfElementLocated(locator));
     }
+
 }
