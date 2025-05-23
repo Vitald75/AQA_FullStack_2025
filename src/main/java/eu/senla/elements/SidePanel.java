@@ -10,8 +10,8 @@ public class SidePanel {
     private final By pim  = By.cssSelector("a[href$='viewPimModule']");
     private final By recruitmentPage = By.xpath("//a[@href='/web/index.php/recruitment/viewRecruitmentModule']");
 
-    public SidePanel(WebDriver driver) {
-        this.driver = driver;
+    public SidePanel() {
+
     }
 
 //    public PimPage clickPimMenu () {

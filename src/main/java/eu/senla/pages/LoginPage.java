@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import java.util.List;
 
 public class LoginPage { //extends BasePage{
-    private WebDriver driver;
+    //private WebDriver driver;
     private final By userNameField = By.name("username");
     private final By passwordField = By.name("password");
     private final By submitButton = By.cssSelector("button[type='submit']");
@@ -27,18 +27,18 @@ public class LoginPage { //extends BasePage{
     }
 
     public LoginPage enterPassword(String password) {
-        driver.findElement(passwordField).sendKeys(password);
+        Wait.waitVisibilityOfElementLocated(passwordField).sendKeys(password);
         return this;
     }
 
     public LoginPage clickSubmitButton() {
-        driver.findElement(submitButton).click();
+        Wait.waitVisibilityOfElementLocated(submitButton).click();
         return this;
     }
 
     public LoginPage loadPage(String url) {
-        driver.get(url);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(userNameField));
+        //Driver.get(url);
+        Wait.waitVisibilityOfElementLocated(userNameField);
         return this;
     }
 
@@ -47,7 +47,7 @@ public class LoginPage { //extends BasePage{
         enterUserName(userName)
                 .enterPassword(password)
                 .clickSubmitButton();
-        return new DashBoardPage(driver);
+        return new DashBoardPage();
     }
 
 }

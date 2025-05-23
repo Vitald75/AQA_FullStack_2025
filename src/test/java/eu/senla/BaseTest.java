@@ -21,7 +21,7 @@ public class BaseTest {
 
   @BeforeEach
   final void init() {
-    Driver.getInstance();
+    Driver.getInstance().get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
     // final int waitingTime = 6;
     //driver = new ChromeDriver();
     //wait = new WebDriverWait(driver, Duration.ofSeconds(waitingTime));

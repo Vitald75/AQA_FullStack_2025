@@ -21,4 +21,8 @@ public final class Wait {
         return wait(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
+    private Wait() {
+        throw new UnsupportedOperationException("This is a utility class and can't be instantiated");
+    }
+
 }
