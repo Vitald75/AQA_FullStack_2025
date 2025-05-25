@@ -1,24 +1,27 @@
 package eu.senla.elements;
 
+import eu.senla.core.Wait;
+import eu.senla.pages.PIMPage;
+import eu.senla.pages.RecruitmentPage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
 public class SidePanel {
 
-    private WebDriver driver;
+  private final By pimPage = By.cssSelector("a[href$='viewPimModule']");
+  private final By recruitmentPage =
+      By.xpath("//a[@href='/web/index.php/recruitment/viewRecruitmentModule']");
 
-    private final By pim  = By.cssSelector("a[href$='viewPimModule']");
-    private final By recruitmentPage = By.xpath("//a[@href='/web/index.php/recruitment/viewRecruitmentModule']");
+  public SidePanel() {
 
-    public SidePanel() {
+  }
 
-    }
+  public final PIMPage openPIMPage() {
+    Wait.waitVisibilityOfElementLocated(pimPage).click();
+    return new PIMPage();
+  }
 
-//    public PimPage clickPimMenu () {
-//        driver.findElement(pim).click();
-//        return new PimPage();
-//    }
-//
-
+  public final RecruitmentPage openRecruitmentPage() {
+    return new RecruitmentPage();
+  }
 
 }

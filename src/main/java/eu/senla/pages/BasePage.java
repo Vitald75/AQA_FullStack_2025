@@ -2,29 +2,15 @@ package eu.senla.pages;
 
 import eu.senla.core.Driver;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
-
 public abstract class BasePage {
-        protected WebDriver driver;
-        protected WebDriverWait wait;
+  protected WebDriver driver;
+  protected WebDriverWait wait;
 
-        public BasePage(WebDriver driver) {
-            this.driver = Driver.getInstance();
-            //this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-            //PageFactory.initElements(driver, this);
-        }
-
-//    protected void waitForVisibility(WebElement element) {
-//        wait.until(ExpectedConditions.visibilityOf(element));
-//    }
-//
-//    protected void waitForClickable(WebElement element) {
-//        wait.until(ExpectedConditions.elementToBeClickable(element));
-//    }
+  public BasePage() {
+    this.driver = Driver.getInstance();
+    // PageFactory.initElements(driver, this);
+  }
 
 }
