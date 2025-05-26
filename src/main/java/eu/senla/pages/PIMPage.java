@@ -1,11 +1,10 @@
 package eu.senla.pages;
 
-import eu.senla.core.Driver;
 import eu.senla.core.Wait;
 import eu.senla.data.Employee;
 import org.openqa.selenium.By;
 
-public class PIMPage {
+public class PIMPage extends BasePage {
   private final By addEmployeeButton =
       By.cssSelector("button.oxd-button.oxd-button--medium.oxd-button--secondary[type='button']");
   private final By firstNameField = By.name("firstName");
@@ -55,9 +54,5 @@ public class PIMPage {
   public final PIMPage isConfirmed() {
     Wait.waitVisibilityOfElementLocated(confirmationMessage).isDisplayed();
     return this;
-  }
-
-  public final String getUrl() {
-    return Driver.getInstance().getCurrentUrl();
   }
 }

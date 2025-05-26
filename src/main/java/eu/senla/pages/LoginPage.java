@@ -1,10 +1,9 @@
 package eu.senla.pages;
 
-import eu.senla.core.Driver;
 import eu.senla.core.Wait;
 import org.openqa.selenium.By;
 
-public class LoginPage { // extends BasePage{
+public class LoginPage extends BasePage { // extends BasePage{
   // private WebDriver driver;
   private final By userNameField = By.name("username");
   private final By passwordField = By.name("password");
@@ -14,8 +13,9 @@ public class LoginPage { // extends BasePage{
       By.xpath("//label[text()='Username']/../..//following-sibling::span[text()='Required']");
   private final By passwordRequired =
       By.xpath("//label[text()='Password']/../..//following-sibling::span[text()='Required']");
-//  private final String LOGINURL =
-//      "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login";
+
+  //  private final String LOGINURL =
+  //      "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login";
 
   //    public LoginPage (WebDriver driver) {
   //        super(driver);
@@ -64,9 +64,5 @@ public class LoginPage { // extends BasePage{
       Wait.waitVisibilityOfElementLocated(invalidCredentialsAlert);
     }
     return new LoginPage();
-  }
-
-  public final String getUrl() {
-    return Driver.getInstance().getCurrentUrl();
   }
 }

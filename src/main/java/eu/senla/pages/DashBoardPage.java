@@ -1,6 +1,5 @@
 package eu.senla.pages;
 
-import eu.senla.core.Driver;
 import eu.senla.core.Wait;
 import eu.senla.elements.SidePanel;
 import lombok.Getter;
@@ -9,9 +8,7 @@ import org.openqa.selenium.By;
 // import static eu.senla.core.Driver.driver;
 
 @Getter
-public class DashBoardPage { // extends BasePage {
-
-  // private WebDriver driver;
+public class DashBoardPage extends BasePage { // extends BasePage {
 
   private String dashboardUrl =
       "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
@@ -36,11 +33,7 @@ public class DashBoardPage { // extends BasePage {
     return new LoginPage();
   }
 
-  public final String getUrl() {
-    return Driver.getInstance().getCurrentUrl();
-  }
-
-  public final String getDashboardUrl() {
-    return dashboardUrl;
-  }
+  //  public final String getDashboardUrl() {
+  //    return dashboardUrl;
+  //  }
 }

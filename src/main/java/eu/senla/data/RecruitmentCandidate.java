@@ -12,11 +12,11 @@ import lombok.ToString;
 @Getter
 @Setter
 public class RecruitmentCandidate {
-    private String firstName;
-    private String middleName;
-    private String lastName;
-    private String email;
-    private String contactNumber;
-    private String keywords;
-    private String notes;
+  private String firstName;
+  private String middleName;
+  private String lastName;
+  private String email;
+  private String contactNumber;
+  private String keywords;
+  private String notes;
 }
