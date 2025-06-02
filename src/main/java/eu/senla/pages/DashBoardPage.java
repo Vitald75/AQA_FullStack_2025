@@ -1,17 +1,15 @@
 package eu.senla.pages;
 
+import eu.senla.core.ReadPropertiesFile;
 import eu.senla.core.Wait;
 import eu.senla.elements.SidePanel;
 import lombok.Getter;
 import org.openqa.selenium.By;
 
-// import static eu.senla.core.Driver.driver;
-
 @Getter
 public class DashBoardPage extends BasePage { // extends BasePage {
 
-  private String dashboardUrl =
-      "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
+  private String dashboardUrl = ReadPropertiesFile.getProperty("DASHBOARD_URL");
   private SidePanel sidePanel;
   private final By sidePanelBody = By.cssSelector(".oxd-sidepanel-body");
 
@@ -32,8 +30,4 @@ public class DashBoardPage extends BasePage { // extends BasePage {
     Wait.waitVisibilityOfElementLocated(logoutMenu).click();
     return new LoginPage();
   }
-
-  //  public final String getDashboardUrl() {
-  //    return dashboardUrl;
-  //  }
 }

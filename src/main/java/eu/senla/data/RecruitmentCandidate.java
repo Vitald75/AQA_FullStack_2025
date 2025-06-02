@@ -1,16 +1,10 @@
 package eu.senla.data;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
-@AllArgsConstructor
+@Data
 @Builder
-@ToString
-@Getter
-@Setter
 public class RecruitmentCandidate {
   private String firstName;
   private String middleName;

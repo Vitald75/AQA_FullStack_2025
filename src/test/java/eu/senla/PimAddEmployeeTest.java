@@ -3,8 +3,8 @@ package eu.senla;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.github.javafaker.Faker;
+import eu.senla.core.ReadPropertiesFile;
 import eu.senla.data.Employee;
-import eu.senla.pages.DashBoardPage;
 import eu.senla.pages.LoginPage;
 import eu.senla.pages.PIMPage;
 import org.junit.jupiter.api.BeforeEach;
@@ -34,12 +34,12 @@ public class PimAddEmployeeTest extends BaseTest {
   @Order(1)
   public void testPimAddEmployee() {
 
-    DashBoardPage dashBoardPage =
-        new LoginPage()
-            .loadPage("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
-            .loginAsValidUser("Admin", "admin123");
     PIMPage pimPage =
-        dashBoardPage
+        new LoginPage()
+            .loadPage(ReadPropertiesFile.getProperty("LOGIN_URL"))
+            .loginAsValidUser(
+                ReadPropertiesFile.getProperty("USERNAME"),
+                ReadPropertiesFile.getProperty("PASSWORD"))
             .getSidePanel()
             .openPIMPage()
             .clickAddEmployeeButton()
@@ -48,8 +48,6 @@ public class PimAddEmployeeTest extends BaseTest {
             .isConfirmed()
             .isPersonalInformationPage();
 
-    // pimPage.isConfirmed();
-    // pimPage.isPersonalInformationPage();
     String currentUrl = pimPage.getUrl();
 
     assertTrue(
