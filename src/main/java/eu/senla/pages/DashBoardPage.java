@@ -1,10 +1,12 @@
 package eu.senla.pages;
 
+import eu.senla.client.Auth;
 import eu.senla.core.Driver;
 import eu.senla.core.Wait;
 import eu.senla.elements.SidePanel;
 import lombok.Getter;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Cookie;
 
 // import static eu.senla.core.Driver.driver;
 
@@ -22,6 +24,18 @@ public class DashBoardPage { // extends BasePage {
   private final By logoutMenu = By.cssSelector("a[href='/web/index.php/auth/logout']");
 
   public DashBoardPage() {
+    // Create a cookie
+    Cookie cookie = new Cookie.Builder("orangehrm", Auth.getCookie())
+            .domain("opensource-demo.orangehrmlive.com")
+            .path("/")
+            .isHttpOnly(true)
+            .build();
+
+    // Add the cookie to the current domain
+    //driver.manage().addCookie(cookie);
+
+    Driver.getInstance().manage().addCookie(cookie);
+    Driver.getInstance().get(dashboardUrl);
     Wait.waitVisibilityOfElementLocated(sidePanelBody);
     this.sidePanel = new SidePanel();
   }

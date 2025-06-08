@@ -3,10 +3,12 @@ package eu.senla;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.github.javafaker.Faker;
+import eu.senla.core.Driver;
 import eu.senla.data.Employee;
 import eu.senla.pages.DashBoardPage;
 import eu.senla.pages.LoginPage;
 import eu.senla.pages.PIMPage;
+import lombok.Getter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
@@ -27,22 +29,30 @@ public class PimAddEmployeeTest extends BaseTest {
             .middleName(faker.name().firstName())
             .lastName(faker.name().lastName())
             .build();
-  }
+
+      //Driver.getInstance().get("https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index");
+
+      //Driver.getInstance().manage().addCookie();
+
+    }
+
 
   @DisplayName("Успешное добавление PIM employee")
   @Test
   @Tag("smoke")
-  @Order(1)
   public void testPimAddEmployee() {
 
-    DashBoardPage dashBoardPage =
-        new LoginPage()
-            .loadPage("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
-            .loginAsValidUser("Admin", "admin123");
-    PIMPage pimPage =
-        dashBoardPage
-            .getSidePanel()
-            .openPIMPage()
+//    DashBoardPage dashBoardPage =
+//        new LoginPage()
+//            .loadPage("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
+//            .loginAsValidUser("Admin", "admin123");
+
+    //DashBoardPage dashBoardPage = new DashBoardPage();
+    //Driver.getInstance().get("https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index");
+
+
+    PIMPage pimPage = new PIMPage();
+        pimPage
             .clickAddEmployeeButton()
             .fillNewEmployeeForm(employee)
             .clickSubmit()
