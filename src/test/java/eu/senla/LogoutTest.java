@@ -2,6 +2,7 @@ package eu.senla;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import eu.senla.core.ReadPropertiesFile;
 import eu.senla.pages.DashBoardPage;
 import eu.senla.pages.LoginPage;
 import org.junit.jupiter.api.DisplayName;
@@ -15,22 +16,17 @@ public class LogoutTest extends BaseTest {
   @Test
   public void testLogout() {
 
-    // DashBoardPage loginPage = new
-    // LoginPage().loadPage("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
-    //      .loginAsValidUser("Admin", "admin123");
     DashBoardPage dashBoardPage =
         new LoginPage()
-            .loadPage("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
-            .loginAsValidUser("Admin", "admin123");
+            .loadPage(ReadPropertiesFile.getProperty("LOGIN_URL"))
+            .loginAsValidUser(
+                ReadPropertiesFile.getProperty("USERNAME"),
+                ReadPropertiesFile.getProperty("PASSWORD"));
     LoginPage loginPage = dashBoardPage.openUserDropDownMenu().clickLogout();
 
     assertEquals(
-        "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+        ReadPropertiesFile.getProperty("LOGIN_URL"),
         loginPage.getUrl(),
         "Unsuccessful logout. Url doesn't match");
-
-    //                driver.findElement(By.xpath("//button[text()=' Login ']")).isDisplayed(),
-    //                "Unsuccessful logout"),
-
   }
 }

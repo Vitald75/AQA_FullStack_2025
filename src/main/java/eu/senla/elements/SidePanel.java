@@ -23,5 +23,4 @@ public class SidePanel {
   public final RecruitmentPage openRecruitmentPage() {
     return new RecruitmentPage();
   }
-
 }

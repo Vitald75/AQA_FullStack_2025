@@ -22,7 +22,7 @@ public final class LoginTest extends BaseTest {
 
     DashBoardPage loginPage =
         new LoginPage()
-            .loadPage("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
+            .loadPage(ReadPropertiesFile.getProperty("LOGIN_URL"))
             .loginAsValidUser(
                 ReadPropertiesFile.getProperty("USERNAME"),
                 ReadPropertiesFile.getProperty("PASSWORD"));
@@ -37,15 +37,13 @@ public final class LoginTest extends BaseTest {
   @CsvSource({"Admin, 1234564", "WrongName, admin123", "AnyName, 43211", "'',''"})
   public void testNegativeLoginPage(String userName, String password) {
     //
-    // driver.navigate().to("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-
     LoginPage loginPage =
         new LoginPage()
-            .loadPage("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login")
+            .loadPage(ReadPropertiesFile.getProperty("LOGIN_URL"))
             .loginAsInvalidUser(userName, password);
 
     assertEquals(
-        "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+        ReadPropertiesFile.getProperty("LOGIN_URL"),
         loginPage.getUrl(),
         "Unexpected Successful login");
   }
