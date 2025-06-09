@@ -18,7 +18,7 @@ public class LogoutTest extends BaseTest {
 
     DashBoardPage dashBoardPage =
         new LoginPage()
-            .loadPage(ReadPropertiesFile.getProperty("LOGIN_URL"))
+            //.loadPage(ReadPropertiesFile.getProperty("LOGIN_URL"))
             .loginAsValidUser(
                 ReadPropertiesFile.getProperty("USERNAME"),
                 ReadPropertiesFile.getProperty("PASSWORD"));

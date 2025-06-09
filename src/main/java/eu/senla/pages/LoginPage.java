@@ -4,7 +4,6 @@ import eu.senla.core.Wait;
 import org.openqa.selenium.By;
 
 public class LoginPage extends BasePage { // extends BasePage{
-  // private WebDriver driver;
   private final By userNameField = By.name("username");
   private final By passwordField = By.name("password");
   private final By submitButton = By.cssSelector("button[type='submit']");
@@ -14,16 +13,9 @@ public class LoginPage extends BasePage { // extends BasePage{
   private final By passwordRequired =
       By.xpath("//label[text()='Password']/../..//following-sibling::span[text()='Required']");
 
-  //  private final String LOGINURL =
-  //      "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login";
-
-  //    public LoginPage (WebDriver driver) {
-  //        super(driver);
-  //    }
 
   public final LoginPage enterUserName(String userName) {
     Wait.waitVisibilityOfElementLocated(userNameField).sendKeys(userName);
-    // driver.findElement(userNameField).sendKeys(userName);
     return this;
   }
 
@@ -37,19 +29,12 @@ public class LoginPage extends BasePage { // extends BasePage{
     return this;
   }
 
-  public final LoginPage loadPage(String url) {
-    Wait.waitVisibilityOfElementLocated(userNameField);
-    return this;
-  }
-
   public final DashBoardPage loginAsValidUser(String userName, String password) {
-
     enterUserName(userName).enterPassword(password).clickSubmitButton();
     return new DashBoardPage();
   }
 
   public final LoginPage loginAsInvalidUser(String userName, String password) {
-
     enterUserName(userName).enterPassword(password).clickSubmitButton();
 
     if (userName.length() == 0) {

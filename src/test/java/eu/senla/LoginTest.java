@@ -22,7 +22,6 @@ public final class LoginTest extends BaseTest {
 
     DashBoardPage loginPage =
         new LoginPage()
-            .loadPage(ReadPropertiesFile.getProperty("LOGIN_URL"))
             .loginAsValidUser(
                 ReadPropertiesFile.getProperty("USERNAME"),
                 ReadPropertiesFile.getProperty("PASSWORD"));
@@ -39,7 +38,6 @@ public final class LoginTest extends BaseTest {
     //
     LoginPage loginPage =
         new LoginPage()
-            .loadPage(ReadPropertiesFile.getProperty("LOGIN_URL"))
             .loginAsInvalidUser(userName, password);
 
     assertEquals(
