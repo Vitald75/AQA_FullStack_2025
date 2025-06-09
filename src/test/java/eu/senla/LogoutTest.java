@@ -18,7 +18,7 @@ public class LogoutTest extends BaseTest {
 
     DashBoardPage dashBoardPage =
         new LoginPage()
-            //.loadPage(ReadPropertiesFile.getProperty("LOGIN_URL"))
+            // .loadPage(ReadPropertiesFile.getProperty("LOGIN_URL"))
             .loginAsValidUser(
                 ReadPropertiesFile.getProperty("USERNAME"),
                 ReadPropertiesFile.getProperty("PASSWORD"));
@@ -26,7 +26,7 @@ public class LogoutTest extends BaseTest {
 
     assertEquals(
         ReadPropertiesFile.getProperty("LOGIN_URL"),
-        loginPage.getUrl(),
+        loginPage.getCurrentUrl(),
         "Unsuccessful logout. Url doesn't match");
   }
 }

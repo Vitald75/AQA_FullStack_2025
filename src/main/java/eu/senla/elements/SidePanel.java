@@ -12,7 +12,6 @@ public class SidePanel {
       By.xpath("//a[@href='/web/index.php/recruitment/viewRecruitmentModule']");
 
   public SidePanel() {
-
   }
 
   public final PIMPage openPIMPage() {
@@ -21,6 +20,7 @@ public class SidePanel {
   }
 
   public final RecruitmentPage openRecruitmentPage() {
+    Wait.waitVisibilityOfElementLocated(recruitmentPage).click();
     return new RecruitmentPage();
   }
 }

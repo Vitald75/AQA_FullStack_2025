@@ -1,6 +1,5 @@
 package eu.senla.client;
 
 public interface LoginStrategy {
-    void accessPage() throws Exception;
+  void accessPage() throws Exception;
 }
-

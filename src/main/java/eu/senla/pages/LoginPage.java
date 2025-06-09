@@ -13,7 +13,6 @@ public class LoginPage extends BasePage { // extends BasePage{
   private final By passwordRequired =
       By.xpath("//label[text()='Password']/../..//following-sibling::span[text()='Required']");
 
-
   public final LoginPage enterUserName(String userName) {
     Wait.waitVisibilityOfElementLocated(userNameField).sendKeys(userName);
     return this;

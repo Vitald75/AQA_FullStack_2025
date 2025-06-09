@@ -2,6 +2,7 @@ package eu.senla;
 
 // import org.junit.jupiter.api;
 import eu.senla.core.Driver;
+import eu.senla.core.ReadPropertiesFile;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
@@ -14,9 +15,9 @@ public class BaseTest {
 
   @BeforeEach
   final void init() {
-    Driver.getInstance().get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+    Driver.getInstance().get(ReadPropertiesFile.getProperty("LOGIN_URL"));
 
-    //Driver.getInstance().manage().addCookie();
+    // Driver.getInstance().manage().addCookie();
     // final int waitingTime = 6;
     // driver = new ChromeDriver();
     // wait = new WebDriverWait(driver, Duration.ofSeconds(waitingTime));

@@ -1,19 +1,14 @@
 package eu.senla.pages;
 
-import eu.senla.client.AuthApi;
-import eu.senla.core.Driver;
 import eu.senla.core.Wait;
 import eu.senla.data.Employee;
 import eu.senla.elements.SidePanel;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Cookie;
 
-public class PIMPage {
-  public String getPimPageUrl() {
-    return pimPageUrl;
-  }
+public class PIMPage extends BasePage {
 
-  private final String pimPageUrl = "https://opensource-demo.orangehrmlive.com/web/index.php/pim/viewEmployeeList";
+  private final String pimPageUrl =
+      "https://opensource-demo.orangehrmlive.com/web/index.php/pim/viewEmployeeList";
   private final SidePanel sidePanel;
   private final By addEmployeeButton =
       By.cssSelector("button.oxd-button.oxd-button--medium.oxd-button--secondary[type='button']");
@@ -25,20 +20,6 @@ public class PIMPage {
   private final By confirmationMessage = By.id("oxd-toaster_1");
 
   public PIMPage() {
-//    Cookie cookie = new Cookie.Builder("orangehrm", AuthApi.getCookie())
-//            .domain("opensource-demo.orangehrmlive.com")
-//            .path("/web")
-//            .isHttpOnly(true)
-//            .sameSite("Lax")
-//            .build();
-//
-//    // Add the cookie to the current domain
-//    Driver.getInstance().get(pimPageUrl);
-//    Driver.getInstance().manage().deleteCookieNamed("orangehrm");
-//    Driver.getInstance().manage().addCookie(cookie);
-//    Driver.getInstance().get(pimPageUrl);
-    //Driver.getInstance().navigate().to(pimPageUrl); //get(pimPageUrl);
-
     Wait.waitVisibilityOfElementLocated(addEmployeeButton);
     this.sidePanel = new SidePanel();
   }
@@ -85,7 +66,4 @@ public class PIMPage {
     return this;
   }
 
-  public final String getUrl() {
-    return Driver.getInstance().getCurrentUrl();
-  }
 }

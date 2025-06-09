@@ -20,29 +20,26 @@ public final class LoginTest extends BaseTest {
   @Tag("smoke")
   public void testPositiveLoginPage() {
 
-    DashBoardPage loginPage =
+    DashBoardPage dashBoardPage =
         new LoginPage()
             .loginAsValidUser(
                 ReadPropertiesFile.getProperty("USERNAME"),
                 ReadPropertiesFile.getProperty("PASSWORD"));
 
-    assertEquals(loginPage.getDashboardUrl(), loginPage.getUrl(), "Login failed");
+    assertEquals(dashBoardPage.getDashboardUrl(), dashBoardPage.getCurrentUrl(), "Login failed");
   }
 
   @ParameterizedTest()
-  @Order(1)
   @DisplayName("Проверка неуспешного логина")
   @Tag("extended")
   @CsvSource({"Admin, 1234564", "WrongName, admin123", "AnyName, 43211", "'',''"})
   public void testNegativeLoginPage(String userName, String password) {
     //
-    LoginPage loginPage =
-        new LoginPage()
-            .loginAsInvalidUser(userName, password);
+    LoginPage loginPage = new LoginPage().loginAsInvalidUser(userName, password);
 
     assertEquals(
         ReadPropertiesFile.getProperty("LOGIN_URL"),
-        loginPage.getUrl(),
+        loginPage.getCurrentUrl(),
         "Unexpected Successful login");
   }
 }
