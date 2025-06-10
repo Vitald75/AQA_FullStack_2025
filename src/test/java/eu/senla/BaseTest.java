@@ -1,6 +1,5 @@
 package eu.senla;
 
-// import org.junit.jupiter.api;
 import eu.senla.core.Driver;
 import eu.senla.core.ReadPropertiesFile;
 import org.junit.jupiter.api.AfterEach;
@@ -16,11 +15,6 @@ public class BaseTest {
   @BeforeEach
   final void init() {
     Driver.getInstance().get(ReadPropertiesFile.getProperty("LOGIN_URL"));
-
-    // Driver.getInstance().manage().addCookie();
-    // final int waitingTime = 6;
-    // driver = new ChromeDriver();
-    // wait = new WebDriverWait(driver, Duration.ofSeconds(waitingTime));
   }
 
   @AfterEach
@@ -28,15 +22,4 @@ public class BaseTest {
     Driver.quit();
   }
 
-  //  public final void successfulLogin() {
-  //    driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-  //
-  //    wait.until(d -> driver.findElement(By.name("username")).isDisplayed());
-  //
-  //    //driver.findElement(By.name("username")).sendKeys("Admin");
-  //    //driver.findElement(By.name("password")).sendKeys("admin123");
-  //    //driver.findElement(By.cssSelector("button[type='submit']")).click();
-  //    wait.until(d -> driver.findElement(By.xpath("//h6[text()='Dashboard']")).isDisplayed());
-  //    //driver.manage().window().maximize();
-  //  }
 }

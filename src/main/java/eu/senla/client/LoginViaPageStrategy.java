@@ -1,6 +1,7 @@
 package eu.senla.client;
 
 import eu.senla.core.ReadPropertiesFile;
+import eu.senla.elements.SidePanel;
 import eu.senla.pages.LoginPage;
 
 public class LoginViaPageStrategy implements LoginStrategy {
@@ -12,6 +13,7 @@ public class LoginViaPageStrategy implements LoginStrategy {
   @Override
   public final void accessPage() throws Exception {
       new LoginPage().loginAsValidUser(ReadPropertiesFile.getProperty("USERNAME"),
-              ReadPropertiesFile.getProperty("PASSWORD")).getSidePanel().openPIMPage();
+              ReadPropertiesFile.getProperty("PASSWORD"));
+      new SidePanel().openPIMPage();
       }
 }

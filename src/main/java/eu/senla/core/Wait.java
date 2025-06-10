@@ -8,7 +8,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public final class Wait {
-  static final Duration TIMEOUT = Duration.ofSeconds(7);
+
+  static final int TIMEOUT_SEC = 7;
+  static final Duration TIMEOUT = Duration.ofSeconds(TIMEOUT_SEC);
 
   public static WebElement wait(final ExpectedCondition<WebElement> expectedCondition) {
     return new WebDriverWait(Driver.getInstance(), TIMEOUT)
@@ -23,4 +25,5 @@ public final class Wait {
   private Wait() {
     throw new UnsupportedOperationException("This is a utility class and can't be instantiated");
   }
+
 }

@@ -2,14 +2,13 @@ package eu.senla.pages;
 
 import eu.senla.core.Wait;
 import eu.senla.data.Employee;
-import eu.senla.elements.SidePanel;
 import org.openqa.selenium.By;
 
 public class PIMPage extends BasePage {
 
   private final String pimPageUrl =
       "https://opensource-demo.orangehrmlive.com/web/index.php/pim/viewEmployeeList";
-  private final SidePanel sidePanel;
+  //private final SidePanel sidePanel;
   private final By addEmployeeButton =
       By.cssSelector("button.oxd-button.oxd-button--medium.oxd-button--secondary[type='button']");
   private final By firstNameField = By.name("firstName");
@@ -21,7 +20,6 @@ public class PIMPage extends BasePage {
 
   public PIMPage() {
     Wait.waitVisibilityOfElementLocated(addEmployeeButton);
-    this.sidePanel = new SidePanel();
   }
 
   public final PIMPage clickAddEmployeeButton() {

@@ -1,54 +1,67 @@
 package eu.senla;
 
+import com.github.javafaker.Faker;
+import eu.senla.client.LoginStrategy;
+import eu.senla.client.LoginViaApiStrategy;
+import eu.senla.data.RecruitmentCandidate;
+import eu.senla.elements.SidePanel;
+import eu.senla.pages.AddCandidatePage;
+import eu.senla.pages.RecruitmentPage;
+import lombok.SneakyThrows;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public final class AddRecruitmentCandidateTest extends BaseTest {
-  //
-  //  @Test
-  //  @DisplayName("Успешное добавление кандидата")
-  //  @Tag("smoke")
-  //  public void testPositiveAddRecruitmentCandidate() {
-  //    successfulLogin();
-  //
-  //    // open Recruitment page
-  //    driver
-  //        .findElement(By.xpath("//a[@href='/web/index.php/recruitment/viewRecruitmentModule']"))
-  //        .click();
-  //    driver.manage().window().maximize();
-  //    wait.until(d -> driver.findElement(By.xpath("//h5[text()='Candidates']")).isDisplayed());
-  //
-  //    // click Add button
-  //    driver.findElement(By.xpath("//button[text()=' Add ']")).click();
-  //    wait.until(d -> driver.findElement(By.cssSelector("button[type='submit']")).isDisplayed());
-  //
-  //    // fill the new candidate form
-  //    final int length = 10;
-  //    boolean useLetters = true;
-  //    boolean useNumbers = false;
-  //    String name = RandomStringUtils.random(length, useLetters, useNumbers);
-  //
-  //    driver.findElement(By.name("firstName")).sendKeys(name);
-  //    driver.findElement(By.name("middleName")).sendKeys(name);
-  //    driver.findElement(By.name("lastName")).sendKeys(name);
-  //
-  //    driver.findElement(By.xpath("//label[text()='Vacancy']/../following::div/div/div")).click();
-  //
-  //    // driver.findElement(By.xpath("//span[text()='Software Engineer']")).click();
-  //    driver.findElement(By.cssSelector("div[role='listbox'] div:nth-of-type(2) span")).click();
-  //    driver
-  //        .findElement(By.xpath("//label[text()='Email']/../following::div[1]/input"))
-  //        .sendKeys("test@mail.com");
-  //    driver
-  //        .findElement(By.xpath("//label[text()='Contact Number']/../following::div[1]/input"))
-  //        .sendKeys("+375-29-555-44-33");
-  //
-  //    // field keywords
-  //    driver
-  //        .findElement(By.xpath("//label[text()='Keywords']/../following-sibling::div/input"))
-  //        .sendKeys("keyword, smart, social skilled");
-  //
-  //    // text area
-  //    driver.findElement(By.xpath("//textarea")).sendKeys("some notes about candidate");
-  //    driver.findElement(By.xpath("//button[@type='submit' and text()=' Save ']")).click();
-  //  }
+    private RecruitmentCandidate candidate;
+
+    @BeforeEach
+    void generateTestData() {
+        Faker faker = new Faker();
+        candidate = RecruitmentCandidate.builder()
+                        .firstName(faker.name().firstName())
+                        .middleName(faker.name().firstName())
+                        .lastName(faker.name().lastName())
+                        .contactNumber(faker.phoneNumber().subscriberNumber())
+                        .email(faker.internet().emailAddress())
+                        .keywords(faker.hacker().adjective())
+                        .notes(faker.lorem().paragraph(2))
+                        .build();
+    }
+
+
+    @SneakyThrows
+    @Test
+    @DisplayName("Успешное добавление кандидата")
+    @Tag("smoke")
+    public void testPositiveAddRecruitmentCandidate() {
+        String directRecruitmentUrl =
+                "https://opensource-demo.orangehrmlive.com/web/index.php/pim/viewEmployeeList";
+
+        // Выбор стратегии аутентификации
+        LoginStrategy authenticate = new LoginViaApiStrategy(directRecruitmentUrl);
+        //LoginStrategy authenticate = new LoginViaPageStrategy();
+
+        authenticate.accessPage();
+
+        new SidePanel().openRecruitmentPage();
+
+        AddCandidatePage addCandidatePage =
+                new RecruitmentPage()
+                        .clickAddRecruitmentButton()
+                        .fillNewCandidateForm(candidate)
+                        .clickSaveButton()
+                        .isConfirmed();
+        assertTrue(
+                addCandidatePage.getCurrentUrl().contains(
+                        "https://opensource-demo.orangehrmlive.com/web/index.php/recruitment/addCandidate"),
+                "Unexpected Url");
+
+    }
+
   //
   //  @DisplayName("Проверка формы добавления кандидата")
   //  @ParameterizedTest(name = "Проверка формы добавления кандидата с {0}")
