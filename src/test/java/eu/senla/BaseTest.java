@@ -12,6 +12,14 @@ public class BaseTest {
   // protected static WebDriver driver;
   // protected static Wait<WebDriver> wait;
 
+  /**
+   * определение стратегии должно быть здесь
+   * как именно реавлизовать подумай сам
+   * мне впадлу =)))))))))
+   * если не получится - пиши, делай ПР, будем думать дальше вместе
+   */
+
+
   @BeforeEach
   final void init() {
     Driver.getInstance().get(ReadPropertiesFile.getProperty("LOGIN_URL"));

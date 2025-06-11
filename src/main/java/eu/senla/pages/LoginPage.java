@@ -4,11 +4,15 @@ import eu.senla.core.Wait;
 import org.openqa.selenium.By;
 
 public class LoginPage extends BasePage { // extends BasePage{
+
   private final By userNameField = By.name("username");
   private final By passwordField = By.name("password");
   private final By submitButton = By.cssSelector("button[type='submit']");
   private final By invalidCredentialsAlert = By.xpath("//p[text()='Invalid credentials']");
   private final By userNameRequired =
+          /**
+           * уверен что можно без /../..//
+           */
       By.xpath("//label[text()='Username']/../..//following-sibling::span[text()='Required']");
   private final By passwordRequired =
       By.xpath("//label[text()='Password']/../..//following-sibling::span[text()='Required']");
@@ -36,7 +40,7 @@ public class LoginPage extends BasePage { // extends BasePage{
   public final LoginPage loginAsInvalidUser(String userName, String password) {
     enterUserName(userName).enterPassword(password).clickSubmitButton();
 
-    if (userName.length() == 0) {
+    if (userName.isEmpty()) {
       Wait.waitVisibilityOfElementLocated(userNameRequired);
     }
 

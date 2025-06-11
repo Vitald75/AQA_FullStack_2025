@@ -10,7 +10,15 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
 //@UtilityClass
-public class AuthApi {
+public class AuthHelper {
+
+  /**
+   * разбить этот метод на два
+   * 1. первый метод - первый запрос
+   * 2. второй метод - второй запрос и возврат куки
+   *
+   */
+
   public static String getCookie() {
     String token = "";
     // first get request /login

@@ -12,6 +12,7 @@ public final class Wait {
   static final int TIMEOUT_SEC = 7;
   static final Duration TIMEOUT = Duration.ofSeconds(TIMEOUT_SEC);
 
+  //этот метод и ниже по сути одинаковые только один общий а второй более частный
   public static WebElement wait(final ExpectedCondition<WebElement> expectedCondition) {
     return new WebDriverWait(Driver.getInstance(), TIMEOUT)
         .withMessage("The element isn't visible")

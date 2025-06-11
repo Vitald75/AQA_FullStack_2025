@@ -1,6 +1,12 @@
 package eu.senla;
 
 public class AddDeleteJobTitlesTest extends BaseTest {
+
+    // много строчный коммент выглядит вот так
+    /*
+
+     */
+
   //  @DisplayName("Успешное добавление и удаление 3-х Job Titles")
   //  @Test
   //  @Tag("smoke")

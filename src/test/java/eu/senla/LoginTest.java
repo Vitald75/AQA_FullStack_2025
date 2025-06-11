@@ -26,7 +26,8 @@ public final class LoginTest extends BaseTest {
                 ReadPropertiesFile.getProperty("USERNAME"),
                 ReadPropertiesFile.getProperty("PASSWORD"));
 
-    assertEquals(dashBoardPage.getDashboardUrl(), dashBoardPage.getCurrentUrl(), "Login failed");
+    assertEquals(dashBoardPage.getDashboardUrl(), dashBoardPage.getCurrentUrl(),
+            "Login failed");
   }
 
   @ParameterizedTest()
@@ -34,7 +35,7 @@ public final class LoginTest extends BaseTest {
   @Tag("extended")
   @CsvSource({"Admin, 1234564", "WrongName, admin123", "AnyName, 43211", "'',''"})
   public void testNegativeLoginPage(String userName, String password) {
-    //
+
     LoginPage loginPage = new LoginPage().loginAsInvalidUser(userName, password);
 
     assertEquals(

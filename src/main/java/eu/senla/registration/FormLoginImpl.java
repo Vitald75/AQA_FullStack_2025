@@ -1,4 +1,4 @@
-package eu.senla.client;
+package eu.senla.registration;
 
 import eu.senla.core.ReadPropertiesFile;
 import eu.senla.elements.SidePanel;

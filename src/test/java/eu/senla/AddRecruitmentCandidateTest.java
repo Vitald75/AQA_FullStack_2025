@@ -1,8 +1,8 @@
 package eu.senla;
 
 import com.github.javafaker.Faker;
-import eu.senla.client.LoginStrategy;
-import eu.senla.client.ApiLoginImpl;
+import eu.senla.registration.LoginStrategy;
+import eu.senla.registration.ApiLoginImpl;
 import eu.senla.data.RecruitmentCandidate;
 import eu.senla.elements.SidePanel;
 import eu.senla.pages.AddCandidatePage;

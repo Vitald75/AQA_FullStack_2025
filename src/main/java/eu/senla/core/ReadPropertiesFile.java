@@ -11,6 +11,7 @@ public class ReadPropertiesFile {
     try {
       property = new Properties();
       FileInputStream propertyFile =
+              //надо исправить путь я вынес папку ресурсис
           new FileInputStream("src/test/java/eu/senla/resources/conf.properties");
       property.load(propertyFile);
     } catch (IOException e) {

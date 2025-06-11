@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class LogoutTest extends BaseTest {
-  //
+
   @DisplayName("Проверка успешного выхода из учетной записи")
   @Tag("smoke")
   @Test

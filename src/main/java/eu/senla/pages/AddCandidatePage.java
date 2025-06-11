@@ -5,6 +5,7 @@ import eu.senla.data.RecruitmentCandidate;
 import org.openqa.selenium.By;
 
 public class AddCandidatePage extends BasePage {
+
     private String directUrl = "https://opensource-demo.orangehrmlive.com/web/index.php/recruitment/addCandidate";
 
 //    private final By addRecruitmentButton =
@@ -22,8 +23,6 @@ public class AddCandidatePage extends BasePage {
     private final By saveButton = By.xpath("//button[@type='submit']");
 
     private final By confirmationMessage = By.xpath("//div[@id='oxd-toaster_1']//p[text()='Success']");
-
-
 
     public AddCandidatePage() {
         Wait.waitVisibilityOfElementLocated(saveButton);
@@ -79,7 +78,6 @@ public class AddCandidatePage extends BasePage {
                 .inputContactNumber(candidate.getContactNumber())
                 .inputKeywords(candidate.getKeywords())
                 .inputNotes(candidate.getNotes());
-
         return this;
     }
 

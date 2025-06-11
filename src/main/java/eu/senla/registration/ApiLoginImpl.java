@@ -1,9 +1,11 @@
-package eu.senla.client;
+package eu.senla.registration;
 
+import eu.senla.client.AuthHelper;
 import eu.senla.core.Driver;
 import org.openqa.selenium.Cookie;
 
 public class ApiLoginImpl implements LoginStrategy {
+
   private String targetUrl;
 
   public ApiLoginImpl(String url) {
@@ -13,7 +15,7 @@ public class ApiLoginImpl implements LoginStrategy {
   @Override
   public final void login() {
     Cookie cookie =
-        new Cookie.Builder("orangehrm", AuthApi.getCookie())
+        new Cookie.Builder("orangehrm", AuthHelper.getCookie())
             .domain("opensource-demo.orangehrmlive.com")
             .path("/web")
             .isHttpOnly(true)
