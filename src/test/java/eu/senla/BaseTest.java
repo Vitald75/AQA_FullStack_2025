@@ -4,6 +4,7 @@ import eu.senla.core.Driver;
 import eu.senla.core.ReadPropertiesFile;
 import eu.senla.registration.ApiLoginImpl;
 //import eu.senla.registration.FormLoginImpl;
+import eu.senla.registration.FormLoginImpl;
 import eu.senla.registration.LoginStrategy;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.AfterEach;
@@ -23,8 +24,8 @@ public class BaseTest {
     init();
 
     // Выбор стратегии аутентификации
-    LoginStrategy authenticate = new ApiLoginImpl(dashboardUrl);
-    //LoginStrategy authenticate = new FormLoginImpl();
+    //LoginStrategy authenticate = new ApiLoginImpl(dashboardUrl);
+    LoginStrategy authenticate = new FormLoginImpl();
     authenticate.login();
   }
 
