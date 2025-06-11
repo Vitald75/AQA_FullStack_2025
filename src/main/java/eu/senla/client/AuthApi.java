@@ -17,7 +17,7 @@ public class AuthApi {
     Response firstResponse =
         RestAssured.given()
             .when()
-            .get(eu.senla.core.ReadPropertiesFile.getProperty("MAIN_AUTH_URI") + "/login");
+            .get(eu.senla.core.ReadPropertiesFile.getProperty("BASE_URL") + "/auth");
 
     String htmlContent = firstResponse.asString();
     Document doc = Jsoup.parse(htmlContent);
@@ -46,7 +46,7 @@ public class AuthApi {
             .log()
             .all()
             .when()
-            .post(ReadPropertiesFile.getProperty("MAIN_AUTH_URI") + "/validate")
+            .post(ReadPropertiesFile.getProperty("BASE_URL") + "/auth/validate")
             .then()
             .log()
             .all()

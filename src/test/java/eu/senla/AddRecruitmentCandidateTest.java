@@ -2,7 +2,7 @@ package eu.senla;
 
 import com.github.javafaker.Faker;
 import eu.senla.client.LoginStrategy;
-import eu.senla.client.LoginViaApiStrategy;
+import eu.senla.client.ApiLoginImpl;
 import eu.senla.data.RecruitmentCandidate;
 import eu.senla.elements.SidePanel;
 import eu.senla.pages.AddCandidatePage;
@@ -42,10 +42,10 @@ public final class AddRecruitmentCandidateTest extends BaseTest {
                 "https://opensource-demo.orangehrmlive.com/web/index.php/pim/viewEmployeeList";
 
         // Выбор стратегии аутентификации
-        LoginStrategy authenticate = new LoginViaApiStrategy(directRecruitmentUrl);
+        LoginStrategy authenticate = new ApiLoginImpl(directRecruitmentUrl);
         //LoginStrategy authenticate = new LoginViaPageStrategy();
 
-        authenticate.accessPage();
+        authenticate.login();
 
         new SidePanel().openRecruitmentPage();
 

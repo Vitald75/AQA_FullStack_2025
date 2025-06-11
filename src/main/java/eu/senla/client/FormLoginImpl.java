@@ -4,15 +4,12 @@ import eu.senla.core.ReadPropertiesFile;
 import eu.senla.elements.SidePanel;
 import eu.senla.pages.LoginPage;
 
-public class LoginViaPageStrategy implements LoginStrategy {
-
-  public LoginViaPageStrategy() {
-
-  }
+public class FormLoginImpl implements LoginStrategy {
 
   @Override
-  public final void accessPage() throws Exception {
-      new LoginPage().loginAsValidUser(ReadPropertiesFile.getProperty("USERNAME"),
+  public final void login() throws Exception {
+      new LoginPage()
+              .loginAsValidUser(ReadPropertiesFile.getProperty("USERNAME"),
               ReadPropertiesFile.getProperty("PASSWORD"));
       new SidePanel().openPIMPage();
       }

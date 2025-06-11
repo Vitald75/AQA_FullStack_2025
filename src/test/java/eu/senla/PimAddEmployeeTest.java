@@ -5,8 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import com.github.javafaker.Faker;
 import eu.senla.client.LoginStrategy;
 //import eu.senla.client.LoginViaApiStrategy;
-import eu.senla.client.LoginViaApiStrategy;
-import eu.senla.client.LoginViaPageStrategy;
+import eu.senla.client.FormLoginImpl;
 import eu.senla.data.Employee;
 import eu.senla.pages.PIMPage;
 import lombok.SneakyThrows;
@@ -41,9 +40,9 @@ public class PimAddEmployeeTest extends BaseTest {
 
     // Выбор стратегии аутентификации
     //LoginStrategy authenticate = new LoginViaApiStrategy(directPimUrl);
-    LoginStrategy authenticate = new LoginViaPageStrategy();
+    LoginStrategy authenticate = new FormLoginImpl();
 
-    authenticate.accessPage();
+    authenticate.login();
 
     PIMPage pimPage =
         new PIMPage()
