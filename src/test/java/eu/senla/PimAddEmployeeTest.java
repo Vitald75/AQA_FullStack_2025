@@ -3,6 +3,8 @@ package eu.senla;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.github.javafaker.Faker;
+import eu.senla.core.Driver;
+import eu.senla.elements.SidePanel;
 import eu.senla.registration.LoginStrategy;
 //import eu.senla.client.LoginViaApiStrategy;
 import eu.senla.registration.FormLoginImpl;
@@ -35,11 +37,7 @@ public class PimAddEmployeeTest extends BaseTest {
   @Tag("smoke")
   public void testPimAddEmployee() {
 
-    // Выбор стратегии аутентификации
-    //LoginStrategy authenticate = new LoginViaApiStrategy(directPimUrl);
-    LoginStrategy authenticate = new FormLoginImpl();
-
-    authenticate.login();
+    new SidePanel().openPIMPage();
 
     PIMPage pimPage =
         new PIMPage()

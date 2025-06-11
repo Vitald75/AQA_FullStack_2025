@@ -11,6 +11,5 @@ public class FormLoginImpl implements LoginStrategy {
       new LoginPage()
               .loginAsValidUser(ReadPropertiesFile.getProperty("USERNAME"),
               ReadPropertiesFile.getProperty("PASSWORD"));
-      new SidePanel().openPIMPage();
       }
 }

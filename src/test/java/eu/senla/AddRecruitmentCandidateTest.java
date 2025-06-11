@@ -41,12 +41,6 @@ public final class AddRecruitmentCandidateTest extends BaseTest {
         String directRecruitmentUrl =
                 "https://opensource-demo.orangehrmlive.com/web/index.php/pim/viewEmployeeList";
 
-        // Выбор стратегии аутентификации
-        LoginStrategy authenticate = new ApiLoginImpl(directRecruitmentUrl);
-        //LoginStrategy authenticate = new LoginViaPageStrategy();
-
-        authenticate.login();
-
         new SidePanel().openRecruitmentPage();
 
         AddCandidatePage addCandidatePage =

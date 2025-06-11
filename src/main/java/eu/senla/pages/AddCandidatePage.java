@@ -8,9 +8,6 @@ public class AddCandidatePage extends BasePage {
 
     private String directUrl = "https://opensource-demo.orangehrmlive.com/web/index.php/recruitment/addCandidate";
 
-//    private final By addRecruitmentButton =
-//            By.cssSelector("button.oxd-button.oxd-button--medium.oxd-button--secondary[type='button']");
-
     private final By firstNameInput = By.name("firstName");
     private final By middleNameInput = By.name("middleName");
     private final By lastNameInput = By.name("lastName");
@@ -90,6 +87,5 @@ public class AddCandidatePage extends BasePage {
         Wait.waitVisibilityOfElementLocated(confirmationMessage).isDisplayed();
         return this;
     }
-
 
 }

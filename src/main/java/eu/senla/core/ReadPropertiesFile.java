@@ -11,8 +11,8 @@ public class ReadPropertiesFile {
     try {
       property = new Properties();
       FileInputStream propertyFile =
-              //надо исправить путь я вынес папку ресурсис
-          new FileInputStream("src/test/java/eu/senla/resources/conf.properties");
+              //надо исправить путь я вынес папку ресурсис   - - .. сделал
+          new FileInputStream("src/test/resources/conf.properties");
       property.load(propertyFile);
     } catch (IOException e) {
       System.err.println("Error: Properties file isn't present!");

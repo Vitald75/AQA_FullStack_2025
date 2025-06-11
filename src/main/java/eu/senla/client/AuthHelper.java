@@ -16,16 +16,19 @@ public class AuthHelper {
    * разбить этот метод на два
    * 1. первый метод - первый запрос
    * 2. второй метод - второй запрос и возврат куки
-   *
+   *  Сделано
    */
 
-  public static String getCookie() {
+  private static String[] getInitialCookie() {
+    String[] arrayOfValues = new String[2];
     String token = "";
     // first get request /login
+    String ss = eu.senla.core.ReadPropertiesFile.getProperty("BASE_URL") + "/auth/login";
+
     Response firstResponse =
-        RestAssured.given()
-            .when()
-            .get(eu.senla.core.ReadPropertiesFile.getProperty("BASE_URL") + "/auth");
+            RestAssured.given()
+                    .when()
+                    .get(eu.senla.core.ReadPropertiesFile.getProperty("BASE_URL") + "/auth/login");
 
     String htmlContent = firstResponse.asString();
     Document doc = Jsoup.parse(htmlContent);
@@ -40,15 +43,22 @@ public class AuthHelper {
       System.out.println("<auth-login> element not found");
     }
     // Get value of cookie from first response
-    String initialCookie = firstResponse.getDetailedCookie("orangehrm").getValue();
+    arrayOfValues[0] = firstResponse.getDetailedCookie("orangehrm").getValue();
+    arrayOfValues[1] = token;
 
-    // second post request /validate
+    return arrayOfValues;
+  }
+
+  public static String getCookie() {
+
     final int responseCode = 302;
+    final String[] arrayOfValues = getInitialCookie(); // [0] - cookie, [1] - token
+
     ValidatableResponse secondResponse =
         RestAssured.given()
-            .cookie("orangehrm", initialCookie)
+            .cookie("orangehrm", arrayOfValues[0])
             .contentType("application/x-www-form-urlencoded; charset=UTF-8")
-            .formParam("_token", token)
+            .formParam("_token", arrayOfValues[1])
             .formParam("username", ReadPropertiesFile.getProperty("USERNAME"))
             .formParam("password", ReadPropertiesFile.getProperty("PASSWORD"))
             .log()
