@@ -17,7 +17,7 @@ public class RecruitmentPage {
 
     public final AddCandidatePage clickAddRecruitmentButton() {
         Wait.waitVisibilityOfElementLocated(addRecruitmentButton).click();
-        return new AddCandidatePage(); // вернуть новый PO   new AddRecruitmentPage()
+        return new AddCandidatePage();
     }
 
 

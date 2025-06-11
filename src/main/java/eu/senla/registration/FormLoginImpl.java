@@ -1,7 +1,6 @@
 package eu.senla.registration;
 
 import eu.senla.core.ReadPropertiesFile;
-import eu.senla.elements.SidePanel;
 import eu.senla.pages.LoginPage;
 
 public class FormLoginImpl implements LoginStrategy {

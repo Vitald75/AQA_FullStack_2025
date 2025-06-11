@@ -3,11 +3,7 @@ package eu.senla;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.github.javafaker.Faker;
-import eu.senla.core.Driver;
 import eu.senla.elements.SidePanel;
-import eu.senla.registration.LoginStrategy;
-//import eu.senla.client.LoginViaApiStrategy;
-import eu.senla.registration.FormLoginImpl;
 import eu.senla.data.Employee;
 import eu.senla.pages.PIMPage;
 import lombok.SneakyThrows;

@@ -12,13 +12,6 @@ import org.jsoup.nodes.Element;
 //@UtilityClass
 public class AuthHelper {
 
-  /**
-   * разбить этот метод на два
-   * 1. первый метод - первый запрос
-   * 2. второй метод - второй запрос и возврат куки
-   *  Сделано
-   */
-
   private static String[] getInitialCookie() {
     String[] arrayOfValues = new String[2];
     String token = "";
