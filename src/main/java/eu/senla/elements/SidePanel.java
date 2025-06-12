@@ -14,6 +14,13 @@ public class SidePanel {
         By.xpath("//a[@href='/web/index.php/recruitment/viewRecruitmentModule']");
   private final By adminPage =
         By.xpath("//a[@href='/web/index.php/admin/viewAdminModule']");
+  private final By dashBoardPage =
+          By.xpath("//a[@href='/web/index.php/dashboard/index']");
+  private final By leavePage =
+          By.xpath("//a[@href='/web/index.php/leave/viewLeaveModule']");
+
+
+
 
   public SidePanel() {
   }
