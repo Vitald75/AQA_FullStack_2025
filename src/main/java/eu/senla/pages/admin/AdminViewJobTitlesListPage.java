@@ -18,8 +18,7 @@ public class AdminViewJobTitlesListPage extends BasePage {
     }
 
     public final boolean checkIfJobTitleExists(String jobTitle) {
-        By jobTitleExists = By.xpath("//div[contains(text(),'" + jobTitle + "')]"
-                + "/parent::*//following-sibling::div//i[@class='oxd-icon bi-trash']");
+        By jobTitleExists = By.xpath("//div[contains(text(),'" + jobTitle + "')]");
 
         boolean isExist = false;
         try {
@@ -30,12 +29,12 @@ public class AdminViewJobTitlesListPage extends BasePage {
             isExist = false;
         }
         return isExist;
-        //return !(Driver.getInstance().findElements(jobTitleExists).isEmpty());
     }
 
     public final AdminViewJobTitlesListPage deleteJobTitle(String jobTitle) {
         //By deleteActionButton = By.xpath("//div[contains(text(),'" + jobTitle + "')]/../..//i[@class='oxd-icon bi-trash']");
-        By deleteActionButton = By.xpath("//div[contains(text(),'" + jobTitle + "')]/../..//i[@class='oxd-icon bi-trash']");
+        By deleteActionButton = By.xpath("//div[contains(text(),'" + jobTitle + "')]"
+                + "/parent::*//following-sibling::div//i[@class='oxd-icon bi-trash']");
         Wait.waitVisibilityOfElementLocated(deleteActionButton).click();
         return this;
     }
