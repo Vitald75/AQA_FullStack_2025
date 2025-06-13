@@ -18,7 +18,9 @@ public class AdminViewJobTitlesListPage extends BasePage {
     }
 
     public final boolean checkIfJobTitleExists(String jobTitle) {
-        By jobTitleExists = By.xpath("//div[contains(text(),'" + jobTitle + "')]/../..//i[@class='oxd-icon bi-trash']");
+        By jobTitleExists = By.xpath("//div[contains(text(),'" + jobTitle + "')]"
+                + "/parent::*//following-sibling::div//i[@class='oxd-icon bi-trash']");
+
         boolean isExist = false;
         try {
             Wait.waitVisibilityOfElementLocated(jobTitleExists).isDisplayed();
@@ -32,6 +34,7 @@ public class AdminViewJobTitlesListPage extends BasePage {
     }
 
     public final AdminViewJobTitlesListPage deleteJobTitle(String jobTitle) {
+        //By deleteActionButton = By.xpath("//div[contains(text(),'" + jobTitle + "')]/../..//i[@class='oxd-icon bi-trash']");
         By deleteActionButton = By.xpath("//div[contains(text(),'" + jobTitle + "')]/../..//i[@class='oxd-icon bi-trash']");
         Wait.waitVisibilityOfElementLocated(deleteActionButton).click();
         return this;

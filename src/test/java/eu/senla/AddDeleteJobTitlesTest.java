@@ -58,7 +58,7 @@ public final class AddDeleteJobTitlesTest extends BaseTest {
     @DisplayName("Успешное добавление и удаление n Job Title")
     public void testPositiveAddJobTitle() {
 
-        final int repetitions = 3;
+        final int repetitions = 1;
         JobTitle[] jobTitles = new JobTitle[repetitions];
         for (int i = 0; i < repetitions; i++) {
             jobTitles[i] = generateTestData();

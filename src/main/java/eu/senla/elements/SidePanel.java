@@ -19,12 +19,6 @@ public class SidePanel {
   private final By leavePage =
           By.xpath("//a[@href='/web/index.php/leave/viewLeaveModule']");
 
-
-
-
-  public SidePanel() {
-  }
-
   public final AdminMainPage openAdminPage() {
     Wait.waitVisibilityOfElementLocated(adminPage).click();
     return new AdminMainPage();
