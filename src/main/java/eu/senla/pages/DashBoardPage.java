@@ -14,7 +14,8 @@ public class DashBoardPage extends BasePage {
   private final By sidePanelBody = By.cssSelector(".oxd-sidepanel-body");
   private final By userDropDownMenu = By.cssSelector("span.oxd-userdropdown-tab");
   private final By logoutMenu = By.cssSelector("a[href='/web/index.php/auth/logout']");
-  private final By tile1 = By.xpath("//div[@class='oxd-grid-item oxd-grid-item--gutters orangehrm-dashboard-widget'][1]//p[text()='Time at Work']");
+  private final By tile1 = By.xpath("//div[@class='oxd-grid-item oxd-grid-item--gutters orangehrm-dashboard-widget'][1]"
+          + "//p[text()='Time at Work']");
   private final By tile2 = By.xpath("//div[@class='oxd-grid-item oxd-grid-item--gutters orangehrm-dashboard-widget'][2]");
   //......
   private final By tile7 = By.xpath("//div[@class='oxd-grid-item oxd-grid-item--gutters orangehrm-dashboard-widget'][7]");
