@@ -2,14 +2,14 @@ package eu.senla;
 
 import eu.senla.core.Driver;
 import eu.senla.core.ReadPropertiesFile;
-import eu.senla.registration.FormLoginImpl;
+import eu.senla.registration.ApiLoginImpl;
+//import eu.senla.registration.FormLoginImpl;
 import eu.senla.registration.LoginStrategy;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.TestMethodOrder;
-
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class BaseTest {
@@ -22,8 +22,8 @@ public class BaseTest {
     init();
 
     // Выбор стратегии аутентификации
-    //LoginStrategy authenticate = new ApiLoginImpl(dashboardUrl);
-    LoginStrategy authenticate = new FormLoginImpl();
+    LoginStrategy authenticate = new ApiLoginImpl(dashboardUrl);
+    //LoginStrategy authenticate = new FormLoginImpl();
     authenticate.login();
   }
 

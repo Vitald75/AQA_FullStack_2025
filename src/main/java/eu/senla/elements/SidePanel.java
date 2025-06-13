@@ -3,7 +3,7 @@ package eu.senla.elements;
 import eu.senla.core.Wait;
 import eu.senla.pages.admin.AdminMainPage;
 import eu.senla.pages.PIMPage;
-import eu.senla.pages.RecruitmentPage;
+import eu.senla.pages.recruitment.RecruitmentPage;
 import org.openqa.selenium.By;
 
 public class SidePanel {

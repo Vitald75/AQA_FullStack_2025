@@ -2,20 +2,20 @@ package eu.senla;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import eu.senla.core.Driver;
 import eu.senla.core.ReadPropertiesFile;
 import eu.senla.pages.DashBoardPage;
 import eu.senla.pages.LoginPage;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-public final class LoginTest extends BaseTest {
+public final class LoginTest {
 
   @Test
-  @Order(0)
   @DisplayName("Проверка успешного логина")
   @Tag("smoke")
   public void testPositiveLoginPage() {
@@ -43,4 +43,10 @@ public final class LoginTest extends BaseTest {
         loginPage.getCurrentUrl(),
         "Unexpected Successful login");
   }
+
+  @AfterEach
+    void tearDown() {
+      Driver.quit();
+    }
+
 }

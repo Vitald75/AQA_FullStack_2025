@@ -1,4 +1,4 @@
-package eu.senla.pages;
+package eu.senla.pages.recruitment;
 
 import eu.senla.core.Wait;
 import org.openqa.selenium.By;
