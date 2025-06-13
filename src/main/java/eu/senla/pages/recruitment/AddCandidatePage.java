@@ -1,7 +1,8 @@
-package eu.senla.pages;
+package eu.senla.pages.recruitment;
 
 import eu.senla.core.Wait;
 import eu.senla.data.RecruitmentCandidate;
+import eu.senla.pages.BasePage;
 import org.openqa.selenium.By;
 
 public class AddCandidatePage extends BasePage {
@@ -9,13 +10,20 @@ public class AddCandidatePage extends BasePage {
     private String directUrl = "https://opensource-demo.orangehrmlive.com/web/index.php/recruitment/addCandidate";
 
     private final By firstNameInput = By.name("firstName");
+    private final By isRequiredFirstName = By.xpath("//input[@name='firstName']/ancestor"
+            + "::div[@class='oxd-input-group oxd-input-field-bottom-space']/span[text()='Required']");
     private final By middleNameInput = By.name("middleName");
     private final By lastNameInput = By.name("lastName");
-    private final By vacancyDropDown = By.xpath("//label[text()='Vacancy']/../following::div/div/div");
+    private final By isRequiredLastName = By.xpath("//input[@name='lastName']/ancestor"
+            + "::div[@class='oxd-input-group oxd-input-field-bottom-space']/span[text()='Required']");
+
+    private final By vacancyDropDown = By.xpath("//label[text()='Vacancy']/ancestor::div[2]//i");
     private final By listOfVacancies = By.cssSelector("div[role='listbox'] div:nth-of-type(2) span");
-    private final By emailInput = By.xpath("//label[text()='Email']/../following::div[1]/input");
-    private final By contactNumberInput = By.xpath("//label[text()='Contact Number']/../following::div[1]/input");
-    private final By keywordsInput = By.xpath("//label[text()='Keywords']/../following-sibling::div/input");
+    private final By emailInput = By.xpath("//label[text()='Email']/ancestor::div[2]/div/input");
+    private final By isRequiredEmail = By.xpath("//label[text()='Email']/ancestor::div[2]//span");
+
+    private final By contactNumberInput = By.xpath("//label[text()='Contact Number']/ancestor::div[2]//input");
+    private final By keywordsInput = By.xpath("//label[text()='Keywords']/ancestor::div[2]//input");
     private final By notesInput = By.cssSelector("textarea");
     private final By saveButton = By.xpath("//button[@type='submit']");
 
@@ -85,6 +93,21 @@ public class AddCandidatePage extends BasePage {
 
     public final AddCandidatePage isConfirmed() {
         Wait.waitVisibilityOfElementLocated(confirmationMessage).isDisplayed();
+        return this;
+    }
+
+    public final AddCandidatePage isRequiredLastName() {
+        Wait.waitVisibilityOfElementLocated(isRequiredLastName).isDisplayed();
+        return this;
+    }
+
+    public final AddCandidatePage isRequiredFirstName() {
+        Wait.waitVisibilityOfElementLocated(isRequiredFirstName).isDisplayed();
+        return this;
+    }
+
+    public final AddCandidatePage isRequiredEmail() {
+        Wait.waitVisibilityOfElementLocated(isRequiredEmail).isDisplayed();
         return this;
     }
 
