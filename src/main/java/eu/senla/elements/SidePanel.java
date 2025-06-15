@@ -3,6 +3,7 @@ package eu.senla.elements;
 import eu.senla.core.Wait;
 import eu.senla.pages.admin.AdminMainPage;
 import eu.senla.pages.PIMPage;
+import eu.senla.pages.leave.ViewListLeavePage;
 import eu.senla.pages.recruitment.RecruitmentPage;
 import org.openqa.selenium.By;
 
@@ -33,4 +34,10 @@ public class SidePanel {
     Wait.waitVisibilityOfElementLocated(recruitmentPage).click();
     return new RecruitmentPage();
   }
+
+  public final ViewListLeavePage openLeavePage() {
+    Wait.waitVisibilityOfElementLocated(leavePage).click();
+    return new ViewListLeavePage();
+  }
+
 }

@@ -34,36 +34,33 @@ public final class AddRecruitmentCandidateTest extends BaseTest {
 
     @SneakyThrows
     @Test
-    @DisplayName("Успешное добавление кандидата")
+    @DisplayName("Успешное добавление кандидата все поля заполнены")
     @Tag("smoke")
     public void testPositiveAddRecruitmentCandidate() {
-        String directRecruitmentUrl =
-                "https://opensource-demo.orangehrmlive.com/web/index.php/pim/viewEmployeeList";
-
-        new SidePanel().openRecruitmentPage();
 
         AddCandidatePage addCandidatePage =
-                new RecruitmentPage()
+                new SidePanel()
+                        .openRecruitmentPage()
                         .clickAddRecruitmentButton()
                         .fillNewCandidateForm(candidate)
                         .clickSaveButton()
                         .isConfirmed();
+
         assertTrue(
                 addCandidatePage.getCurrentUrl().contains(
-                        "https://opensource-demo.orangehrmlive.com/web/index.php/recruitment/addCandidate"),
+                        addCandidatePage.getOwnPageUrl()),
                 "Unexpected Url");
 
     }
 
   //
-    @DisplayName("Проверка формы добавления кандидата")
+    @DisplayName("Проверка формы добавления кандидата с незаполненными обязательными полями")
     @Tag("extended")
     @Test
     public void testNegativeAddRecruitmentCandidate() {
 
-        new SidePanel().openRecruitmentPage();
-
-        AddCandidatePage addCandidatePage = new RecruitmentPage()
+        AddCandidatePage addCandidatePage = new SidePanel()
+                .openRecruitmentPage()
                 .clickAddRecruitmentButton()
                 .inputMiddleName(candidate.getMiddleName())
                 .inputContactNumber(candidate.getContactNumber())
@@ -76,8 +73,50 @@ public final class AddRecruitmentCandidateTest extends BaseTest {
 
         assertTrue(
                 addCandidatePage.getCurrentUrl().contains(
-                        "https://opensource-demo.orangehrmlive.com/web/index.php/recruitment/addCandidate"),
+                        addCandidatePage.getOwnPageUrl()),
                 "Unexpected Url");
+
+    }
+
+    @DisplayName("Проверка формы добавления кандидата c заполненными обязательными полями")
+    @Tag("extended")
+    @Test
+    public void testAddRecruitmentCandidateOnlyRequiredFields() {
+        AddCandidatePage addCandidatePage = new SidePanel()
+                .openRecruitmentPage()
+                .clickAddRecruitmentButton()
+                .inputLastName(candidate.getLastName())
+                .inputEmail(candidate.getEmail())
+                .clickSaveButton()
+                .isConfirmed();
+
+        assertTrue(
+                addCandidatePage.getCurrentUrl().contains(
+                        addCandidatePage.getOwnPageUrl()),
+                "Unexpected Url");
+
+    }
+
+
+
+    @DisplayName("Проверка отмены добавления кандидата")
+    @Tag("extended")
+    @Test
+    public void testCancelAddRecruitmentCandidate() {
+
+        RecruitmentPage viewCandidatesPage = new SidePanel()
+                .openRecruitmentPage()
+                .clickAddRecruitmentButton()
+                .fillNewCandidateForm(candidate)
+                .clickCancelButton();
+
+
+        assertTrue(
+                viewCandidatesPage.getCurrentUrl().contains(
+                        viewCandidatesPage.getOwnPageUrl()),
+                "Unexpected Url");
+
+
     }
 
 }

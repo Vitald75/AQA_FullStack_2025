@@ -3,11 +3,13 @@ package eu.senla.pages.recruitment;
 import eu.senla.core.Wait;
 import eu.senla.data.RecruitmentCandidate;
 import eu.senla.pages.BasePage;
+import lombok.Getter;
 import org.openqa.selenium.By;
 
 public class AddCandidatePage extends BasePage {
 
-    private String directUrl = "https://opensource-demo.orangehrmlive.com/web/index.php/recruitment/addCandidate";
+    @Getter
+    private String ownPageUrl = "https://opensource-demo.orangehrmlive.com/web/index.php/recruitment/addCandidate";
 
     private final By firstNameInput = By.name("firstName");
     private final By isRequiredFirstName = By.xpath("//input[@name='firstName']/ancestor"
@@ -26,6 +28,7 @@ public class AddCandidatePage extends BasePage {
     private final By keywordsInput = By.xpath("//label[text()='Keywords']/ancestor::div[2]//input");
     private final By notesInput = By.cssSelector("textarea");
     private final By saveButton = By.xpath("//button[@type='submit']");
+    private final By cancelButton = By.xpath("//button[text()=' Cancel ']");
 
     private final By confirmationMessage = By.xpath("//div[@id='oxd-toaster_1']//p[text()='Success']");
 
@@ -109,6 +112,11 @@ public class AddCandidatePage extends BasePage {
     public final AddCandidatePage isRequiredEmail() {
         Wait.waitVisibilityOfElementLocated(isRequiredEmail).isDisplayed();
         return this;
+    }
+
+    public final RecruitmentPage clickCancelButton() {
+        Wait.waitVisibilityOfElementLocated(cancelButton).click();
+        return new RecruitmentPage();
     }
 
 }
