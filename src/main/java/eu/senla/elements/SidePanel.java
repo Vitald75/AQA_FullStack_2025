@@ -1,6 +1,7 @@
 package eu.senla.elements;
 
 import eu.senla.core.Wait;
+import eu.senla.pages.DashBoardPage;
 import eu.senla.pages.admin.AdminMainPage;
 import eu.senla.pages.PIMPage;
 import eu.senla.pages.leave.ViewListLeavePage;
@@ -38,6 +39,11 @@ public class SidePanel {
   public final ViewListLeavePage openLeavePage() {
     Wait.waitVisibilityOfElementLocated(leavePage).click();
     return new ViewListLeavePage();
+  }
+
+  public final DashBoardPage openDashBoardPage() {
+    Wait.waitVisibilityOfElementLocated(dashBoardPage).click();
+    return new DashBoardPage();
   }
 
 }

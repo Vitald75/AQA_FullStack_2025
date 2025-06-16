@@ -78,14 +78,37 @@ public final class AddRecruitmentCandidateTest extends BaseTest {
 
     }
 
-    @DisplayName("Проверка формы добавления кандидата c заполненными обязательными полями")
+
+    @DisplayName("Проверка формы добавления кандидата с невалидным Email")
+    @Tag("extended")
+    @Test
+    public void testNegativeEmailAddRecruitmentCandidate() {
+
+        AddCandidatePage addCandidatePage = new SidePanel()
+                .openRecruitmentPage()
+                .clickAddRecruitmentButton()
+                .fillNewCandidateForm(candidate)
+                .inputEmail("@hdg")
+                .clickSaveButton()
+                .isValidEmail();
+
+
+        assertTrue(
+                addCandidatePage.getCurrentUrl().contains(
+                        addCandidatePage.getOwnPageUrl()),
+                "Unexpected Url");
+
+    }
+
+    @DisplayName("Проверка формы добавления кандидата только c заполненными обязательными полями")
     @Tag("extended")
     @Test
     public void testAddRecruitmentCandidateOnlyRequiredFields() {
         AddCandidatePage addCandidatePage = new SidePanel()
                 .openRecruitmentPage()
                 .clickAddRecruitmentButton()
-                .inputLastName(candidate.getLastName())
+                .inputFistName(candidate.getFirstName())
+                .inputLastName(candidate.getFirstName())
                 .inputEmail(candidate.getEmail())
                 .clickSaveButton()
                 .isConfirmed();
@@ -97,8 +120,6 @@ public final class AddRecruitmentCandidateTest extends BaseTest {
 
     }
 
-
-
     @DisplayName("Проверка отмены добавления кандидата")
     @Tag("extended")
     @Test
@@ -109,7 +130,6 @@ public final class AddRecruitmentCandidateTest extends BaseTest {
                 .clickAddRecruitmentButton()
                 .fillNewCandidateForm(candidate)
                 .clickCancelButton();
-
 
         assertTrue(
                 viewCandidatesPage.getCurrentUrl().contains(

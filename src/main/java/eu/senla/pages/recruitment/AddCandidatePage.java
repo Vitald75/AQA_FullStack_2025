@@ -23,6 +23,7 @@ public class AddCandidatePage extends BasePage {
     private final By listOfVacancies = By.cssSelector("div[role='listbox'] div:nth-of-type(2) span");
     private final By emailInput = By.xpath("//label[text()='Email']/ancestor::div[2]/div/input");
     private final By isRequiredEmail = By.xpath("//label[text()='Email']/ancestor::div[2]//span");
+    private final By isValidEmail = By.xpath("//label[text()='Email']/ancestor::div[2]//span[text()='Expected format: admin@example.com']");
 
     private final By contactNumberInput = By.xpath("//label[text()='Contact Number']/ancestor::div[2]//input");
     private final By keywordsInput = By.xpath("//label[text()='Keywords']/ancestor::div[2]//input");
@@ -111,6 +112,11 @@ public class AddCandidatePage extends BasePage {
 
     public final AddCandidatePage isRequiredEmail() {
         Wait.waitVisibilityOfElementLocated(isRequiredEmail).isDisplayed();
+        return this;
+    }
+
+    public final AddCandidatePage isValidEmail() {
+        Wait.waitVisibilityOfElementLocated(isValidEmail).isDisplayed();
         return this;
     }
 

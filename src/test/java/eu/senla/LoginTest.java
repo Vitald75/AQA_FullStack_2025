@@ -26,8 +26,8 @@ public final class LoginTest {
                 ReadPropertiesFile.getProperty("USERNAME"),
                 ReadPropertiesFile.getProperty("PASSWORD"));
 
-    assertEquals(dashBoardPage.getDashboardUrl(), dashBoardPage.getCurrentUrl(),
-            "Login failed");
+    assertEquals(dashBoardPage.getCurrentUrl(), dashBoardPage.getOwnPageUrl(),
+            "Unexpected Url");
   }
 
   @ParameterizedTest()

@@ -8,17 +8,27 @@ import org.openqa.selenium.By;
 @Getter
 public class DashBoardPage extends BasePage {
 
-  private String dashboardUrl =
+  @Getter
+  private String ownPageUrl =
       "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
 
   private final By sidePanelBody = By.cssSelector(".oxd-sidepanel-body");
   private final By userDropDownMenu = By.cssSelector("span.oxd-userdropdown-tab");
   private final By logoutMenu = By.cssSelector("a[href='/web/index.php/auth/logout']");
-  private final By tile1 = By.xpath("//div[@class='oxd-grid-item oxd-grid-item--gutters orangehrm-dashboard-widget'][1]"
+  private final By tileTimeAtWork = By.xpath("//div[@class='oxd-grid-item oxd-grid-item--gutters orangehrm-dashboard-widget']"
           + "//p[text()='Time at Work']");
-  private final By tile2 = By.xpath("//div[@class='oxd-grid-item oxd-grid-item--gutters orangehrm-dashboard-widget'][2]");
-  //......
-  private final By tile7 = By.xpath("//div[@class='oxd-grid-item oxd-grid-item--gutters orangehrm-dashboard-widget'][7]");
+  private final By tileMyActions = By.xpath("//div[@class='oxd-grid-item oxd-grid-item--gutters orangehrm-dashboard-widget']"
+          + "//p[text()='Time at Work']");
+  private final By tileQuickLaunch = By.xpath("//div[@class='oxd-grid-item oxd-grid-item--gutters orangehrm-dashboard-widget']"
+          + "//p[text()='Quick Launch']");
+  private final By tileBuzzLatestPosts = By.xpath("//div[@class='oxd-grid-item oxd-grid-item--gutters orangehrm-dashboard-widget']"
+          + "//p[text()='Buzz Latest Posts']");
+  private final By tileEmployeesOnLeave = By.xpath("//div[@class='oxd-grid-item oxd-grid-item--gutters orangehrm-dashboard-widget']"
+          + "//p[text()='Employees on Leave Today']");
+  private final By tileEmployeeBySubUnit = By.xpath("//div[@class='oxd-grid-item oxd-grid-item--gutters orangehrm-dashboard-widget']"
+          + "//p[text()='Employee Distribution by Sub Unit']");
+  private final By tileEmployeeByLocation = By.xpath("//div[@class='oxd-grid-item oxd-grid-item--gutters orangehrm-dashboard-widget']"
+          + "//p[text()='Employee Distribution by Location']");
 
 
   public DashBoardPage() {
@@ -35,7 +45,39 @@ public class DashBoardPage extends BasePage {
     return new LoginPage();
   }
 
-//  public final String getDashboardUrl() {
-//    return dashboardUrl;
-//  }
+  public final DashBoardPage checkIfTimeAtWorkIsDisplayed(){
+    Wait.waitVisibilityOfElementLocated(tileTimeAtWork).isDisplayed();
+    return this;
+  }
+
+  public final DashBoardPage checkIfMyActionIsDisplayed(){
+    Wait.waitVisibilityOfElementLocated(tileMyActions).isDisplayed();
+    return this;
+  }
+
+  public final DashBoardPage checkIfQuickLaunchIsDisplayed(){
+    Wait.waitVisibilityOfElementLocated(tileQuickLaunch).isDisplayed();
+    return this;
+  }
+
+  public final DashBoardPage checkIfBuzzLatestPostsIsDisplayed(){
+    Wait.waitVisibilityOfElementLocated(tileBuzzLatestPosts).isDisplayed();
+    return this;
+  }
+
+  public final DashBoardPage checkIfEmployeesOnLeaveIsDisplayed(){
+    Wait.waitVisibilityOfElementLocated(tileEmployeesOnLeave).isDisplayed();
+    return this;
+  }
+
+  public final DashBoardPage checkIfEmployeeBySubUnitIsDisplayed(){
+    Wait.waitVisibilityOfElementLocated(tileEmployeeBySubUnit).isDisplayed();
+    return this;
+  }
+
+  public final DashBoardPage checkIfEmployeeByLocationIsDisplayed(){
+    Wait.waitVisibilityOfElementLocated(tileEmployeeByLocation).isDisplayed();
+    return this;
+  }
+
 }
