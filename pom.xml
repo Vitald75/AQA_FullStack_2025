@@ -24,6 +24,7 @@
     <rest.assured.version>5.5.5</rest.assured.version>
     <maven.compiler.plugin.version>3.14.0</maven.compiler.plugin.version>
     <jsoup.version>1.20.1</jsoup.version>
+    <jackson.annotations.version>2.19.0</jackson.annotations.version>
   </properties>
 
   <dependencies>
@@ -101,6 +102,12 @@
       <artifactId>jsoup</artifactId>
       <version>${jsoup.version}</version>
       <scope>compile</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+      <version>${jackson.annotations.version}</version>
     </dependency>
 
   </dependencies>

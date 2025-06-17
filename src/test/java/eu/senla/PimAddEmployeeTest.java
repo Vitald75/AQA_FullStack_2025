@@ -3,9 +3,14 @@ package eu.senla;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.github.javafaker.Faker;
+import eu.senla.client.OrangeHRMClient;
+import eu.senla.client.SpecConfig;
+import eu.senla.data.GetEmployeeRequest;
 import eu.senla.elements.SidePanel;
 import eu.senla.data.Employee;
-import eu.senla.pages.PIMPage;
+import eu.senla.pages.PIM.PIMAddEmployeePage;
+import eu.senla.pages.PIM.PIMPersonalDetailsPage;
+import eu.senla.pages.PIM.PIMViewEmployeeList;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -33,21 +38,70 @@ public class PimAddEmployeeTest extends BaseTest {
   @Tag("smoke")
   public void testPimAddEmployee() {
 
-    new SidePanel().openPIMPage();
+    //new SidePanel().openPIMPage();
 
-    PIMPage pimPage =
-        new PIMPage()
+    PIMAddEmployeePage pimAddEmployeePage = new SidePanel()
+            .openPIMPage()
             .clickAddEmployeeButton()
             .fillNewEmployeeForm(employee)
             .clickSubmit()
             .isConfirmed()
             .isPersonalInformationPage();
 
-    String currentUrl = pimPage.getCurrentUrl();
+    String currentUrl = pimAddEmployeePage.getCurrentUrl();
 
     assertTrue(
         currentUrl.contains(
             "https://opensource-demo.orangehrmlive.com/web/index.php/pim/viewPersonalDetails/empNumber"),
         "Unexpected Url");
+    //int position = currentUrl.lastIndexOf("/");
+    String emp_number = currentUrl.substring(currentUrl.lastIndexOf("/")+1);
+    System.out.println(emp_number);
+    //return emp_number;
   }
+
+  @SneakyThrows
+  @DisplayName("Проверка формы PIM employee details")
+  @Test
+  @Tag("smoke")
+  public void testPimEmployeeDetails() {
+
+    new SidePanel().openPIMPage();
+
+    PIMPersonalDetailsPage pimPersonalDetailsPage =
+            new PIMViewEmployeeList()
+                    .clickFoursEmployee();
+
+//                    .clickAddEmployeeButton()
+//                    .fillNewEmployeeForm(employee)
+//                    .clickSubmit()
+//                    .isConfirmed()
+//                    .isPersonalInformationPage();
+
+    String currentUrl = pimPersonalDetailsPage.getCurrentUrl();
+
+    assertTrue(
+            currentUrl.contains(
+                    "https://opensource-demo.orangehrmlive.com/web/index.php/pim/viewPersonalDetails/empNumber"),
+            "Unexpected Url");
+    //int position = currentUrl.lastIndexOf("/");
+    String emp_number = currentUrl.substring(currentUrl.lastIndexOf("/")+1);
+    System.out.println(emp_number);
+
+    String path = "/web/index.php/api/v2/pim/employees/" + emp_number + "/personal-details";
+
+    GetEmployeeRequest response = OrangeHRMClient
+            .getRequest(SpecConfig.requestSpecification(),
+            SpecConfig.responseSpecification(),
+            path,
+            GetEmployeeRequest.class);
+
+
+    //return emp_number;
+
+    System.out.println("sdlkjfds lkdsjflk jldksj");
+
+  }
+
+
 }

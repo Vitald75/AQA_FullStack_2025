@@ -2,8 +2,9 @@ package eu.senla.elements;
 
 import eu.senla.core.Wait;
 import eu.senla.pages.DashBoardPage;
+import eu.senla.pages.PIM.PIMViewEmployeeList;
 import eu.senla.pages.admin.AdminMainPage;
-import eu.senla.pages.PIMPage;
+import eu.senla.pages.PIM.PIMAddEmployeePage;
 import eu.senla.pages.leave.ViewListLeavePage;
 import eu.senla.pages.recruitment.RecruitmentPage;
 import org.openqa.selenium.By;
@@ -26,9 +27,9 @@ public class SidePanel {
     return new AdminMainPage();
   }
 
-  public final PIMPage openPIMPage() {
+  public final PIMViewEmployeeList openPIMPage() {
     Wait.waitVisibilityOfElementLocated(pimPage).click();
-    return new PIMPage();
+    return new PIMViewEmployeeList();
   }
 
   public final RecruitmentPage openRecruitmentPage() {

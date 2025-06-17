@@ -3,6 +3,7 @@ package eu.senla.client;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
+import io.restassured.specification.ResponseSpecification;
 import lombok.experimental.UtilityClass;
 import static io.restassured.RestAssured.given;
 
@@ -16,6 +17,24 @@ public class OrangeHRMClient {
     }
 
 
+    public static <T> T getRequest(RequestSpecification requestSpecification,
+                                   ResponseSpecification responseSpecification,
+                                   String path,
+                                   Class<T> clazz) {
+
+        return
+                given()
+                        .spec(requestSpecification)
+                        .basePath(path)
+                        .when()
+                        .get()
+                        .then()
+                        .spec(responseSpecification)
+                        .extract()
+                        .as(clazz);
+
+    }
+
     public static ValidatableResponse postRequest(RequestSpecification reqSpec, String url) {
         return   reqSpec
                 .when()
@@ -24,6 +43,7 @@ public class OrangeHRMClient {
                 .log()
                 .all();
     }
+
 }
 
 ///**
