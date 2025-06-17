@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import com.github.javafaker.Faker;
 import eu.senla.client.OrangeHRMClient;
 import eu.senla.client.SpecConfig;
+import eu.senla.data.EmployeeApi;
 import eu.senla.data.GetEmployeeRequest;
 import eu.senla.elements.SidePanel;
 import eu.senla.data.Employee;
@@ -97,9 +98,13 @@ public class PimAddEmployeeTest extends BaseTest {
             GetEmployeeRequest.class);
 
 
+
+
     //return emp_number;
 
     System.out.println("sdlkjfds lkdsjflk jldksj");
+    System.out.println(response.getData().getEmpNumber());
+    System.out.println(response.getData().getFirstName());
 
   }
 
