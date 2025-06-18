@@ -33,6 +33,16 @@ public class PimAddEmployeeTest extends BaseTest {
             .build();
   }
 
+  final boolean compareUiAndApiEmployee(Employee employeeUi, EmployeeApi employeeApi) {
+    return employeeApi.getFirstName().equals(employeeUi.getFirstName())
+            && employeeApi.getLastName().equals(employeeUi.getLastName())
+            && employeeApi.getEmpNumber().equals(employeeUi.getEmpNumber())
+            && employeeApi.getNationality().getName().equals(employeeUi.getNationality())
+            && (employeeApi.getGender() == employeeUi.getGender())
+            && employeeApi.getBirthday().equals(employeeUi.getBirthday());
+
+  }
+
   @SneakyThrows
   @DisplayName("Успешное добавление PIM employee")
   @Test
@@ -50,29 +60,43 @@ public class PimAddEmployeeTest extends BaseTest {
             .isPersonalInformationPage();
 
     String currentUrl = pimAddEmployeePage.getCurrentUrl();
-
     assertTrue(
         currentUrl.contains(
             "https://opensource-demo.orangehrmlive.com/web/index.php/pim/viewPersonalDetails/empNumber"),
         "Unexpected Url");
     //int position = currentUrl.lastIndexOf("/");
+
+    PIMPersonalDetailsPage pimPersonalDetailsPage = new PIMPersonalDetailsPage()
+            .inputDriversLicenseId("888888")
+            .inputDriversLicenseExpDate("2025-01-01")
+            .inputDateOfBirth("2000-01-01")
+            .chooseMartialStatus("Single")
+            .chooseNationality()
+            //.clickFemaleGender()
+            .saveFirstBlock()
+            .isConfirmed() ;
+
+
+
     String emp_number = currentUrl.substring(currentUrl.lastIndexOf("/")+1);
     System.out.println(emp_number);
+
+
+
+
     //return emp_number;
   }
 
   @SneakyThrows
-  @DisplayName("Проверка формы PIM employee details")
+  @DisplayName("Проверка данных формы PIM employee details c API ответом")
   @Test
   @Tag("smoke")
   public void testPimEmployeeDetails() {
 
-    new SidePanel().openPIMPage();
-
     PIMPersonalDetailsPage pimPersonalDetailsPage =
-            new PIMViewEmployeeList()
+                    new SidePanel()
+                    .openPIMPage()
                     .clickFoursEmployee();
-                    //.isPersonalDetailsDisplayed();
 
     String currentUrl = pimPersonalDetailsPage.getCurrentUrl();
 
@@ -94,7 +118,6 @@ public class PimAddEmployeeTest extends BaseTest {
 
     pimPersonalDetailsPage.isPersonalDetailsDisplayed(response.getData().getEmployeeId());
 
-
     //build employee from UI
     Employee employeeUi =
             Employee.builder()
@@ -103,13 +126,17 @@ public class PimAddEmployeeTest extends BaseTest {
                     .lastName(pimPersonalDetailsPage.getEmployeeLastName())
                     .employeeId(pimPersonalDetailsPage.getEmployeeId())
                     .empNumber(Integer.parseInt(emp_number))
+                    .otherId(pimPersonalDetailsPage.getOtherId())
+                    .birthday(pimPersonalDetailsPage.getBirthday())
+                    .drivingLicenseNo(pimPersonalDetailsPage.getDriverLicenseNubmer())
+                    .drivingLicenseExpiredDate(pimPersonalDetailsPage.getDriverLicenseExpDate())
+                    .maritalStatus(pimPersonalDetailsPage.getMartialStatus())
                     .gender(pimPersonalDetailsPage.getGender())
+                    .nationality(pimPersonalDetailsPage.getNationality())
                     .build();
 
-//    String uiFirstName = pimPersonalDetailsPage.getEmployeeFirstName();
-//    String uiLastName = pimPersonalDetailsPage.getEmployeeLastName();
-//    String uiMiddleName = pimPersonalDetailsPage.getEmployeeMiddleName();
-//    String uiEmployeeId = pimPersonalDetailsPage.getEmployeeId();
+    assertTrue(compareUiAndApiEmployee(employeeUi, response.getData()));
+
     System.out.println("-------------------------");
     System.out.println(employeeUi.getFirstName());
     System.out.println(employeeUi.getMiddleName());
@@ -118,6 +145,7 @@ public class PimAddEmployeeTest extends BaseTest {
     System.out.println(employeeUi.getEmpNumber());
     System.out.println(employeeUi.getOtherId());
     System.out.println(employeeUi.getGender());
+    System.out.println(employeeUi.getNationality());
     System.out.println("-------------------------");
 
     //return emp_number;

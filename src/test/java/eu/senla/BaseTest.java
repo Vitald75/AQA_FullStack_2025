@@ -23,8 +23,8 @@ public class BaseTest {
     init();
 
     // Выбор стратегии аутентификации
-    //LoginStrategy authenticate = new ApiLoginImpl(dashboardUrl);
-    LoginStrategy authenticate = new FormLoginImpl();
+    LoginStrategy authenticate = new ApiLoginImpl(dashboardUrl);
+    //LoginStrategy authenticate = new FormLoginImpl();
     authenticate.login();
   }
 

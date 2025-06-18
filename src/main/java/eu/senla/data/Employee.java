@@ -18,7 +18,7 @@ public class Employee {
   private String maritalStatus;
   private String birthday; // Use String for flexibility
   private String terminationId;
-  private Nationality nationality;
+  private String nationality;
 }
 
 
