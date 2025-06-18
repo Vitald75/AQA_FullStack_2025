@@ -26,7 +26,7 @@ public class EmployeeApi {
     @JsonProperty("drivingLicenseExpiredDate")
     private String drivingLicenseExpiredDate; // Use String for flexibility
     @JsonProperty("gender")
-    private String gender;
+    private Integer gender;
     @JsonProperty("martialStatus")
     private String maritalStatus;
     @JsonProperty("birthday")
