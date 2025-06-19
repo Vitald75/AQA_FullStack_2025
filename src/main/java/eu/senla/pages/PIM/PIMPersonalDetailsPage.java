@@ -50,63 +50,9 @@ public class PIMPersonalDetailsPage extends BasePage {
 
     private final By confirmationMessage = By.id("oxd-toaster_1");
 
-    //    public String getEmployeeFirstName() {
-//            return Wait.waitVisibilityOfElementLocated(employeeFirstName).getAttribute("value");
-//    }
-//    public String getEmployeeMiddleName() {
-//        return Wait.waitVisibilityOfElementLocated(employeeMiddleName).getAttribute("value");
-//    }
-//    public String getEmployeeLastName() {
-//        return Wait.waitVisibilityOfElementLocated(employeeLastName).getAttribute("value");
-//    }
     public final String getEmployeeId() {
         return Wait.waitVisibilityOfElementLocated(employeeId).getAttribute("value");
     }
-//    public String getOtherId() {
-//        return Wait.waitVisibilityOfElementLocated(otherId).getAttribute("value");
-//    }
-//    public String getDriverLicenseNubmer() {
-//        return Wait.waitVisibilityOfElementLocated(driversLicenseId).getAttribute("value");
-//    }
-//    public String getDriverLicenseExpDate() {
-//        return Wait.waitVisibilityOfElementLocated(licenseExpiryDate).getAttribute("value");
-//    }
-//    public String getMaritalStatus() {
-//        return Wait.waitVisibilityOfElementLocated(maritalStatus).getText();
-//    }
-//    public String getBirthday() {
-//        return Wait.waitVisibilityOfElementLocated(dateOfBirth).getAttribute("value");
-//    }
-//    public String getNationality() {
-//        return Wait.waitVisibilityOfElementLocated(nationalityDropDown).getText();
-//    }
-//
-//    public Integer getGender() {
-//        Integer value = 0;
-//        String strMale = Driver.getInstance().findElement(By.xpath("//input[@type='radio' and @value='1']")).getAttribute("checked");
-//        String strFemale = Driver.getInstance().findElement(By.xpath("//input[@type='radio' and @value='2']")).getAttribute("checked");
-//
-//        if ((strMale == null) ? false : strMale.equals("true"))
-//            value = 1;
-//        if ((strFemale == null) ? false : strFemale.equals("true"))
-//            value = 2;
-//        return value;
-//    }
-//
-//    public PIMPersonalDetailsPage inputEmployeeFirstName(String firstName) {
-//        Wait.waitVisibilityOfElementLocated(employeeFirstName).sendKeys(firstName);
-//        return this;
-//    }
-//
-//    public PIMPersonalDetailsPage inputEmployeeLastName(String lastName) {
-//        Wait.waitVisibilityOfElementLocated(employeeLastName).sendKeys(lastName);
-//        return this;
-//    }
-//
-//    public PIMPersonalDetailsPage inputEmployeeMiddleName(String middleName) {
-//        Wait.waitVisibilityOfElementLocated(employeeMiddleName).sendKeys(middleName);
-//        return this;
-//    }
 
     public final PIMPersonalDetailsPage inputOtherId(String otherIdStr) {
         Wait.waitVisibilityOfElementLocated(otherId).sendKeys(otherIdStr);
