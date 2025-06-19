@@ -6,6 +6,7 @@ import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import lombok.experimental.UtilityClass;
 import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.responseSpecification;
 
 @UtilityClass
 public class OrangeHRMClient {
@@ -31,10 +32,9 @@ public class OrangeHRMClient {
                         .spec(responseSpecification)
                         .extract()
                         .as(clazz);
-
     }
 
-    public static ValidatableResponse postRequest(RequestSpecification reqSpec, String url) {
+    public static ValidatableResponse postValidateRequest(RequestSpecification reqSpec, String url) {
         return   reqSpec
                 .when()
                 .post(url)
@@ -43,6 +43,15 @@ public class OrangeHRMClient {
                 .all();
     }
 
+    public static ValidatableResponse postLeaveEntitlementRequest(RequestSpecification reqSpec, String url) {
+        return   reqSpec
+                .when()
+                .post(url)
+                .then()
+                .spec(SpecConfig.responseSpecification())
+                .log()
+                .all();
+    }
 }
 
 ///**

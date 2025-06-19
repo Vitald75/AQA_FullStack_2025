@@ -56,7 +56,7 @@ public class AuthHelper {
             .log()
             .all();
 
-    ValidatableResponse secondResponse = OrangeHRMClient.postRequest(requestPostSpecification,
+    ValidatableResponse secondResponse = OrangeHRMClient.postValidateRequest(requestPostSpecification,
             ReadPropertiesFile.getProperty("BASE_URL") + "/auth/validate");
     secondResponse.statusCode(responseCode);
 
