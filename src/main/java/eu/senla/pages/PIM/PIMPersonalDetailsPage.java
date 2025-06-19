@@ -28,143 +28,163 @@ public class PIMPersonalDetailsPage extends BasePage {
             By.xpath("//label[contains(text(),'License Number')]/parent::div/following-sibling::div//input");
     private final By licenseExpiryDate =
             By.xpath("//label[text()='License Expiry Date']/parent::div/following-sibling::div//input");
-    private final By nationality =
+    private final By nationalityDropDown =
             By.xpath("//label[text()='Nationality']/parent::div/following-sibling::div//div[@class='oxd-select-text-input']");
-    private final By nationalityListBox =
-            By.xpath("//div[@role='listbox']//span[text()='American']");
-    private final By martialStatus =
+    private final By maritalStatus =
             By.xpath("//label[text()='Marital Status']/parent::div/following-sibling::div//div[@class='oxd-select-text-input']");
     private final By dateOfBirth =
             By.xpath("//label[text()='Date of Birth']/parent::div/following-sibling::div//input");
     private final By maleGender =
-            By.xpath("//input[@type='radio' and @value='1']");
+            By.xpath("//input[@type='radio' and @value='1']/following-sibling::span");
     private final By femaleGender =
-            By.xpath("//input[@type='radio' and @value='2']");  ///following-sibling::span
+            By.xpath("//label[text()='Female']");
+
+    private final By bloodTypeDropDown =
+            By.xpath("//label[text()='Blood Type']/parent::div/following-sibling::div//div[@class='oxd-select-text-input']");
 
     private final By personalDetailsSaveButton1 =
             By.xpath("//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']//button[@type='submit']");
 
+    private final By personalDetailsSaveButton2 =
+            By.xpath("//div[@class='orangehrm-custom-fields']//button[@type='submit']");
+
     private final By confirmationMessage = By.id("oxd-toaster_1");
 
-    //private final By headerPersonalDetails = By.xpath("//h6[text()='Personal Details']");
-
-    public String getEmployeeFirstName() {
-            return Wait.waitVisibilityOfElementLocated(employeeFirstName).getAttribute("value");
-    }
-
-    public String getEmployeeMiddleName() {
-        return Wait.waitVisibilityOfElementLocated(employeeMiddleName).getAttribute("value");
-    }
-    public String getEmployeeLastName() {
-        return Wait.waitVisibilityOfElementLocated(employeeLastName).getAttribute("value");
-    }
-    public String getEmployeeId() {
+    //    public String getEmployeeFirstName() {
+//            return Wait.waitVisibilityOfElementLocated(employeeFirstName).getAttribute("value");
+//    }
+//    public String getEmployeeMiddleName() {
+//        return Wait.waitVisibilityOfElementLocated(employeeMiddleName).getAttribute("value");
+//    }
+//    public String getEmployeeLastName() {
+//        return Wait.waitVisibilityOfElementLocated(employeeLastName).getAttribute("value");
+//    }
+    public final String getEmployeeId() {
         return Wait.waitVisibilityOfElementLocated(employeeId).getAttribute("value");
     }
-    public String getOtherId() {
-        return Wait.waitVisibilityOfElementLocated(otherId).getAttribute("value");
-    }
-    public String getDriverLicenseNubmer() {
-        return Wait.waitVisibilityOfElementLocated(driversLicenseId).getAttribute("value");
-    }
-    public String getDriverLicenseExpDate() {
-        return Wait.waitVisibilityOfElementLocated(licenseExpiryDate).getAttribute("value");
-    }
-    public String getMartialStatus() {
-        return Wait.waitVisibilityOfElementLocated(martialStatus).getAttribute("value");
-    }
-    public String getBirthday() {
-        return Wait.waitVisibilityOfElementLocated(dateOfBirth).getAttribute("value");
-    }
-    public String getNationality() {
-        return Wait.waitVisibilityOfElementLocated(nationality).getText();
-    }
+//    public String getOtherId() {
+//        return Wait.waitVisibilityOfElementLocated(otherId).getAttribute("value");
+//    }
+//    public String getDriverLicenseNubmer() {
+//        return Wait.waitVisibilityOfElementLocated(driversLicenseId).getAttribute("value");
+//    }
+//    public String getDriverLicenseExpDate() {
+//        return Wait.waitVisibilityOfElementLocated(licenseExpiryDate).getAttribute("value");
+//    }
+//    public String getMaritalStatus() {
+//        return Wait.waitVisibilityOfElementLocated(maritalStatus).getText();
+//    }
+//    public String getBirthday() {
+//        return Wait.waitVisibilityOfElementLocated(dateOfBirth).getAttribute("value");
+//    }
+//    public String getNationality() {
+//        return Wait.waitVisibilityOfElementLocated(nationalityDropDown).getText();
+//    }
+//
+//    public Integer getGender() {
+//        Integer value = 0;
+//        String strMale = Driver.getInstance().findElement(By.xpath("//input[@type='radio' and @value='1']")).getAttribute("checked");
+//        String strFemale = Driver.getInstance().findElement(By.xpath("//input[@type='radio' and @value='2']")).getAttribute("checked");
+//
+//        if ((strMale == null) ? false : strMale.equals("true"))
+//            value = 1;
+//        if ((strFemale == null) ? false : strFemale.equals("true"))
+//            value = 2;
+//        return value;
+//    }
+//
+//    public PIMPersonalDetailsPage inputEmployeeFirstName(String firstName) {
+//        Wait.waitVisibilityOfElementLocated(employeeFirstName).sendKeys(firstName);
+//        return this;
+//    }
+//
+//    public PIMPersonalDetailsPage inputEmployeeLastName(String lastName) {
+//        Wait.waitVisibilityOfElementLocated(employeeLastName).sendKeys(lastName);
+//        return this;
+//    }
+//
+//    public PIMPersonalDetailsPage inputEmployeeMiddleName(String middleName) {
+//        Wait.waitVisibilityOfElementLocated(employeeMiddleName).sendKeys(middleName);
+//        return this;
+//    }
 
-    public Integer getGender() {
-        Integer value = 0;
-        String str1 = Driver.getInstance().findElement(By.xpath("//input[@type='radio' and @value='1']")).getAttribute("checked");
-        String str2 = Driver.getInstance().findElement(By.xpath("//input[@type='radio' and @value='2']")).getAttribute("checked");
-
-        if ((str1 == null) ? false : str1.equals("true"))
-            value = 1;
-        if ((str2 == null) ? false : str2.equals("true"))
-            value = 2;
-        return value;
-    }
-
-    public PIMPersonalDetailsPage inputEmployeeFirstName(String firstName) {
-        Wait.waitVisibilityOfElementLocated(employeeFirstName).sendKeys(firstName);
-        return this;
-    }
-
-    public PIMPersonalDetailsPage inputEmployeeLastName(String lastName) {
-        Wait.waitVisibilityOfElementLocated(employeeLastName).sendKeys(lastName);
-        return this;
-    }
-
-    public PIMPersonalDetailsPage inputEmployeeMiddleName(String middleName) {
-        Wait.waitVisibilityOfElementLocated(employeeMiddleName).sendKeys(middleName);
-        return this;
-    }
-
-    public PIMPersonalDetailsPage inputOtherId(String otherIdStr) {
+    public final PIMPersonalDetailsPage inputOtherId(String otherIdStr) {
         Wait.waitVisibilityOfElementLocated(otherId).sendKeys(otherIdStr);
         return this;
     }
 
-    public PIMPersonalDetailsPage inputDriversLicenseId(String driversLicenseIdStr) {
+    public final PIMPersonalDetailsPage inputDriversLicenseId(String driversLicenseIdStr) {
         Wait.waitVisibilityOfElementLocated(driversLicenseId).sendKeys(driversLicenseIdStr);
         return this;
     }
 
-    public PIMPersonalDetailsPage inputDriversLicenseExpDate(String licenseExpDate) {
+    public final PIMPersonalDetailsPage inputDriversLicenseExpDate(String licenseExpDate) {
         Wait.waitVisibilityOfElementLocated(licenseExpiryDate).sendKeys(licenseExpDate);
         return this;
     }
 
-    public PIMPersonalDetailsPage inputDateOfBirth(String birthDate) {
+    public final PIMPersonalDetailsPage inputDateOfBirth(String birthDate) {
         Wait.waitVisibilityOfElementLocated(dateOfBirth).sendKeys(birthDate);
         return this;
     }
 
-    public PIMPersonalDetailsPage clickMaleGender() {
-        Wait.waitVisibilityOfElementLocated(maleGender).click();
+    public final PIMPersonalDetailsPage chooseGender(Integer gender) {
+        switch (gender) {
+            case 1:
+                Wait.waitVisibilityOfElementLocated(maleGender).click();
+                break;
+            case 2:
+                Wait.waitVisibilityOfElementLocated(femaleGender).click();
+                break;
+            default:
+                break;
+        }
         return this;
     }
 
-    public PIMPersonalDetailsPage clickFemaleGender() {
-        Wait.waitVisibilityOfElementLocated(femaleGender).click();
-        return this;
-    }
-
-    public PIMPersonalDetailsPage chooseNationality() {
-        Wait.waitVisibilityOfElementLocated(nationality).click();
+    public final PIMPersonalDetailsPage chooseNationality(String nationality) {
+        By nationalityListBox =
+                By.xpath("//div[@role='listbox']//span[text()='" + nationality + "']");
+        Wait.waitVisibilityOfElementLocated(nationalityDropDown).click();
         Wait.waitVisibilityOfElementLocated(nationalityListBox).click();
         return this;
     }
 
-    public PIMPersonalDetailsPage chooseMartialStatus(String status) {
-        By martialStatusListBox =
+    public final PIMPersonalDetailsPage chooseMaritalStatus(String status) {
+        By maritalStatusListBox =
                 By.xpath("//div[@role='listbox']//span[text()='" + status + "']");
 
-        Wait.waitVisibilityOfElementLocated(martialStatus).click();
-        Wait.waitVisibilityOfElementLocated(martialStatusListBox).click();
+        Wait.waitVisibilityOfElementLocated(maritalStatus).click();
+        Wait.waitVisibilityOfElementLocated(maritalStatusListBox).click();
         return this;
     }
 
-    public PIMPersonalDetailsPage saveFirstBlock() {
+    public final PIMPersonalDetailsPage chooseBloodType(String type) {
+        By bloodTypeListBox =
+                By.xpath("//div[@role='listbox']//span[text()='" + type + "']");
+        Wait.waitVisibilityOfElementLocated(bloodTypeDropDown).click();
+        Wait.waitVisibilityOfElementLocated(bloodTypeListBox).click();
+        return this;
+    }
+
+    public final PIMPersonalDetailsPage saveFirstBlock() {
         Wait.waitVisibilityOfElementLocated(personalDetailsSaveButton1).click();
         return this;
     }
 
-    public PIMPersonalDetailsPage isConfirmed() {
+    public final PIMPersonalDetailsPage saveSecondBlock() {
+        Wait.waitVisibilityOfElementLocated(personalDetailsSaveButton2).click();
+        return this;
+    }
+
+    public final PIMPersonalDetailsPage isConfirmed() {
         Wait.waitVisibilityOfElementLocated(confirmationMessage).isDisplayed();
         return this;
     }
 
-    public PIMPersonalDetailsPage isPersonalDetailsDisplayed(String expectedEmployeeId) {
+    public final PIMPersonalDetailsPage isPersonalDetailsDisplayed(String expectedFirstName) {
         WebDriverWait wait = new WebDriverWait(Driver.getInstance(), Duration.ofSeconds(2));
-               wait.until(ExpectedConditions.textToBePresentInElementValue(employeeId, expectedEmployeeId));
+               wait.until(ExpectedConditions.textToBePresentInElementValue(employeeFirstName, expectedFirstName));
         return this;
     }
 

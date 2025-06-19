@@ -3,8 +3,6 @@ package eu.senla;
 import eu.senla.core.Driver;
 import eu.senla.core.ReadPropertiesFile;
 import eu.senla.registration.ApiLoginImpl;
-//import eu.senla.registration.FormLoginImpl;
-import eu.senla.registration.FormLoginImpl;
 import eu.senla.registration.LoginStrategy;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.AfterEach;

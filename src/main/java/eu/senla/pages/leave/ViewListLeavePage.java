@@ -10,7 +10,7 @@ public class ViewListLeavePage extends BasePage {
 
 
 
-    public AssignLeavePage clickAssignLeaveMenu () {
+    public final AssignLeavePage clickAssignLeaveMenu() {
         Wait.waitVisibilityOfElementLocated(assignLeaveMenu).click();
         return new AssignLeavePage();
     }

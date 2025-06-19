@@ -24,17 +24,17 @@ public class AssignLeavePage {
     private final By assingButton = By.xpath("//button[@type='submit']");
 
 
-    public AssignLeavePage inputEmployeeName (String employeeName) {
+    public final AssignLeavePage inputEmployeeName(String employeeName) {
         Wait.waitVisibilityOfElementLocated(employeeNameInput).sendKeys(employeeName);
         return this;
     }
 
-    public AssignLeavePage clickLeaveTypeDropbox () {
+    public final AssignLeavePage clickLeaveTypeDropbox() {
         Wait.waitVisibilityOfElementLocated(leaveTypeDropdownButton).click();
         return new AssignLeavePage();
     }
 
-    public AssignLeavePage chooseLeaveTypeFromDropbox (String typeOfLeave) {
+    public final AssignLeavePage chooseLeaveTypeFromDropbox(String typeOfLeave) {
         //select.selectByValue("US - Vacation");
         //Wait.waitVisibilityOfElementLocated(select.selectByValue("")).click();
         Select listBox = new Select(Driver.getInstance().findElement(leaveTypeDropdownListBox));
@@ -44,7 +44,7 @@ public class AssignLeavePage {
         return new AssignLeavePage();
     }
 
-    public AssignLeavePage selectUserName () {
+    public final AssignLeavePage selectUserName() {
         //select.selectByValue("US - Vacation");
         //Wait.waitVisibilityOfElementLocated(select.selectByValue("")).click();
 

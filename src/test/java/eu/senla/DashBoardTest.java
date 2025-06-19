@@ -1,6 +1,5 @@
 package eu.senla;
 
-import eu.senla.data.JobTitle;
 import eu.senla.elements.SidePanel;
 import eu.senla.pages.DashBoardPage;
 import org.junit.jupiter.api.DisplayName;
@@ -25,7 +24,7 @@ public class DashBoardTest extends BaseTest {
                 .checkIfQuickLaunchIsDisplayed()
                 .checkIfTimeAtWorkIsDisplayed();
 
-        assertTrue(dashBoardPage.getCurrentUrl().contains(dashBoardPage.getOwnPageUrl()),"Unexpected Url");
+        assertTrue(dashBoardPage.getCurrentUrl().contains(dashBoardPage.getOwnPageUrl()), "Unexpected Url");
 
     }
 

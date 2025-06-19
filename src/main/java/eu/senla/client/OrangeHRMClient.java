@@ -16,7 +16,6 @@ public class OrangeHRMClient {
                 .get(url);
     }
 
-
     public static <T> T getRequest(RequestSpecification requestSpecification,
                                    ResponseSpecification responseSpecification,
                                    String path,

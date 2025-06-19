@@ -19,15 +19,6 @@ public class PIMAddEmployeePage extends BasePage {
   private final By personalDetailLabel = By.xpath("//h6[text()='Personal Details']");
   private final By confirmationMessage = By.id("oxd-toaster_1");
 
-//  public PIMAddEmployeePage() {
-//    Wait.waitVisibilityOfElementLocated(addEmployeeButton);
-//  }
-
-//  public final PIMAddEmployeePage clickAddEmployeeButton() {
-//    Wait.waitVisibilityOfElementLocated(addEmployeeButton).click();
-//    return this;
-//  }
-
   public final PIMAddEmployeePage inputFistName(String firstName) {
     Wait.waitVisibilityOfElementLocated(firstNameField).sendKeys(firstName);
     return this;

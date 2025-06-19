@@ -13,10 +13,10 @@ public class Employee {
   private String employeeId;
   private String otherId;
   private String drivingLicenseNo;
-  private String drivingLicenseExpiredDate; // Use String for flexibility
+  private String drivingLicenseExpiredDate;
   private Integer gender;
   private String maritalStatus;
-  private String birthday; // Use String for flexibility
+  private String birthday;
   private String terminationId;
   private String nationality;
 }

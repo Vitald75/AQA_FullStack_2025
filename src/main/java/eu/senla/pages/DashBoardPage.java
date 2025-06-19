@@ -45,37 +45,37 @@ public class DashBoardPage extends BasePage {
     return new LoginPage();
   }
 
-  public final DashBoardPage checkIfTimeAtWorkIsDisplayed(){
+  public final DashBoardPage checkIfTimeAtWorkIsDisplayed() {
     Wait.waitVisibilityOfElementLocated(tileTimeAtWork).isDisplayed();
     return this;
   }
 
-  public final DashBoardPage checkIfMyActionIsDisplayed(){
+  public final DashBoardPage checkIfMyActionIsDisplayed() {
     Wait.waitVisibilityOfElementLocated(tileMyActions).isDisplayed();
     return this;
   }
 
-  public final DashBoardPage checkIfQuickLaunchIsDisplayed(){
+  public final DashBoardPage checkIfQuickLaunchIsDisplayed() {
     Wait.waitVisibilityOfElementLocated(tileQuickLaunch).isDisplayed();
     return this;
   }
 
-  public final DashBoardPage checkIfBuzzLatestPostsIsDisplayed(){
+  public final DashBoardPage checkIfBuzzLatestPostsIsDisplayed() {
     Wait.waitVisibilityOfElementLocated(tileBuzzLatestPosts).isDisplayed();
     return this;
   }
 
-  public final DashBoardPage checkIfEmployeesOnLeaveIsDisplayed(){
+  public final DashBoardPage checkIfEmployeesOnLeaveIsDisplayed() {
     Wait.waitVisibilityOfElementLocated(tileEmployeesOnLeave).isDisplayed();
     return this;
   }
 
-  public final DashBoardPage checkIfEmployeeBySubUnitIsDisplayed(){
+  public final DashBoardPage checkIfEmployeeBySubUnitIsDisplayed() {
     Wait.waitVisibilityOfElementLocated(tileEmployeeBySubUnit).isDisplayed();
     return this;
   }
 
-  public final DashBoardPage checkIfEmployeeByLocationIsDisplayed(){
+  public final DashBoardPage checkIfEmployeeByLocationIsDisplayed() {
     Wait.waitVisibilityOfElementLocated(tileEmployeeByLocation).isDisplayed();
     return this;
   }
