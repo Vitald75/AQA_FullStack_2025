@@ -1,7 +1,7 @@
 package eu.senla;
 
 import com.github.javafaker.Faker;
-import eu.senla.data.JobTitle;
+import eu.senla.dataUi.JobTitle;
 import eu.senla.elements.SidePanel;
 import eu.senla.pages.admin.AdminViewJobTitlesListPage;
 import org.junit.jupiter.api.DisplayName;

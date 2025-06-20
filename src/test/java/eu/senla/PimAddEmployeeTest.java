@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import com.github.javafaker.Faker;
 import eu.senla.client.OrangeHRMClient;
 import eu.senla.client.SpecConfig;
-import eu.senla.data.EmployeeApi;
-import eu.senla.data.GetEmployeeRequest;
+import eu.senla.dataApi.EmployeeApi;
+import eu.senla.dataApi.GetEmployeeResponse;
 import eu.senla.elements.SidePanel;
-import eu.senla.data.Employee;
+import eu.senla.dataUi.Employee;
 import eu.senla.pages.PIM.PIMAddEmployeePage;
 import eu.senla.pages.PIM.PIMPersonalDetailsPage;
 import lombok.SneakyThrows;
@@ -105,11 +105,11 @@ public class PimAddEmployeeTest extends BaseTest {
 
     // запрос из API для текущего Employee
     String employeeDetailsPath = "/web/index.php/api/v2/pim/employees/" + empNumber + "/personal-details";
-    GetEmployeeRequest response = OrangeHRMClient
+    GetEmployeeResponse response = OrangeHRMClient
             .getRequest(SpecConfig.requestSpecification(),
                     SpecConfig.responseSpecification(),
                     employeeDetailsPath,
-                    GetEmployeeRequest.class);
+                    GetEmployeeResponse.class);
 
     // сравнение исходного Employee с полученным через API
     assertTrue(compareUiAndApiEmployee(employee, response.getData()));

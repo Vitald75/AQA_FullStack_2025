@@ -1,6 +1,6 @@
-package eu.senla.data;
+package eu.senla.dataApi;
 
-public record LeaveEntitlement(
+public record LeaveEntitlementRequest(
     Integer empNumber,
     Integer leaveTypeId,
     String fromDate,

@@ -9,15 +9,15 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.responseSpecification;
 
 @UtilityClass
-public class OrangeHRMClient {
+public final class OrangeHRMClient {
 
-    public static Response getRequest(String url) {
+    public  Response getRequest(String url) {
         return given()
                 .when()
                 .get(url);
     }
 
-    public static <T> T getRequest(RequestSpecification requestSpecification,
+    public  <T> T getRequest(RequestSpecification requestSpecification,
                                    ResponseSpecification responseSpecification,
                                    String path,
                                    Class<T> clazz) {
@@ -34,7 +34,7 @@ public class OrangeHRMClient {
                         .as(clazz);
     }
 
-    public static ValidatableResponse postValidateRequest(RequestSpecification reqSpec, String url) {
+    public  ValidatableResponse postValidateRequest(RequestSpecification reqSpec, String url) {
         return   reqSpec
                 .when()
                 .post(url)
@@ -43,7 +43,7 @@ public class OrangeHRMClient {
                 .all();
     }
 
-    public static ValidatableResponse postLeaveEntitlementRequest(RequestSpecification reqSpec, String url) {
+    public  ValidatableResponse postLeaveEntitlementRequest(RequestSpecification reqSpec, String url) {
         return   reqSpec
                 .when()
                 .post(url)

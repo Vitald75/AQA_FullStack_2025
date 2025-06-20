@@ -5,6 +5,7 @@ import io.restassured.http.Cookie;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
+import lombok.experimental.UtilityClass;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -12,10 +13,10 @@ import org.jsoup.nodes.Element;
 import static io.restassured.RestAssured.given;
 
 
-//@UtilityClass
-public class AuthHelper {
+@UtilityClass
+public final class AuthHelper {
 
-  private static String[] getInitialCookie() {
+  private String[] getInitialCookie() {
     String[] arrayOfValues = new String[2];
     String token = "";
     // first get request /login
@@ -42,7 +43,7 @@ public class AuthHelper {
     return arrayOfValues;
   }
 
-  public static String getCookie() {
+  public  String getCookie() {
 
     final int responseCode = 302;
     final String[] arrayOfValues = getInitialCookie(); // [0] - cookie, [1] - token

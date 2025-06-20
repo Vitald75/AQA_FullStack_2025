@@ -1,7 +1,7 @@
 package eu.senla.pages.PIM;
 
 import eu.senla.core.Wait;
-import eu.senla.data.Employee;
+import eu.senla.dataUi.Employee;
 import eu.senla.pages.BasePage;
 import lombok.Getter;
 import org.openqa.selenium.By;

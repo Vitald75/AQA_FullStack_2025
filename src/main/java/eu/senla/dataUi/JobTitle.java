@@ -1,8 +1,7 @@
-package eu.senla.data;
+package eu.senla.dataUi;
 
 import lombok.Builder;
 import lombok.Data;
-
 
 @Builder
 @Data

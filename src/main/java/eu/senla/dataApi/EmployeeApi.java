@@ -1,4 +1,4 @@
-package eu.senla.data;
+package eu.senla.dataApi;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

@@ -1,7 +1,7 @@
 package eu.senla;
 
 import com.github.javafaker.Faker;
-import eu.senla.data.RecruitmentCandidate;
+import eu.senla.dataUi.RecruitmentCandidate;
 import eu.senla.elements.SidePanel;
 import eu.senla.pages.recruitment.AddCandidatePage;
 import eu.senla.pages.recruitment.RecruitmentPage;

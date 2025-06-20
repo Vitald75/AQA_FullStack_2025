@@ -4,8 +4,8 @@ import com.github.javafaker.Faker;
 import eu.senla.client.AuthHelper;
 import eu.senla.client.OrangeHRMClient;
 import eu.senla.core.ReadPropertiesFile;
-import eu.senla.data.Employee;
-import eu.senla.data.LeaveEntitlement;
+import eu.senla.dataUi.Employee;
+import eu.senla.dataApi.LeaveEntitlementRequest;
 import eu.senla.elements.SidePanel;
 import eu.senla.pages.PIM.PIMAddEmployeePage;
 import eu.senla.pages.leave.AssignLeavePage;
@@ -60,7 +60,7 @@ public class AssignLeaveTest extends BaseTest {
         String currentUrl = pimAddEmployeePage.getCurrentUrl();
         employee.setEmpNumber(Integer.parseInt(currentUrl.substring(currentUrl.lastIndexOf("/") + 1)));
 
-        LeaveEntitlement leaveEntitlement = new LeaveEntitlement(employee.getEmpNumber(),
+        LeaveEntitlementRequest leaveEntitlement = new LeaveEntitlementRequest(employee.getEmpNumber(),
                 7, "2025-01-01", "2025-12-31", "22");
 
         // начисляем Leave Balance
