@@ -1,16 +1,14 @@
 package eu.senla.core;
 
+import lombok.experimental.UtilityClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+@UtilityClass
 public final class Driver {
-  private static WebDriver driver;
+  private WebDriver driver;
 
-  private Driver() {
-
-  }
-
-  public static WebDriver getInstance() {
+  public WebDriver getInstance() {
     if (driver == null) {
       driver = new ChromeDriver();
       driver.manage().window().maximize();
@@ -18,7 +16,7 @@ public final class Driver {
     return driver;
   }
 
-  public static void quit() {
+  public void quit() {
     driver.quit();
     driver = null;
   }

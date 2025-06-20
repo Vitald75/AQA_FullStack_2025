@@ -1,7 +1,57 @@
 package eu.senla.client;
 
-public class OrangeHRMClient {
+import io.restassured.response.Response;
+import io.restassured.response.ValidatableResponse;
+import io.restassured.specification.RequestSpecification;
+import io.restassured.specification.ResponseSpecification;
+import lombok.experimental.UtilityClass;
+import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.responseSpecification;
 
+@UtilityClass
+public final class OrangeHRMClient {
+
+    public  Response getRequest(String url) {
+        return given()
+                .when()
+                .get(url);
+    }
+
+    public  <T> T getRequest(RequestSpecification requestSpecification,
+                                   ResponseSpecification responseSpecification,
+                                   String path,
+                                   Class<T> clazz) {
+
+        return
+                given()
+                        .spec(requestSpecification)
+                        .basePath(path)
+                        .when()
+                        .get()
+                        .then()
+                        .spec(responseSpecification)
+                        .extract()
+                        .as(clazz);
+    }
+
+    public  ValidatableResponse postValidateRequest(RequestSpecification reqSpec, String url) {
+        return   reqSpec
+                .when()
+                .post(url)
+                .then()
+                .log()
+                .all();
+    }
+
+    public  ValidatableResponse postLeaveEntitlementRequest(RequestSpecification reqSpec, String url) {
+        return   reqSpec
+                .when()
+                .post(url)
+                .then()
+                .spec(SpecConfig.responseSpecification())
+                .log()
+                .all();
+    }
 }
 
 ///**
