@@ -4,7 +4,6 @@ import eu.senla.core.Wait;
 import lombok.Getter;
 import org.openqa.selenium.By;
 
-
 @Getter
 public class DashBoardPage extends BasePage {
 
@@ -26,7 +25,7 @@ public class DashBoardPage extends BasePage {
   private final By tileEmployeesOnLeave = By.xpath("//div[@class='oxd-grid-item oxd-grid-item--gutters orangehrm-dashboard-widget']"
           + "//p[text()='Employees on Leave Today']");
   private final By tileEmployeeBySubUnit = By.xpath("//div[@class='oxd-grid-item oxd-grid-item--gutters orangehrm-dashboard-widget']"
-          + "//p[text()='Employee Distribution by Sub Unit']");
+          + "//p[text()='Employee Distribution by Sub Unit1']");
   private final By tileEmployeeByLocation = By.xpath("//div[@class='oxd-grid-item oxd-grid-item--gutters orangehrm-dashboard-widget']"
           + "//p[text()='Employee Distribution by Location']");
 
@@ -45,39 +44,32 @@ public class DashBoardPage extends BasePage {
     return new LoginPage();
   }
 
-  public final DashBoardPage checkIfTimeAtWorkIsDisplayed() {
-    Wait.waitVisibilityOfElementLocated(tileTimeAtWork).isDisplayed();
-    return this;
+  public final Boolean isTimeAtWorkDisplayed() {
+    return isElementDisplayed(tileTimeAtWork);
   }
 
-  public final DashBoardPage checkIfMyActionIsDisplayed() {
-    Wait.waitVisibilityOfElementLocated(tileMyActions).isDisplayed();
-    return this;
+  public final Boolean isMyActionDisplayed() {
+    return isElementDisplayed(tileMyActions);
   }
 
-  public final DashBoardPage checkIfQuickLaunchIsDisplayed() {
-    Wait.waitVisibilityOfElementLocated(tileQuickLaunch).isDisplayed();
-    return this;
+  public final Boolean isQuickLaunchDisplayed() {
+    return isElementDisplayed(tileQuickLaunch);
   }
 
-  public final DashBoardPage checkIfBuzzLatestPostsIsDisplayed() {
-    Wait.waitVisibilityOfElementLocated(tileBuzzLatestPosts).isDisplayed();
-    return this;
+  public final Boolean isBuzzLatestPostsDisplayed() {
+    return isElementDisplayed(tileBuzzLatestPosts);
   }
 
-  public final DashBoardPage checkIfEmployeesOnLeaveIsDisplayed() {
-    Wait.waitVisibilityOfElementLocated(tileEmployeesOnLeave).isDisplayed();
-    return this;
+  public final Boolean isEmployeesOnLeaveDisplayed() {
+    return isElementDisplayed(tileEmployeesOnLeave);
   }
 
-  public final DashBoardPage checkIfEmployeeBySubUnitIsDisplayed() {
-    Wait.waitVisibilityOfElementLocated(tileEmployeeBySubUnit).isDisplayed();
-    return this;
+  public final Boolean isEmployeeBySubUnitDisplayed() {
+    return isElementDisplayed(tileEmployeeBySubUnit);
   }
 
-  public final DashBoardPage checkIfEmployeeByLocationIsDisplayed() {
-    Wait.waitVisibilityOfElementLocated(tileEmployeeByLocation).isDisplayed();
-    return this;
+  public final Boolean isEmployeeByLocationDisplayed() {
+    return isElementDisplayed(tileEmployeeByLocation);
   }
 
 }
