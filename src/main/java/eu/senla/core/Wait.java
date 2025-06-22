@@ -4,7 +4,6 @@ import java.time.Duration;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -14,15 +13,16 @@ public final class Wait {
   static final int TIMEOUT_SEC = 7;
   static final Duration TIMEOUT = Duration.ofSeconds(TIMEOUT_SEC);
 
-  //этот метод и ниже по сути одинаковые только один общий а второй более частный
-  public static WebElement wait(final ExpectedCondition<WebElement> expectedCondition) {
+  public static WebElement waitVisibilityOfElementLocated(final By locator) {
     return new WebDriverWait(Driver.getInstance(), TIMEOUT)
-        .withMessage("The element isn't visible")
-        .until(expectedCondition);
+            .withMessage("The element isn't visible")
+            .until(ExpectedConditions.visibilityOfElementLocated(locator));
   }
 
-  public static WebElement waitVisibilityOfElementLocated(final By locator) {
-    return wait(ExpectedConditions.visibilityOfElementLocated(locator));
+  public static boolean waitTextToBePresentInElement(final By locator, String expectedText) {
+    return new WebDriverWait(Driver.getInstance(), TIMEOUT)
+            .withMessage("The element doesn't contain expected text")
+            .until(ExpectedConditions.textToBePresentInElementValue(locator, expectedText));
   }
 
   private Wait() {

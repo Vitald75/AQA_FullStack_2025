@@ -12,9 +12,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public final class AddDeleteJobTitlesTest extends BaseTest {
 
-    //private JobTitle jobTitle;
-
-    //@BeforeEach
     JobTitle generateTestData() {
         Faker faker = new Faker();
         JobTitle jobTitle = JobTitle.builder()
@@ -38,7 +35,7 @@ public final class AddDeleteJobTitlesTest extends BaseTest {
                         .isConfirmed();
 
         assertTrue(jobTitlesListPage.checkIfJobTitleExists(jobTitle.getJobTitle()), "Не добавлен в список");
-    }
+            }
 
     public void deleteJobTitle(JobTitle jobTitle) {
         AdminViewJobTitlesListPage jobTitlesListPage =
@@ -60,11 +57,9 @@ public final class AddDeleteJobTitlesTest extends BaseTest {
 
         final int repetitions = 1;
         JobTitle[] jobTitles = new JobTitle[repetitions];
-        for (int i = 0; i < repetitions; i++) {
-            jobTitles[i] = generateTestData();
-        }
 
         for (int i = 0; i < repetitions; i++) {
+            jobTitles[i] = generateTestData();
             addJobTitle(jobTitles[i]);
         }
 

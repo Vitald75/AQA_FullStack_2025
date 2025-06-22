@@ -53,7 +53,7 @@ public final class AddRecruitmentCandidateTest extends BaseTest {
 
     }
 
-  //
+
     @DisplayName("Проверка формы добавления кандидата с незаполненными обязательными полями")
     @Tag("extended")
     @Test

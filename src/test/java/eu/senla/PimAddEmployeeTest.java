@@ -77,8 +77,10 @@ public class PimAddEmployeeTest extends BaseTest {
         "Unexpected Url");
 
     //заполнение Personal Details
-    PIMPersonalDetailsPage pimPersonalDetailsPage = new PIMPersonalDetailsPage()
-            .isPersonalDetailsDisplayed(employee.getFirstName())
+    PIMPersonalDetailsPage pimPersonalDetailsPage = new PIMPersonalDetailsPage();
+    assertTrue(pimPersonalDetailsPage.isPersonalDetailsDisplayed(employee.getFirstName()));
+
+    pimPersonalDetailsPage
             .inputDriversLicenseId(employee.getDrivingLicenseNo())
             .inputOtherId(employee.getOtherId())
             .inputDriversLicenseExpDate(employee.getDrivingLicenseExpiredDate())

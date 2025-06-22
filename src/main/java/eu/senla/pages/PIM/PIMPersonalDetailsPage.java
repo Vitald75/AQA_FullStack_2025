@@ -1,13 +1,9 @@
 package eu.senla.pages.PIM;
 
-import eu.senla.core.Driver;
 import eu.senla.core.Wait;
 import eu.senla.pages.BasePage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 
 public class PIMPersonalDetailsPage extends BasePage {
 
@@ -128,10 +124,8 @@ public class PIMPersonalDetailsPage extends BasePage {
         return this;
     }
 
-    public final PIMPersonalDetailsPage isPersonalDetailsDisplayed(String expectedFirstName) {
-        WebDriverWait wait = new WebDriverWait(Driver.getInstance(), Duration.ofSeconds(2));
-               wait.until(ExpectedConditions.textToBePresentInElementValue(employeeFirstName, expectedFirstName));
-        return this;
+    public final boolean isPersonalDetailsDisplayed(String expectedFirstName) {
+        return Wait.waitTextToBePresentInElement(employeeFirstName, expectedFirstName);
     }
 
 }
