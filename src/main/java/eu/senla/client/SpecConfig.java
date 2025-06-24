@@ -12,7 +12,7 @@ import lombok.experimental.UtilityClass;
 public class SpecConfig {
     public static RequestSpecification requestSpecification() {
         return new RequestSpecBuilder()
-                .setBaseUri(eu.senla.core.ReadPropertiesFile.getProperty("API_MAIN_URL"))
+                .setBaseUri(eu.senla.core.ReadPropertiesFile.getProperty("MAIN_URL"))
                 .addCookie("orangehrm", AuthHelper.getCookie())
                 .setContentType(ContentType.JSON)
                 .log(LogDetail.ALL)

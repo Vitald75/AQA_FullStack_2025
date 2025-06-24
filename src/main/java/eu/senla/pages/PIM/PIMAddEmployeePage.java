@@ -1,5 +1,6 @@
 package eu.senla.pages.PIM;
 
+import eu.senla.core.ConstantsClass;
 import eu.senla.core.Wait;
 import eu.senla.dataUi.Employee;
 import eu.senla.pages.BasePage;
@@ -8,8 +9,8 @@ import org.openqa.selenium.By;
 
 public class PIMAddEmployeePage extends BasePage {
   @Getter
-  private final String ownPageUrl =
-      "https://opensource-demo.orangehrmlive.com/web/index.php/pim/viewEmployeeList";
+  private final String ownPageUrl = ConstantsClass.MAIN_URL + ConstantsClass.WEB_EP + ConstantsClass.PIM_URL;
+      //"https://opensource-demo.orangehrmlive.com/web/index.php/pim/viewEmployeeList";
 
 
   private final By firstNameField = By.name("firstName");

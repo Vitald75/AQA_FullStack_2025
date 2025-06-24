@@ -12,8 +12,6 @@ public class PIMViewEmployeeList extends BasePage {
     private final By employeeFromTableRowFour =
             By.xpath("//div[@class='oxd-table-body']/child::div[4]");
 
-
-
     public final PIMAddEmployeePage clickAddEmployeeButton() {
         Wait.waitVisibilityOfElementLocated(addEmployeeButton).click();
         return new PIMAddEmployeePage();

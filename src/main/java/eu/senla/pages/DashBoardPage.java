@@ -1,5 +1,7 @@
 package eu.senla.pages;
 
+import eu.senla.core.ConstantsClass;
+import eu.senla.core.ReadPropertiesFile;
 import eu.senla.core.Wait;
 import lombok.Getter;
 import org.openqa.selenium.By;
@@ -8,8 +10,8 @@ import org.openqa.selenium.By;
 public class DashBoardPage extends BasePage {
 
   @Getter
-  private String ownPageUrl =
-      "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
+  private String ownPageUrl = ReadPropertiesFile.getProperty("MAIN_URL") + ConstantsClass.WEB_EP + ConstantsClass.DASHBOARD_URL;
+  // "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
 
   private final By sidePanelBody = By.cssSelector(".oxd-sidepanel-body");
   private final By userDropDownMenu = By.cssSelector("span.oxd-userdropdown-tab");
@@ -25,7 +27,7 @@ public class DashBoardPage extends BasePage {
   private final By tileEmployeesOnLeave = By.xpath("//div[@class='oxd-grid-item oxd-grid-item--gutters orangehrm-dashboard-widget']"
           + "//p[text()='Employees on Leave Today']");
   private final By tileEmployeeBySubUnit = By.xpath("//div[@class='oxd-grid-item oxd-grid-item--gutters orangehrm-dashboard-widget']"
-          + "//p[text()='Employee Distribution by Sub Unit1']");
+          + "//p[text()='Employee Distribution by Sub Unit']");
   private final By tileEmployeeByLocation = By.xpath("//div[@class='oxd-grid-item oxd-grid-item--gutters orangehrm-dashboard-widget']"
           + "//p[text()='Employee Distribution by Location']");
 

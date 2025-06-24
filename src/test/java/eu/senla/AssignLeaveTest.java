@@ -3,7 +3,7 @@ package eu.senla;
 import com.github.javafaker.Faker;
 import eu.senla.client.AuthHelper;
 import eu.senla.client.OrangeHRMClient;
-import eu.senla.core.ReadPropertiesFile;
+import eu.senla.core.ConstantsClass;
 import eu.senla.dataUi.Employee;
 import eu.senla.dataApi.LeaveEntitlementRequest;
 import eu.senla.elements.SidePanel;
@@ -52,8 +52,8 @@ public class AssignLeaveTest extends BaseTest {
                 .isPersonalInformationPage();
 
         assertTrue(
-                pimAddEmployeePage.getCurrentUrl().contains(
-                        "https://opensource-demo.orangehrmlive.com/web/index.php/pim/viewPersonalDetails/empNumber"),
+                pimAddEmployeePage.getCurrentUrl().contains(ConstantsClass.MAIN_URL
+                        + ConstantsClass.WEB_EP + ConstantsClass.PIM_DETAILS_URL),
                 "Unexpected Url");
 
 
@@ -72,9 +72,7 @@ public class AssignLeaveTest extends BaseTest {
                 .all();
 
         ValidatableResponse resp = OrangeHRMClient.postLeaveEntitlementRequest(
-               requestPostSpecification, ReadPropertiesFile.getProperty("BASE_URL")
-                        + "/api/v2/leave/leave-entitlements");
-
+               requestPostSpecification, ConstantsClass.MAIN_URL + ConstantsClass.API_EP + ConstantsClass.LEAVE_API_URL);
 
         AssignLeavePage assignLeavePage =
                 new SidePanel()

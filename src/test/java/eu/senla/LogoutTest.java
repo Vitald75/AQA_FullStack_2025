@@ -2,7 +2,7 @@ package eu.senla;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import eu.senla.core.ReadPropertiesFile;
+import eu.senla.core.ConstantsClass;
 import eu.senla.pages.DashBoardPage;
 import eu.senla.pages.LoginPage;
 import org.junit.jupiter.api.DisplayName;
@@ -19,7 +19,7 @@ public class LogoutTest extends BaseTest {
     LoginPage loginPage = new DashBoardPage().openUserDropDownMenu().clickLogout();
 
     assertEquals(
-        ReadPropertiesFile.getProperty("LOGIN_URL"),
+            ConstantsClass.MAIN_URL + ConstantsClass.WEB_EP + ConstantsClass.AUTH_LOGIN_URL,
         loginPage.getCurrentUrl(),
         "Unsuccessful logout. Url doesn't match");
   }

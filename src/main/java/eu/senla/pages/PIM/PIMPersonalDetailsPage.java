@@ -50,6 +50,8 @@ public class PIMPersonalDetailsPage extends BasePage {
         return Wait.waitVisibilityOfElementLocated(employeeId).getAttribute("value");
     }
 
+
+
     public final PIMPersonalDetailsPage inputOtherId(String otherIdStr) {
         Wait.waitVisibilityOfElementLocated(otherId).sendKeys(otherIdStr);
         return this;

@@ -50,7 +50,6 @@ public final class AddRecruitmentCandidateTest extends BaseTest {
                 addCandidatePage.getCurrentUrl().contains(
                         addCandidatePage.getOwnPageUrl()),
                 "Unexpected Url");
-
     }
 
 

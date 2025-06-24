@@ -2,6 +2,7 @@ package eu.senla;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import eu.senla.core.ConstantsClass;
 import eu.senla.core.Driver;
 import eu.senla.core.ReadPropertiesFile;
 import eu.senla.pages.DashBoardPage;
@@ -39,7 +40,7 @@ public final class LoginTest {
     LoginPage loginPage = new LoginPage().loginAsInvalidUser(userName, password);
 
     assertEquals(
-        ReadPropertiesFile.getProperty("LOGIN_URL"),
+        ConstantsClass.MAIN_URL + ConstantsClass.WEB_EP + ConstantsClass.AUTH_LOGIN_URL,
         loginPage.getCurrentUrl(),
         "Unexpected Successful login");
   }

@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import com.github.javafaker.Faker;
 import eu.senla.client.OrangeHRMClient;
 import eu.senla.client.SpecConfig;
+import eu.senla.core.ConstantsClass;
 import eu.senla.dataApi.EmployeeApi;
 import eu.senla.dataApi.GetEmployeeResponse;
 import eu.senla.elements.SidePanel;
@@ -71,10 +72,7 @@ public class PimAddEmployeeTest extends BaseTest {
             .isConfirmed()
             .isPersonalInformationPage();
 
-    assertTrue(
-            pimAddEmployeePage.getCurrentUrl().contains(
-            "https://opensource-demo.orangehrmlive.com/web/index.php/pim/viewPersonalDetails/empNumber"),
-        "Unexpected Url");
+    assertTrue(pimAddEmployeePage.getCurrentUrl().contains(ConstantsClass.PIM_DETAILS_URL), "Unexpected Url");
 
     //заполнение Personal Details
     PIMPersonalDetailsPage pimPersonalDetailsPage = new PIMPersonalDetailsPage();
@@ -95,10 +93,7 @@ public class PimAddEmployeeTest extends BaseTest {
             .isConfirmed();
 
     String currentUrl = pimPersonalDetailsPage.getCurrentUrl();
-    assertTrue(
-            currentUrl.contains(
-                    "https://opensource-demo.orangehrmlive.com/web/index.php/pim/viewPersonalDetails/empNumber"),
-            "Unexpected Url");
+    assertTrue(currentUrl.contains(ConstantsClass.PIM_DETAILS_URL), "Unexpected Url");
 
     String empNumber = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
 
@@ -106,7 +101,7 @@ public class PimAddEmployeeTest extends BaseTest {
     employee.setEmpNumber(Integer.parseInt(empNumber));
 
     // запрос из API для текущего Employee
-    String employeeDetailsPath = "/web/index.php/api/v2/pim/employees/" + empNumber + "/personal-details";
+    String employeeDetailsPath = ConstantsClass.API_EP + ConstantsClass.PIM_EMPLOYEE_API_URL + empNumber + "/personal-details";
     GetEmployeeResponse response = OrangeHRMClient
             .getRequest(SpecConfig.requestSpecification(),
                     SpecConfig.responseSpecification(),

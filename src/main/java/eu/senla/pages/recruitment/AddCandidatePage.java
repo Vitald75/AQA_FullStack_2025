@@ -1,5 +1,6 @@
 package eu.senla.pages.recruitment;
 
+import eu.senla.core.ConstantsClass;
 import eu.senla.core.Wait;
 import eu.senla.dataUi.RecruitmentCandidate;
 import eu.senla.pages.BasePage;
@@ -9,7 +10,8 @@ import org.openqa.selenium.By;
 public final class AddCandidatePage extends BasePage {
 
     @Getter
-    private String ownPageUrl = "https://opensource-demo.orangehrmlive.com/web/index.php/recruitment/addCandidate";
+    private String ownPageUrl = ConstantsClass.MAIN_URL + ConstantsClass.WEB_EP + ConstantsClass.RECRUITMENT_ADD_URL;
+    //"https://opensource-demo.orangehrmlive.com/web/index.php/recruitment/addCandidate";
 
     private final By firstNameInput = By.name("firstName");
     private final By isRequiredFirstName = By.xpath("//input[@name='firstName']/ancestor"

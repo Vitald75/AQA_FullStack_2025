@@ -1,7 +1,7 @@
 package eu.senla.pages;
 
+import eu.senla.core.ConstantsClass;
 import eu.senla.core.Driver;
-import eu.senla.core.ReadPropertiesFile;
 import eu.senla.core.Wait;
 import org.openqa.selenium.By;
 
@@ -18,7 +18,7 @@ public class LoginPage extends BasePage { // extends BasePage{
 
   public LoginPage() {
     Driver.getInstance().manage().deleteAllCookies();
-    Driver.getInstance().get(ReadPropertiesFile.getProperty("LOGIN_URL"));
+    Driver.getInstance().get(ConstantsClass.MAIN_URL + ConstantsClass.WEB_EP + ConstantsClass.AUTH_LOGIN_URL);
   }
 
   public final LoginPage enterUserName(String userName) {

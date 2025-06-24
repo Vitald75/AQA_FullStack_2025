@@ -1,8 +1,9 @@
 package eu.senla;
 
+import eu.senla.core.ConstantsClass;
 import eu.senla.core.Driver;
-import eu.senla.core.ReadPropertiesFile;
-import eu.senla.registration.ApiLoginImpl;
+//import eu.senla.registration.ApiLoginImpl;
+import eu.senla.registration.FormLoginImpl;
 import eu.senla.registration.LoginStrategy;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.AfterEach;
@@ -16,18 +17,18 @@ public class BaseTest {
   @SneakyThrows
   @BeforeEach
   final void chooseLoginStrategy() {
-    String dashboardUrl =
-            "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
+
     init();
 
-    // Выбор стратегии аутентификации
-    LoginStrategy authenticate = new ApiLoginImpl(dashboardUrl);
-    //LoginStrategy authenticate = new FormLoginImpl();
+    // Выбор стратегии аутентификации - одну закомментировать
+    //LoginStrategy authenticate = new ApiLoginImpl(ConstantsClass.MAIN_URL + ConstantsClass.WEB_EP + ConstantsClass.DASHBOARD_URL);
+    LoginStrategy authenticate = new FormLoginImpl();
+
     authenticate.login();
   }
 
   final void init() {
-    Driver.getInstance().get(ReadPropertiesFile.getProperty("LOGIN_URL"));
+    Driver.getInstance().get(ConstantsClass.MAIN_URL + ConstantsClass.WEB_EP + ConstantsClass.AUTH_LOGIN_URL);
   }
 
   @AfterEach

@@ -1,5 +1,6 @@
 package eu.senla.client;
 
+import eu.senla.core.ConstantsClass;
 import eu.senla.core.ReadPropertiesFile;
 import io.restassured.http.Cookie;
 import io.restassured.response.Response;
@@ -19,10 +20,10 @@ public final class AuthHelper {
   private String[] getInitialCookie() {
     String[] arrayOfValues = new String[2];
     String token = "";
-    // first get request /login
+    // first step - get request /login
 
-    Response firstResponse = OrangeHRMClient.getRequest(eu.senla.core.ReadPropertiesFile.getProperty("BASE_URL")
-            + "/auth/login");
+    Response firstResponse = OrangeHRMClient.getRequest(ConstantsClass.MAIN_URL
+            + ConstantsClass.WEB_EP + ConstantsClass.AUTH_LOGIN_URL);
 
     String htmlContent = firstResponse.asString();
     Document doc = Jsoup.parse(htmlContent);
@@ -58,7 +59,7 @@ public final class AuthHelper {
             .all();
 
     ValidatableResponse secondResponse = OrangeHRMClient.postValidateRequest(requestPostSpecification,
-            ReadPropertiesFile.getProperty("BASE_URL") + "/auth/validate");
+            ConstantsClass.MAIN_URL + ConstantsClass.WEB_EP + ConstantsClass.AUTH_VALIDATE_URL);
     secondResponse.statusCode(responseCode);
 
     Cookie validateCookie = secondResponse.extract().detailedCookie("orangehrm");
