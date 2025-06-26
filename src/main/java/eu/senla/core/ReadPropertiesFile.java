@@ -1,11 +1,14 @@
 package eu.senla.core;
 
+import lombok.experimental.UtilityClass;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-public class ReadPropertiesFile {
-  private static Properties property;
+@UtilityClass
+public final class ReadPropertiesFile {
+  private Properties property;
 
   static {
     try {
@@ -18,7 +21,7 @@ public class ReadPropertiesFile {
     }
   }
 
-  public static String getProperty(String key) {
+  public String getProperty(String key) {
     return property.getProperty(key);
   }
 }

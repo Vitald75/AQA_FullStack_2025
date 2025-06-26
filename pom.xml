@@ -24,6 +24,7 @@
     <rest.assured.version>5.5.5</rest.assured.version>
     <maven.compiler.plugin.version>3.14.0</maven.compiler.plugin.version>
     <jsoup.version>1.20.1</jsoup.version>
+    <jackson.version>2.19.0</jackson.version>
   </properties>
 
   <dependencies>
@@ -103,6 +104,18 @@
       <scope>compile</scope>
     </dependency>
 
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>${jackson.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+      <version>${jackson.version}</version>
+    </dependency>
+
   </dependencies>
 
   <build>
@@ -162,8 +175,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>${maven.compiler.plugin.version}</version>
         <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
+          <source>16</source>
+          <target>16</target>
           <annotationProcessorPaths>
             <path>
               <groupId>org.projectlombok</groupId>

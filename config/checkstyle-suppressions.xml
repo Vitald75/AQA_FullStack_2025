@@ -10,6 +10,7 @@
     <suppress checks="FinalParameters" files=""/>
     <suppress checks="HideUtilityClassConstructor" files=""/>
     <suppress checks="ParameterNumber" files=""/>
+    <suppress checks="MagicNumber" files=""/>
 
     <!--  <suppress checks="VisibilityModifier" files=""/> -->
 

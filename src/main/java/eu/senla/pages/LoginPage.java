@@ -1,5 +1,7 @@
 package eu.senla.pages;
 
+import eu.senla.core.ConstantsClass;
+import eu.senla.core.Driver;
 import eu.senla.core.Wait;
 import org.openqa.selenium.By;
 
@@ -10,12 +12,14 @@ public class LoginPage extends BasePage { // extends BasePage{
   private final By submitButton = By.cssSelector("button[type='submit']");
   private final By invalidCredentialsAlert = By.xpath("//p[text()='Invalid credentials']");
   private final By userNameRequired =
-          /**
-           * уверен что можно без /../..//
-           */
-      By.xpath("//label[text()='Username']/../..//following-sibling::span[text()='Required']");
+      By.xpath("//label[text()='Username']/ancestor::div[2]/span[text()='Required']");
   private final By passwordRequired =
-      By.xpath("//label[text()='Password']/../..//following-sibling::span[text()='Required']");
+      By.xpath("//label[text()='Password']/ancestor::div[2]/span[text()='Required']");
+
+  public LoginPage() {
+    Driver.getInstance().manage().deleteAllCookies();
+    Driver.getInstance().get(ConstantsClass.MAIN_URL + ConstantsClass.WEB_EP + ConstantsClass.AUTH_LOGIN_URL);
+  }
 
   public final LoginPage enterUserName(String userName) {
     Wait.waitVisibilityOfElementLocated(userNameField).sendKeys(userName);
