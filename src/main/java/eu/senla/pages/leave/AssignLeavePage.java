@@ -13,7 +13,10 @@ public class AssignLeavePage {
     private final By commentsInput = By.xpath("//textarea");
     private final By assingButton = By.xpath("//button[@type='submit']");
     private final By confirmationMessage = By.id("oxd-toaster_1");
-
+    private final By notEnoughBalance = By.xpath("//p[@class='oxd-text oxd-text--p orangehrm-leave-balance-text --error']");
+    //div[role='document'] //button[text()=' Ok ']
+    ////p[@class='oxd-text oxd-text--p orangehrm-leave-balance-text --error']
+    ///
 
     public final AssignLeavePage inputEmployeeName(String employeeName) {
         Wait.waitVisibilityOfElementLocated(employeeNameInput).sendKeys(employeeName);
@@ -22,14 +25,19 @@ public class AssignLeavePage {
 
     public final AssignLeavePage inputDateFrom(String date) {
         Wait.waitVisibilityOfElementLocated(fromDateInput).sendKeys(date);
-        return new AssignLeavePage();
+        return this;
     }
 
     public final AssignLeavePage inputDateTo(String date) {
         Wait.waitVisibilityOfElementLocated(toDateInput).sendKeys(Keys.CONTROL + "a");
         Wait.waitVisibilityOfElementLocated(toDateInput).sendKeys(Keys.DELETE);
         Wait.waitVisibilityOfElementLocated(toDateInput).sendKeys(date);
-        return new AssignLeavePage();
+        return this;
+    }
+
+    public final AssignLeavePage inputComments(String comments) {
+        Wait.waitVisibilityOfElementLocated(commentsInput).sendKeys(comments);
+        return this;
     }
 
     public final AssignLeavePage selectEmployee(String fullName) {
@@ -46,13 +54,22 @@ public class AssignLeavePage {
         return this;
     }
 
+    public final boolean isAssignButtonDisabled() {
+        return !(Wait.waitVisibilityOfElementLocated(assingButton).isEnabled());
+    }
+
+
     public final AssignLeavePage clickAssignButton() {
         Wait.waitVisibilityOfElementLocated(assingButton).click();
         return this;
     }
 
-    public final AssignLeavePage isConfirmed() {
-        Wait.waitVisibilityOfElementLocated(confirmationMessage).isDisplayed();
+    public final Boolean isConfirmed() {
+        return Wait.waitVisibilityOfElementLocated(confirmationMessage).isDisplayed();
+    }
+
+    public final AssignLeavePage isNotEnoughBalance() {
+        Wait.waitVisibilityOfElementLocated(notEnoughBalance).isDisplayed();
         return this;
     }
 }

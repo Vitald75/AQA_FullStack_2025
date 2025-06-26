@@ -74,7 +74,7 @@ public class AssignLeaveTest extends BaseTest {
         ValidatableResponse resp = OrangeHRMClient.postLeaveEntitlementRequest(
                requestPostSpecification, ConstantsClass.MAIN_URL + ConstantsClass.API_EP + ConstantsClass.LEAVE_API_URL);
 
-        AssignLeavePage assignLeavePage =
+        Boolean isAssignConfirmed =
                 new SidePanel()
                         .openLeavePage()
                         .clickAssignLeaveMenu()
@@ -85,11 +85,66 @@ public class AssignLeaveTest extends BaseTest {
                         .clickAssignButton()
                         .isConfirmed();
 
+        System.out.println("Done");
 
-//        assertTrue(
-//                addCandidatePage.getCurrentUrl().contains(
-//                        addCandidatePage.getOwnPageUrl()),
-//                "Unexpected Url");
+        assertTrue(isAssignConfirmed,"Assing wasn't confirmed");
+
+    }
+
+    @Test
+    @DisplayName("Проверка формы Assign Leave")
+    @Tag("extended")
+    public void testNegativeAssignLeave() {
+
+        //добавление нового PIM Employee
+        PIMAddEmployeePage pimAddEmployeePage = new SidePanel()
+                .openPIMPage()
+                .clickAddEmployeeButton()
+                .fillNewEmployeeForm(employee)
+                .clickSubmit()
+                .isConfirmed()
+                .isPersonalInformationPage();
+
+        assertTrue(
+                pimAddEmployeePage.getCurrentUrl().contains(ConstantsClass.MAIN_URL
+                        + ConstantsClass.WEB_EP + ConstantsClass.PIM_DETAILS_URL),
+                "Unexpected Url");
+
+
+        String currentUrl = pimAddEmployeePage.getCurrentUrl();
+        employee.setEmpNumber(Integer.parseInt(currentUrl.substring(currentUrl.lastIndexOf("/") + 1)));
+
+        LeaveEntitlementRequest leaveEntitlement = new LeaveEntitlementRequest(employee.getEmpNumber(),
+                7, "2025-01-01", "2025-12-31", "7");
+
+        // начисляем Leave Balance
+        RequestSpecification requestPostSpecification = given()
+                .cookie("orangehrm", AuthHelper.getCookie())
+                .contentType(ContentType.JSON)
+                .body(leaveEntitlement)
+                .log()
+                .all();
+
+        ValidatableResponse resp = OrangeHRMClient.postLeaveEntitlementRequest(
+                requestPostSpecification, ConstantsClass.MAIN_URL + ConstantsClass.API_EP + ConstantsClass.LEAVE_API_URL);
+
+        Boolean isAssignButtonDisabled =
+                new SidePanel()
+                        .openLeavePage()
+                        .clickAssignLeaveMenu()
+                        .selectEmployee(employee.getFirstName() + " " + employee.getMiddleName() + " " + employee.getLastName())
+                        .selectLeaveType("CAN - FMLA")
+                        .inputDateFrom("2025-01-06")
+                        .inputDateTo("2025-20-06")
+                        .inputComments("some comments")
+                        .isNotEnoughBalance()
+                        .isAssignButtonDisabled();
+//                        .clickAssignButton()
+//                        .isConfirmed();
+
+        System.out.println(" ");
+
+        assertTrue(isAssignButtonDisabled,"Assign button is enabled, though it shouldn't be");
 
     }
 }
