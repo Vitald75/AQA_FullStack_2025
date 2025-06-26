@@ -14,6 +14,8 @@ public class AssignLeavePage {
     private final By assingButton = By.xpath("//button[@type='submit']");
     private final By confirmationMessage = By.id("oxd-toaster_1");
     private final By notEnoughBalance = By.xpath("//p[@class='oxd-text oxd-text--p orangehrm-leave-balance-text --error']");
+    private final By wrongDatesAlert = By.xpath("//span[text()='To date should be after from date']");
+
     //div[role='document'] //button[text()=' Ok ']
     ////p[@class='oxd-text oxd-text--p orangehrm-leave-balance-text --error']
     ///
@@ -72,4 +74,10 @@ public class AssignLeavePage {
         Wait.waitVisibilityOfElementLocated(notEnoughBalance).isDisplayed();
         return this;
     }
+
+    public final boolean isWrongDates() {
+        return Wait.waitVisibilityOfElementLocated(wrongDatesAlert).isDisplayed();
+    }
+
+
 }

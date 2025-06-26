@@ -8,7 +8,6 @@ import eu.senla.dataUi.Employee;
 import eu.senla.dataApi.LeaveEntitlementRequest;
 import eu.senla.elements.SidePanel;
 import eu.senla.pages.PIM.PIMAddEmployeePage;
-import eu.senla.pages.leave.AssignLeavePage;
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
@@ -37,31 +36,10 @@ public class AssignLeaveTest extends BaseTest {
                         .build();
     }
 
-    @Test
-    @DisplayName("Успешный Assign Leave")
-    @Tag("smoke")
-    public void testPositiveAssignLeave() {
-
-        //добавление нового PIM Employee
-        PIMAddEmployeePage pimAddEmployeePage = new SidePanel()
-                .openPIMPage()
-                .clickAddEmployeeButton()
-                .fillNewEmployeeForm(employee)
-                .clickSubmit()
-                .isConfirmed()
-                .isPersonalInformationPage();
-
-        assertTrue(
-                pimAddEmployeePage.getCurrentUrl().contains(ConstantsClass.MAIN_URL
-                        + ConstantsClass.WEB_EP + ConstantsClass.PIM_DETAILS_URL),
-                "Unexpected Url");
-
-
-        String currentUrl = pimAddEmployeePage.getCurrentUrl();
-        employee.setEmpNumber(Integer.parseInt(currentUrl.substring(currentUrl.lastIndexOf("/") + 1)));
+    final void setLeaveBalance(String days) {
 
         LeaveEntitlementRequest leaveEntitlement = new LeaveEntitlementRequest(employee.getEmpNumber(),
-                7, "2025-01-01", "2025-12-31", "22");
+                7, "2025-01-01", "2025-12-31", days);
 
         // начисляем Leave Balance
         RequestSpecification requestPostSpecification = given()
@@ -72,7 +50,24 @@ public class AssignLeaveTest extends BaseTest {
                 .all();
 
         ValidatableResponse resp = OrangeHRMClient.postLeaveEntitlementRequest(
-               requestPostSpecification, ConstantsClass.MAIN_URL + ConstantsClass.API_EP + ConstantsClass.LEAVE_API_URL);
+                requestPostSpecification, ConstantsClass.MAIN_URL + ConstantsClass.API_EP + ConstantsClass.LEAVE_API_URL);
+    }
+
+    @Test
+    @DisplayName("Успешный Assign Leave")
+    @Tag("smoke")
+    public void testPositiveAssignLeave() {
+
+        //добавление нового PIM Employee
+        PIMAddEmployeePage pimAddEmployeePage = new PIMAddEmployeePage();
+        pimAddEmployeePage.addPIMEmployeeSuccessful(employee);
+
+        assertTrue(
+                pimAddEmployeePage.getCurrentUrl().contains(ConstantsClass.MAIN_URL
+                        + ConstantsClass.WEB_EP + ConstantsClass.PIM_DETAILS_URL),
+                "Unexpected Url");
+
+        setLeaveBalance("22");
 
         Boolean isAssignConfirmed =
                 new SidePanel()
@@ -87,46 +82,24 @@ public class AssignLeaveTest extends BaseTest {
 
         System.out.println("Done");
 
-        assertTrue(isAssignConfirmed,"Assing wasn't confirmed");
-
+        assertTrue(isAssignConfirmed, "Assing wasn't confirmed");
     }
 
     @Test
-    @DisplayName("Проверка формы Assign Leave")
+    @DisplayName("Проверка формы Assign Leave Balance not sufficient")
     @Tag("extended")
-    public void testNegativeAssignLeave() {
+    public void testNegativeAssignLeaveNotSufficientBalance() {
 
         //добавление нового PIM Employee
-        PIMAddEmployeePage pimAddEmployeePage = new SidePanel()
-                .openPIMPage()
-                .clickAddEmployeeButton()
-                .fillNewEmployeeForm(employee)
-                .clickSubmit()
-                .isConfirmed()
-                .isPersonalInformationPage();
+        PIMAddEmployeePage pimAddEmployeePage = new PIMAddEmployeePage();
+        pimAddEmployeePage.addPIMEmployeeSuccessful(employee);
 
         assertTrue(
                 pimAddEmployeePage.getCurrentUrl().contains(ConstantsClass.MAIN_URL
                         + ConstantsClass.WEB_EP + ConstantsClass.PIM_DETAILS_URL),
                 "Unexpected Url");
 
-
-        String currentUrl = pimAddEmployeePage.getCurrentUrl();
-        employee.setEmpNumber(Integer.parseInt(currentUrl.substring(currentUrl.lastIndexOf("/") + 1)));
-
-        LeaveEntitlementRequest leaveEntitlement = new LeaveEntitlementRequest(employee.getEmpNumber(),
-                7, "2025-01-01", "2025-12-31", "7");
-
-        // начисляем Leave Balance
-        RequestSpecification requestPostSpecification = given()
-                .cookie("orangehrm", AuthHelper.getCookie())
-                .contentType(ContentType.JSON)
-                .body(leaveEntitlement)
-                .log()
-                .all();
-
-        ValidatableResponse resp = OrangeHRMClient.postLeaveEntitlementRequest(
-                requestPostSpecification, ConstantsClass.MAIN_URL + ConstantsClass.API_EP + ConstantsClass.LEAVE_API_URL);
+        setLeaveBalance("7");
 
         Boolean isAssignButtonDisabled =
                 new SidePanel()
@@ -139,12 +112,41 @@ public class AssignLeaveTest extends BaseTest {
                         .inputComments("some comments")
                         .isNotEnoughBalance()
                         .isAssignButtonDisabled();
-//                        .clickAssignButton()
-//                        .isConfirmed();
 
         System.out.println(" ");
 
-        assertTrue(isAssignButtonDisabled,"Assign button is enabled, though it shouldn't be");
+        assertTrue(isAssignButtonDisabled, "Assign button is enabled, though it shouldn't be");
+    }
 
+    @Test
+    @DisplayName("Проверка формы Assign Leave FromDate more than ToDate")
+    @Tag("extended")
+    public void testNegativeAssignLeaveWrongDates() {
+
+        //добавление нового PIM Employee
+        PIMAddEmployeePage pimAddEmployeePage = new PIMAddEmployeePage();
+        pimAddEmployeePage.addPIMEmployeeSuccessful(employee);
+
+        assertTrue(
+                pimAddEmployeePage.getCurrentUrl().contains(ConstantsClass.MAIN_URL
+                        + ConstantsClass.WEB_EP + ConstantsClass.PIM_DETAILS_URL),
+                "Unexpected Url");
+
+        setLeaveBalance("22");
+
+        Boolean isWrongDate =
+                new SidePanel()
+                        .openLeavePage()
+                        .clickAssignLeaveMenu()
+                        .selectEmployee(employee.getFirstName() + " " + employee.getMiddleName() + " " + employee.getLastName())
+                        .selectLeaveType("CAN - FMLA")
+                        .inputDateFrom("2025-01-06")
+                        .inputDateTo("2025-20-05")
+                        .inputComments("some comments")
+                        .isWrongDates();
+
+        System.out.println(" ");
+
+        assertTrue(isWrongDate, "Assign button is enabled, though it shouldn't be");
     }
 }

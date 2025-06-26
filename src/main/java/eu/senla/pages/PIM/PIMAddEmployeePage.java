@@ -3,6 +3,7 @@ package eu.senla.pages.PIM;
 import eu.senla.core.ConstantsClass;
 import eu.senla.core.Wait;
 import eu.senla.dataUi.Employee;
+import eu.senla.elements.SidePanel;
 import eu.senla.pages.BasePage;
 import lombok.Getter;
 import org.openqa.selenium.By;
@@ -57,5 +58,21 @@ public class PIMAddEmployeePage extends BasePage {
     return this;
   }
 
+
+  public final PIMAddEmployeePage addPIMEmployeeSuccessful(Employee employee) {
+
+    PIMAddEmployeePage pimAddEmployeePage = new SidePanel()
+            .openPIMPage()
+            .clickAddEmployeeButton()
+            .fillNewEmployeeForm(employee)
+            .clickSubmit()
+            .isConfirmed()
+            .isPersonalInformationPage();
+
+    String currentUrl = pimAddEmployeePage.getCurrentUrl();
+    employee.setEmpNumber(Integer.parseInt(currentUrl.substring(currentUrl.lastIndexOf("/") + 1)));
+
+    return pimAddEmployeePage;
+  }
 
 }
