@@ -1,10 +1,17 @@
 package eu.senla.pages.leave;
 
+import eu.senla.core.ConstantsClass;
+import eu.senla.core.ReadPropertiesFile;
 import eu.senla.core.Wait;
+import eu.senla.pages.BasePage;
+import lombok.Getter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
-public class AssignLeavePage {
+public class AssignLeavePage extends BasePage {
+
+    @Getter
+    private String ownPageUrl = ReadPropertiesFile.getProperty("MAIN_URL") + ConstantsClass.WEB_EP + ConstantsClass.ASSIGN_LEAVE_URL;
 
     private final By employeeNameInput = By.xpath("//div[@class='oxd-autocomplete-text-input--before']/following::input[1]");
     private final By leaveTypeDropdown = By.xpath("//i[@class='oxd-icon bi-caret-down-fill oxd-select-text--arrow']");
@@ -15,6 +22,11 @@ public class AssignLeavePage {
     private final By confirmationMessage = By.id("oxd-toaster_1");
     private final By notEnoughBalance = By.xpath("//p[@class='oxd-text oxd-text--p orangehrm-leave-balance-text --error']");
     private final By wrongDatesAlert = By.xpath("//span[text()='To date should be after from date']");
+
+    private final By employeeNameRequired = By.xpath("//label[text()='Employee Name']/parent::div/following-sibling::span[text()='Required']");
+    private final By leaveTypeRequired = By.xpath("//label[text()='Leave Type']/parent::div/following-sibling::span[text()='Required']");
+    private final By dateFromRequired = By.xpath("//label[text()='From Date']/parent::div/following-sibling::span[text()='Required']");
+    private final By dateToRequired = By.xpath("//label[text()='To Date']/parent::div/following-sibling::span[text()='Required']");
 
     //div[role='document'] //button[text()=' Ok ']
     ////p[@class='oxd-text oxd-text--p orangehrm-leave-balance-text --error']
@@ -78,6 +90,27 @@ public class AssignLeavePage {
     public final boolean isWrongDates() {
         return Wait.waitVisibilityOfElementLocated(wrongDatesAlert).isDisplayed();
     }
+
+    public final AssignLeavePage isEmployeeNameRequired() {
+        Wait.waitVisibilityOfElementLocated(employeeNameRequired).isDisplayed();
+        return this;
+    }
+
+    public final AssignLeavePage isLeaveTypeRequired() {
+        Wait.waitVisibilityOfElementLocated(leaveTypeRequired).isDisplayed();
+        return this;
+    }
+
+    public final AssignLeavePage isFromDateRequired() {
+        Wait.waitVisibilityOfElementLocated(dateFromRequired).isDisplayed();
+        return this;
+    }
+
+    public final AssignLeavePage isToDateRequired() {
+        Wait.waitVisibilityOfElementLocated(dateToRequired).isDisplayed();
+        return this;
+    }
+
 
 
 }

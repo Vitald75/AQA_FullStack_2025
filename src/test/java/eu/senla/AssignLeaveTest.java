@@ -8,6 +8,7 @@ import eu.senla.dataUi.Employee;
 import eu.senla.dataApi.LeaveEntitlementRequest;
 import eu.senla.elements.SidePanel;
 import eu.senla.pages.PIM.PIMAddEmployeePage;
+import eu.senla.pages.leave.AssignLeavePage;
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
@@ -83,6 +84,41 @@ public class AssignLeaveTest extends BaseTest {
         System.out.println("Done");
 
         assertTrue(isAssignConfirmed, "Assing wasn't confirmed");
+    }
+
+    @Test
+    @DisplayName("Проверка формы Assign Leave Required fields")
+    @Tag("extended")
+    public void testNegativeAssignLeaveRequiredFields() {
+
+        //добавление нового PIM Employee
+        PIMAddEmployeePage pimAddEmployeePage = new PIMAddEmployeePage();
+        pimAddEmployeePage.addPIMEmployeeSuccessful(employee);
+
+        assertTrue(
+                pimAddEmployeePage.getCurrentUrl().contains(ConstantsClass.MAIN_URL
+                        + ConstantsClass.WEB_EP + ConstantsClass.PIM_DETAILS_URL),
+                "Unexpected Url");
+
+        setLeaveBalance("22");
+
+        AssignLeavePage assignLeavePage =
+                new SidePanel()
+                        .openLeavePage()
+                        .clickAssignLeaveMenu()
+                        //.selectEmployee(employee.getFirstName() + " " + employee.getMiddleName() + " " + employee.getLastName())
+                        //.selectLeaveType("CAN - FMLA")
+                        //.inputDateFrom("2025-01-06")
+                        //.inputDateTo("2025-20-05")
+                        .clickAssignButton()
+                        .isEmployeeNameRequired()
+                        .isLeaveTypeRequired()
+                        .isFromDateRequired()
+                        .isToDateRequired();
+
+        System.out.println(" ");
+
+        assertTrue(assignLeavePage.getCurrentUrl().contains(assignLeavePage.getOwnPageUrl()), "Wrong Url");
     }
 
     @Test
