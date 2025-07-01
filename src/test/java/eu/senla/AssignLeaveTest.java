@@ -57,6 +57,7 @@ public class AssignLeaveTest extends BaseTest {
     @Test
     @DisplayName("Успешный Assign Leave")
     @Tag("smoke")
+    @Tag("leave")
     public void testPositiveAssignLeave() {
 
         //добавление нового PIM Employee
@@ -81,14 +82,13 @@ public class AssignLeaveTest extends BaseTest {
                         .clickAssignButton()
                         .isConfirmed();
 
-        System.out.println("Done");
-
         assertTrue(isAssignConfirmed, "Assing wasn't confirmed");
     }
 
     @Test
-    @DisplayName("Проверка формы Assign Leave Required fields")
+    @DisplayName("Проверка формы Assign Leave незаполненные Required fields")
     @Tag("extended")
+    @Tag("leave")
     public void testNegativeAssignLeaveRequiredFields() {
 
         //добавление нового PIM Employee
@@ -106,10 +106,6 @@ public class AssignLeaveTest extends BaseTest {
                 new SidePanel()
                         .openLeavePage()
                         .clickAssignLeaveMenu()
-                        //.selectEmployee(employee.getFirstName() + " " + employee.getMiddleName() + " " + employee.getLastName())
-                        //.selectLeaveType("CAN - FMLA")
-                        //.inputDateFrom("2025-01-06")
-                        //.inputDateTo("2025-20-05")
                         .clickAssignButton()
                         .isEmployeeNameRequired()
                         .isLeaveTypeRequired()
@@ -124,6 +120,7 @@ public class AssignLeaveTest extends BaseTest {
     @Test
     @DisplayName("Проверка формы Assign Leave Balance not sufficient")
     @Tag("extended")
+    @Tag("leave")
     public void testNegativeAssignLeaveNotSufficientBalance() {
 
         //добавление нового PIM Employee
@@ -157,6 +154,7 @@ public class AssignLeaveTest extends BaseTest {
     @Test
     @DisplayName("Проверка формы Assign Leave FromDate more than ToDate")
     @Tag("extended")
+    @Tag("leave")
     public void testNegativeAssignLeaveWrongDates() {
 
         //добавление нового PIM Employee
@@ -181,7 +179,6 @@ public class AssignLeaveTest extends BaseTest {
                         .inputComments("some comments")
                         .isWrongDates();
 
-        System.out.println(" ");
 
         assertTrue(isWrongDate, "Assign button is enabled, though it shouldn't be");
     }

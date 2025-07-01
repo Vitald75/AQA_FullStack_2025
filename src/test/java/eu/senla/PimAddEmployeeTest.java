@@ -61,6 +61,7 @@ public class PimAddEmployeeTest extends BaseTest {
   @DisplayName("Успешное добавление PIM employee, проверка формы Employee Details, сравнение данных c API")
   @Test
   @Tag("smoke")
+  @Tag("employee")
   public void testPimAddEmployee() {
 
     //добавление нового PIM Employee

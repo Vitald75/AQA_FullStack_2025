@@ -23,7 +23,8 @@ public class AssignLeavePage extends BasePage {
     private final By notEnoughBalance = By.xpath("//p[@class='oxd-text oxd-text--p orangehrm-leave-balance-text --error']");
     private final By wrongDatesAlert = By.xpath("//span[text()='To date should be after from date']");
 
-    private final By employeeNameRequired = By.xpath("//label[text()='Employee Name']/parent::div/following-sibling::span[text()='Required']");
+    private final By employeeNameRequired = By.xpath("//label[text()='Employee Name']"
+            + "/parent::div/following-sibling::span[text()='Required']");
     private final By leaveTypeRequired = By.xpath("//label[text()='Leave Type']/parent::div/following-sibling::span[text()='Required']");
     private final By dateFromRequired = By.xpath("//label[text()='From Date']/parent::div/following-sibling::span[text()='Required']");
     private final By dateToRequired = By.xpath("//label[text()='To Date']/parent::div/following-sibling::span[text()='Required']");

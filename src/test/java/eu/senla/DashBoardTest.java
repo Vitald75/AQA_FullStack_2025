@@ -13,6 +13,7 @@ public class DashBoardTest extends BaseTest {
 
     @Test
     @Tag("smoke")
+    @Tag("dashboard")
     @DisplayName("Проверка страницы DashBoard")
     public void validateDashBoardPage() {
         DashBoardPage dashBoardPage = new SidePanel()
