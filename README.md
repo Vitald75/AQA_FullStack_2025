@@ -1,5 +1,5 @@
 # Описание проекта
-### Этот проект содержит автоматизированные тесты для UI, web-приложения https://opensource-demo.orangehrmlive.com, реализованные с использованием Java, Maven, JUnit и Rest-Assured.
+**Проект содержит автоматизированные тесты для UI, web-приложения https://opensource-demo.orangehrmlive.com, реализованные с использованием Java, Maven, JUnit и Rest-Assured.**
 
 ## Используемые технологии
 - **Java 21:** Язык программирования.
