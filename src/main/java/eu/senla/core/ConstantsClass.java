@@ -12,6 +12,7 @@ public final class ConstantsClass {
     public static final String PIM_DETAILS_URL = "/pim/viewPersonalDetails/empNumber";
     public static final String RECRUITMENT_VIEW_URL = "/recruitment/viewCandidates";
     public static final String RECRUITMENT_ADD_URL = "/recruitment/addCandidate";
+    public static final String ASSIGN_LEAVE_URL = "/leave/assignLeave";
 
     public static final String API_EP = "/web/index.php/api/v2";
     public static final String LEAVE_API_URL = "/leave/leave-entitlements";

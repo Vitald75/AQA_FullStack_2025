@@ -36,6 +36,7 @@ public final class AddRecruitmentCandidateTest extends BaseTest {
     @Test
     @DisplayName("Успешное добавление кандидата все поля заполнены")
     @Tag("smoke")
+    @Tag("recruitment")
     public void testPositiveAddRecruitmentCandidate() {
 
         AddCandidatePage addCandidatePage =
@@ -55,6 +56,7 @@ public final class AddRecruitmentCandidateTest extends BaseTest {
 
     @DisplayName("Проверка формы добавления кандидата с незаполненными обязательными полями")
     @Tag("extended")
+    @Tag("recruitment")
     @Test
     public void testNegativeAddRecruitmentCandidate() {
 
@@ -80,6 +82,7 @@ public final class AddRecruitmentCandidateTest extends BaseTest {
 
     @DisplayName("Проверка формы добавления кандидата с невалидным Email")
     @Tag("extended")
+    @Tag("recruitment")
     @Test
     public void testNegativeEmailAddRecruitmentCandidate() {
 
@@ -101,6 +104,7 @@ public final class AddRecruitmentCandidateTest extends BaseTest {
 
     @DisplayName("Проверка формы добавления кандидата только c заполненными обязательными полями")
     @Tag("extended")
+    @Tag("recruitment")
     @Test
     public void testAddRecruitmentCandidateOnlyRequiredFields() {
         AddCandidatePage addCandidatePage = new SidePanel()
@@ -121,6 +125,7 @@ public final class AddRecruitmentCandidateTest extends BaseTest {
 
     @DisplayName("Проверка отмены добавления кандидата")
     @Tag("extended")
+    @Tag("recruitment")
     @Test
     public void testCancelAddRecruitmentCandidate() {
 

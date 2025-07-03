@@ -13,6 +13,7 @@ public class LogoutTest extends BaseTest {
 
   @DisplayName("Проверка успешного выхода из учетной записи")
   @Tag("smoke")
+  @Tag("logout")
   @Test
   public void testLogout() {
 
