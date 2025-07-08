@@ -5,7 +5,8 @@ import eu.senla.dataUi.JobTitle;
 import eu.senla.elements.SidePanel;
 import eu.senla.pages.admin.AdminViewJobTitlesListPage;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -51,8 +52,11 @@ public final class AddDeleteJobTitlesTest extends BaseTest {
 
 
     //Добавление и удаление трех можно сделать через repeatedTest оставив BeforeEach для generateTestData, хотя смысла в этом не вижу
-    @RepeatedTest(value = 1, name = "{displayName} - повтор {currentRepetition}/{totalRepetitions}")
+    //@RepeatedTest(value = 1, name = "{displayName} - повтор {currentRepetition}/{totalRepetitions}")
     @DisplayName("Успешное добавление и удаление n Job Title")
+    @Test
+    @Tag("smoke")
+    @Tag("jobtitles")
     public void testPositiveAddJobTitle() {
 
         final int repetitions = 1;
