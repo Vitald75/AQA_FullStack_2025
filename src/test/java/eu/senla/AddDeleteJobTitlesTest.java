@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@Tag("jobtitles")
 public final class AddDeleteJobTitlesTest extends BaseTest {
 
     JobTitle generateTestData() {
@@ -56,7 +57,6 @@ public final class AddDeleteJobTitlesTest extends BaseTest {
     @DisplayName("Успешное добавление и удаление n Job Title")
     @Test
     @Tag("smoke")
-    @Tag("jobtitles")
     public void testPositiveAddJobTitle() {
 
         final int repetitions = 1;

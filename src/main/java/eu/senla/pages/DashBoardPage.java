@@ -9,7 +9,7 @@ import org.openqa.selenium.By;
 @Getter
 public class DashBoardPage extends BasePage {
 
-  @Getter
+  //@Getter
   private String ownPageUrl = ReadPropertiesFile.getProperty("MAIN_URL") + ConstantsClass.WEB_EP + ConstantsClass.DASHBOARD_URL;
   // "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
 

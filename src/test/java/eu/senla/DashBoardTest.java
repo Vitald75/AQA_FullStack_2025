@@ -9,11 +9,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@Tag("dashboard")
 public class DashBoardTest extends BaseTest {
 
     @Test
     @Tag("smoke")
-    @Tag("dashboard")
     @DisplayName("Проверка страницы DashBoard")
     public void validateDashBoardPage() {
         DashBoardPage dashBoardPage = new SidePanel()

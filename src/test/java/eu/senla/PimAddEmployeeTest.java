@@ -18,6 +18,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+@Tag("employee")
 public class PimAddEmployeeTest extends BaseTest {
 
   private Employee employee;
@@ -61,7 +62,6 @@ public class PimAddEmployeeTest extends BaseTest {
   @DisplayName("Успешное добавление PIM employee, проверка формы Employee Details, сравнение данных c API")
   @Test
   @Tag("smoke")
-  @Tag("employee")
   public void testPimAddEmployee() {
 
     //добавление нового PIM Employee

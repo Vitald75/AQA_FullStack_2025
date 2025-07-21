@@ -15,12 +15,13 @@ import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-
+@Tag("leave")
 public class AssignLeaveTest extends BaseTest {
 
     private Employee employee;
@@ -57,7 +58,6 @@ public class AssignLeaveTest extends BaseTest {
     @Test
     @DisplayName("Успешный Assign Leave")
     @Tag("smoke")
-    @Tag("leave")
     public void testPositiveAssignLeave() {
 
         //добавление нового PIM Employee
@@ -88,7 +88,6 @@ public class AssignLeaveTest extends BaseTest {
     @Test
     @DisplayName("Проверка формы Assign Leave незаполненные Required fields")
     @Tag("extended")
-    @Tag("leave")
     public void testNegativeAssignLeaveRequiredFields() {
 
         //добавление нового PIM Employee
@@ -120,7 +119,6 @@ public class AssignLeaveTest extends BaseTest {
     @Test
     @DisplayName("Проверка формы Assign Leave Balance not sufficient")
     @Tag("extended")
-    @Tag("leave")
     public void testNegativeAssignLeaveNotSufficientBalance() {
 
         //добавление нового PIM Employee
@@ -154,7 +152,6 @@ public class AssignLeaveTest extends BaseTest {
     @Test
     @DisplayName("Проверка формы Assign Leave FromDate more than ToDate")
     @Tag("extended")
-    @Tag("leave")
     public void testNegativeAssignLeaveWrongDates() {
 
         //добавление нового PIM Employee

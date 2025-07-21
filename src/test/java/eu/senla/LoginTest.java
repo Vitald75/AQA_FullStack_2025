@@ -14,12 +14,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+@Tag("login")
 public final class LoginTest {
 
   @Test
   @DisplayName("Проверка успешного логина")
   @Tag("smoke")
-  @Tag("login")
   public void testPositiveLoginPage() {
 
     DashBoardPage dashBoardPage =
@@ -35,7 +35,6 @@ public final class LoginTest {
   @ParameterizedTest()
   @DisplayName("Проверка неуспешного логина")
   @Tag("extended")
-  @Tag("login")
   @CsvSource({"Admin, 1234564", "WrongName, admin123", "AnyName, 43211", "'',''"})
   public void testNegativeLoginPage(String userName, String password) {
 

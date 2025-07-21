@@ -9,11 +9,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+@Tag("logout")
 public class LogoutTest extends BaseTest {
 
   @DisplayName("Проверка успешного выхода из учетной записи")
   @Tag("smoke")
-  @Tag("logout")
   @Test
   public void testLogout() {
 
