@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import eu.senla.core.ConstantsClass;
 import eu.senla.core.Driver;
 import eu.senla.core.ReadPropertiesFile;
+import eu.senla.listeners.ScreenshotHandler;
 import eu.senla.pages.DashBoardPage;
 import eu.senla.pages.LoginPage;
 import org.junit.jupiter.api.AfterEach;
@@ -13,6 +14,8 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+
+import java.io.IOException;
 
 @Tag("login")
 public final class LoginTest {
@@ -36,14 +39,16 @@ public final class LoginTest {
   @DisplayName("Проверка неуспешного логина")
   @Tag("extended")
   @CsvSource({"Admin, 1234564", "WrongName, admin123", "AnyName, 43211", "'',''"})
-  public void testNegativeLoginPage(String userName, String password) {
+  public void testNegativeLoginPage(String userName, String password) throws IOException {
 
     LoginPage loginPage = new LoginPage().loginAsInvalidUser(userName, password);
 
+    ScreenshotHandler.getScreenshot(Driver.getInstance());
     assertEquals(
         ConstantsClass.MAIN_URL + ConstantsClass.WEB_EP + ConstantsClass.AUTH_LOGIN_URL,
         loginPage.getCurrentUrl(),
         "Unexpected Successful login");
+
   }
 
   @AfterEach

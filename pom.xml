@@ -12,7 +12,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <junit.version>5.12.1</junit.version>
+    <junit.version>5.13.4</junit.version>
     <junit.suite.version>1.12.1</junit.suite.version>
     <checkstyle.version>3.6.0</checkstyle.version>
     <spotless.version>2.44.4</spotless.version>
@@ -127,6 +127,9 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>${surefire.version}</version>
         <configuration>
+          <systemPropertyVariables>
+            <browser>${browser}</browser>
+          </systemPropertyVariables>
           <groups>${groups}</groups>
         </configuration>
 
