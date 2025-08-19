@@ -27,6 +27,8 @@ public class BaseTest {
     LoginStrategy authenticate = ReadPropertiesFile.getProperty("LOGIN_STRATEGY").trim().equals("API")
             ? new ApiLoginImpl(ConstantsClass.MAIN_URL + ConstantsClass.WEB_EP + ConstantsClass.DASHBOARD_URL)
             : new FormLoginImpl();
+    authenticate.login();
+
   }
 
   final void init() {
