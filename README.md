@@ -44,3 +44,7 @@ mvn clean test -Dgroups=recruitment
 ### Страница PIM
 mvn clean test -Dgroups=employee
 
+### CLI Testng
+mvn test -DsuiteXmlFile="src/test/resources/login.xml"
+  
+
