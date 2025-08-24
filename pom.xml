@@ -12,8 +12,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <junit.version>5.13.4</junit.version>
-    <junit.suite.version>1.12.1</junit.suite.version>
+    <testng.version>7.11.0</testng.version>
     <checkstyle.version>3.6.0</checkstyle.version>
     <spotless.version>2.44.4</spotless.version>
     <surefire.version>3.5.3</surefire.version>
@@ -27,6 +26,10 @@
     <maven.compiler.plugin.version>3.14.0</maven.compiler.plugin.version>
     <jsoup.version>1.20.1</jsoup.version>
     <jackson.version>2.19.0</jackson.version>
+    <browser>chrome</browser>
+    <thread.count>2</thread.count>
+    <parallel>classes</parallel>
+
   </properties>
 
   <dependencies>
@@ -36,37 +39,13 @@
       <version>${maven.compiler.plugin.version}</version>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/org.testng/testng -->
     <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-api</artifactId>
-      <version>${junit.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-engine</artifactId>
-      <version>${junit.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-params</artifactId>
-      <version>${junit.version}</version>
-      <scope>test</scope>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>${testng.version}</version>
     </dependency>
 
-    <dependency>
-      <groupId>org.junit.platform</groupId>
-      <artifactId>junit-platform-suite-api</artifactId>
-      <version>${junit.suite.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.platform</groupId>
-      <artifactId>junit-platform-suite-engine</artifactId>
-      <version>${junit.suite.version}</version>
-      <scope>test</scope>
-    </dependency>
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
@@ -118,6 +97,13 @@
       <version>${jackson.version}</version>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/org.apache.maven.surefire/surefire-testng -->
+    <dependency>
+      <groupId>org.apache.maven.surefire</groupId>
+      <artifactId>surefire-testng</artifactId>
+      <version>3.5.3</version>
+    </dependency>
+
   </dependencies>
 
   <build>
@@ -129,8 +115,13 @@
         <configuration>
           <systemPropertyVariables>
             <browser>${browser}</browser>
+            <thread-count>${thread.count}</thread-count>
+            <parallel>${parallel}</parallel>
           </systemPropertyVariables>
-          <groups>${groups}</groups>
+          <suiteXmlFiles>
+            <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+          </suiteXmlFiles>
+
         </configuration>
 
         <executions>
