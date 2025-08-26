@@ -29,6 +29,7 @@
     <browser>chrome</browser>
     <thread.count>2</thread.count>
     <parallel>classes</parallel>
+    <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
 
   </properties>
 

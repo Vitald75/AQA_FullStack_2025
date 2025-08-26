@@ -5,27 +5,23 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-@UtilityClass
+
 public final class Driver {
 
-  //private WebDriver driver;
-  private ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+  private Driver() {};
 
-  //@Parameters({"browser"})
-  public WebDriver getInstance() {
+  //private WebDriver driver;
+  private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+
+
+  public static  WebDriver getInstance() {
 
     if (driver.get() == null) {
-      String browserName = System.getProperty("browser");
 
-      if ("chrome".equalsIgnoreCase(browserName)) {
-        //driver = new ChromeDriver();
-        driver.set(new ChromeDriver());
-      } else if ("firefox".equalsIgnoreCase(browserName)) {
-        //driver = new FirefoxDriver();
-        driver.set(new FirefoxDriver());
-      } else {
-        // Default to Chrome or handle error
-        driver.set(new ChromeDriver());
+      switch (System.getProperty("browser").toLowerCase()) {
+        case "chrome" -> driver.set(new ChromeDriver()); //= new ChromeDriver();
+        case "firefox" -> driver.set(new FirefoxDriver()); //driver = new FirefoxDriver();
+        default -> throw new IllegalArgumentException("Unknown browser");
       }
       driver.get().manage().window().maximize();
     }
@@ -33,7 +29,7 @@ public final class Driver {
     return driver.get();
   }
 
-  public void quit() {
+  public static void driverTearDown() {
     driver.get().quit();
     //driver = null;
     driver.remove();
