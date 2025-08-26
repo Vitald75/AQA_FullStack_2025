@@ -1,18 +1,15 @@
 package eu.senla.core;
 
+
 import lombok.experimental.UtilityClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-
+@UtilityClass
 public final class Driver {
 
-  private Driver() {};
-
-  //private WebDriver driver;
   private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
-
 
   public static  WebDriver getInstance() {
 

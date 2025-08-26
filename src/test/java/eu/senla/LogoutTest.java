@@ -6,9 +6,8 @@ import eu.senla.pages.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-//@Tag("logout")
-public class LogoutTest extends BaseTest {
 
+public class LogoutTest extends BaseTest {
 
   @Test (testName = "Проверка успешного выхода из учетной записи", groups = {"smoke"})
   public void testLogout() {

@@ -11,11 +11,9 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 
-//@Tag("recruitment")
 public final class AddRecruitmentCandidateTest extends BaseTest {
     private RecruitmentCandidate candidate;
 
-    //@BeforeEach
     @BeforeTest
     void generateTestData() {
         Faker faker = new Faker();
@@ -72,9 +70,6 @@ public final class AddRecruitmentCandidateTest extends BaseTest {
 
     }
 
-
-//    @DisplayName("Проверка формы добавления кандидата с невалидным Email")
-//    @Tag("extended")
     @Test (testName = "Проверка формы добавления кандидата с невалидным Email", groups = {"extended"})
     public void testNegativeEmailAddRecruitmentCandidate() {
 
@@ -94,8 +89,6 @@ public final class AddRecruitmentCandidateTest extends BaseTest {
 
     }
 
-//    @DisplayName("Проверка формы добавления кандидата только c заполненными обязательными полями")
-//    @Tag("extended")
     @Test (testName = "Проверка формы добавления кандидата только c заполненными обязательными полями", groups = {"extended"})
     public void testAddRecruitmentCandidateOnlyRequiredFields() {
         AddCandidatePage addCandidatePage = new SidePanel()
@@ -114,8 +107,7 @@ public final class AddRecruitmentCandidateTest extends BaseTest {
 
     }
 
-//    @DisplayName("Проверка отмены добавления кандидата")
-//    @Tag("extended")
+
     @Test (testName = "Проверка отмены добавления кандидата", groups = {"extended"})
     public void testCancelAddRecruitmentCandidate() {
 

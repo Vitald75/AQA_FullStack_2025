@@ -6,12 +6,10 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-//@Tag("dashboard")
+
 public class DashBoardTest extends BaseTest {
 
     @Test (testName = "Проверка страницы DashBoard", groups = {"smoke"})
-//    @Tag("smoke")
-//    @DisplayName("Проверка страницы DashBoard")
     public void validateDashBoardPage() {
         DashBoardPage dashBoardPage = new SidePanel()
                 .openDashBoardPage();

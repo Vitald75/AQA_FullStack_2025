@@ -13,16 +13,15 @@ import eu.senla.pages.PIM.PIMAddEmployeePage;
 import eu.senla.pages.PIM.PIMPersonalDetailsPage;
 import lombok.SneakyThrows;
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 
-//@Tag("employee")
 public class PimAddEmployeeTest extends BaseTest {
 
   private Employee employee;
 
-  @BeforeTest
+  @BeforeMethod
   final void generateTestData() {
     Faker faker = new Faker();
     employee =
@@ -58,9 +57,7 @@ public class PimAddEmployeeTest extends BaseTest {
   }
 
   @SneakyThrows
-//  @DisplayName("Успешное добавление PIM employee, проверка формы Employee Details, сравнение данных c API")
   @Test (testName = "Успешное добавление PIM employee, проверка формы Employee Details, сравнение данных c API", groups = {"smoke"})
-
   public void testPimAddEmployee() {
 
     //добавление нового PIM Employee
@@ -88,7 +85,7 @@ public class PimAddEmployeeTest extends BaseTest {
             .chooseGender(employee.getGender())
             .saveFirstBlock()
             .isConfirmed()
-            .chooseBloodType("AB+")
+            //.chooseBloodType("AB+")
             .saveSecondBlock()
             .isConfirmed();
 

@@ -18,14 +18,10 @@ import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
-
-//@Tag("leave")
 public class AssignLeaveTest extends BaseTest {
 
     private Employee employee;
 
-
-//    @BeforeEach
     @BeforeTest
     final void generateTestData() {
         Faker faker = new Faker();
@@ -55,8 +51,6 @@ public class AssignLeaveTest extends BaseTest {
     }
 
     @Test (testName = "Успешный Assign Leave", groups = {"smoke"})
-//    @DisplayName("Успешный Assign Leave")
-//    @Tag("smoke")
     public void testPositiveAssignLeave() {
 
         //добавление нового PIM Employee
@@ -85,8 +79,6 @@ public class AssignLeaveTest extends BaseTest {
     }
 
     @Test (testName = "Проверка формы Assign Leave незаполненные Required fields", groups = {"extended"})
-//    @DisplayName("Проверка формы Assign Leave незаполненные Required fields")
-//    @Tag("extended")
     public void testNegativeAssignLeaveRequiredFields() {
 
         //добавление нового PIM Employee
@@ -116,8 +108,6 @@ public class AssignLeaveTest extends BaseTest {
     }
 
     @Test (testName = "Проверка формы Assign Leave Balance not sufficient", groups = {"extended"})
-//    @DisplayName("Проверка формы Assign Leave Balance not sufficient")
-//    @Tag("extended")
     public void testNegativeAssignLeaveNotSufficientBalance() {
 
         //добавление нового PIM Employee
@@ -143,14 +133,11 @@ public class AssignLeaveTest extends BaseTest {
                         .isNotEnoughBalance()
                         .isAssignButtonDisabled();
 
-        System.out.println(" ");
-
         Assert.assertTrue(isAssignButtonDisabled, "Assign button is enabled, though it shouldn't be");
+
     }
 
     @Test (testName = "Проверка формы Assign Leave FromDate more than ToDate", groups = {"extended"})
-//    @DisplayName("Проверка формы Assign Leave FromDate more than ToDate")
-//    @Tag("extended")
     public void testNegativeAssignLeaveWrongDates() {
 
         //добавление нового PIM Employee
@@ -177,5 +164,6 @@ public class AssignLeaveTest extends BaseTest {
 
 
         Assert.assertTrue(isWrongDate, "Assign button is enabled, though it shouldn't be");
+       //ScreenshotUtil.takeScreenshot(Driver.getInstance());
     }
 }

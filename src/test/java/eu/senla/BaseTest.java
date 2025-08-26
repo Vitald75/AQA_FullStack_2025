@@ -10,11 +10,10 @@ import eu.senla.registration.LoginStrategy;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
 
-//@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+
+
 @Slf4j
 public class BaseTest {
 

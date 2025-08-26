@@ -8,7 +8,7 @@ import java.util.List;
 public final class SuiteXmlTransformer implements IAlterSuiteListener {
     @Override
     public void alter(List<XmlSuite> suites) {
-        String threadCount = System.getProperty("thread-count", "5");
+        String threadCount = System.getProperty("thread-count", "4");
         String parallel = System.getProperty("parallel", "classes");
         System.out.println("11111111 - " + threadCount);
 

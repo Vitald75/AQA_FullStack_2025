@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="All Test Suite">
+<suite name="All Test Suite" parallel="classes" thread-count="2">
     <listeners>
         <listener class-name="eu.senla.listeners.SuiteXmlTransformer"/>
         <listener class-name="eu.senla.listeners.ScreenshotListener"/>
@@ -9,7 +9,7 @@
 
     <test name="Smoke">
         <classes>
-            <class name="eu.senla.LogoutTest"/>
+            <class name="eu.senla.AddRecruitmentCandidateTest"/>
             <class name="eu.senla.AddDeleteJobTitlesTest"/>
         </classes>
     </test>

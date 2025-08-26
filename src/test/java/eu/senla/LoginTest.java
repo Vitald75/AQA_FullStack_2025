@@ -3,7 +3,6 @@ package eu.senla;
 import eu.senla.core.ConstantsClass;
 import eu.senla.core.Driver;
 import eu.senla.core.ReadPropertiesFile;
-import eu.senla.listeners.ScreenshotHandler;
 import eu.senla.pages.DashBoardPage;
 import eu.senla.pages.LoginPage;
 import org.testng.Assert;
@@ -13,10 +12,8 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-//@Tag("login")
+
 public final class LoginTest {
-
-
 
   @DataProvider(name = "loginCredentials")
   public Object[][] provideLoginData() {
@@ -46,7 +43,6 @@ public final class LoginTest {
 
     LoginPage loginPage = new LoginPage().loginAsInvalidUser(userName, password);
 
-    ScreenshotHandler.getScreenshot(Driver.getInstance());
     Assert.assertEquals(
         ConstantsClass.MAIN_URL + ConstantsClass.WEB_EP + ConstantsClass.AUTH_LOGIN_URL,
         loginPage.getCurrentUrl(),
