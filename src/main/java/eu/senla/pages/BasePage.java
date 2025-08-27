@@ -2,9 +2,11 @@ package eu.senla.pages;
 
 import eu.senla.core.Driver;
 import eu.senla.core.Wait;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 
+@Slf4j
 public class BasePage {
 
   public final String getCurrentUrl() {
@@ -16,6 +18,7 @@ public class BasePage {
     try {
       result = Wait.waitVisibilityOfElementLocated(elementLocator).isDisplayed();
     } catch (TimeoutException e) {
+      log.error("Element wasn't found: " + elementLocator);
       System.out.println("Element wasn't found: " + elementLocator);
     }
     return result;

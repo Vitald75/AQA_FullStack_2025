@@ -13,7 +13,7 @@ import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
@@ -22,7 +22,7 @@ public class AssignLeaveTest extends BaseTest {
 
     private Employee employee;
 
-    @BeforeTest
+    @BeforeMethod
     final void generateTestData() {
         Faker faker = new Faker();
         employee =

@@ -22,7 +22,6 @@ public class BaseTest {
   final void chooseLoginStrategy() {
     init();
     log.info("run init");
-    System.out.println("run init");
 
     // Выбор стратегии аутентификации
     LoginStrategy authenticate = ReadPropertiesFile.getProperty("LOGIN_STRATEGY").trim().equals("API")

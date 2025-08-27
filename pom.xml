@@ -27,7 +27,7 @@
     <jsoup.version>1.20.1</jsoup.version>
     <jackson.version>2.19.0</jackson.version>
     <browser>chrome</browser>
-    <thread.count>2</thread.count>
+    <thread.count>3</thread.count>
     <parallel>classes</parallel>
     <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
 
