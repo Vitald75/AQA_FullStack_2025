@@ -3,7 +3,6 @@ package eu.senla;
 import eu.senla.core.ConstantsClass;
 import eu.senla.core.Driver;
 //import eu.senla.registration.ApiLoginImpl;
-import eu.senla.core.ReadPropertiesFile;
 import eu.senla.registration.ApiLoginImpl;
 import eu.senla.registration.FormLoginImpl;
 import eu.senla.registration.LoginStrategy;
@@ -24,7 +23,7 @@ public class BaseTest {
     log.info("run init");
 
     // Выбор стратегии аутентификации
-    LoginStrategy authenticate = ReadPropertiesFile.getProperty("LOGIN_STRATEGY").trim().equals("API")
+    LoginStrategy authenticate = ConstantsClass.LOGIN_STRATEGY.trim().equals("API")
             ? new ApiLoginImpl(ConstantsClass.MAIN_URL + ConstantsClass.WEB_EP + ConstantsClass.DASHBOARD_URL)
             : new FormLoginImpl();
     authenticate.login();

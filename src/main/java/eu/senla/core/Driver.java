@@ -21,9 +21,9 @@ public final class Driver {
 
   public static  WebDriver getInstance() {
 
-    if (driver.get() == null) {
+   if (driver.get() == null) {
         String browser = System.getProperty("browser").toLowerCase();
-        if (Boolean.parseBoolean(ReadPropertiesFile.getProperty("SELENOID_ENABLE"))) {
+        if (Boolean.parseBoolean(System.getProperty("SELENOID_ENABLE"))) {
           initRemoteDriver(browser);
         } else {
           initLocalDriver(browser);
@@ -66,7 +66,7 @@ public final class Driver {
           // required for Docker/Selenoid stability. (info by ChatGPT)
           chromeOptions.addArguments("--no-sandbox");
           chromeOptions.addArguments("--disable-dev-shm-usage");
-          if (Boolean.parseBoolean(ReadPropertiesFile.getProperty("HEADLESS"))) {
+          if (Boolean.parseBoolean(ConstantsClass.HEADLESS)) {
             chromeOptions.addArguments("--headless=new");
           }
           chromeOptions.setCapability("selenoid:options", Map.of(
@@ -77,7 +77,7 @@ public final class Driver {
         }
         case "firefox" -> {
           FirefoxOptions firefoxOptions = new FirefoxOptions();
-          if (Boolean.parseBoolean(ReadPropertiesFile.getProperty("HEADLESS"))) {
+          if (Boolean.parseBoolean(ConstantsClass.HEADLESS)) {
             firefoxOptions.addArguments("--headless");
           }
           firefoxOptions.setCapability("selenoid:options", Map.of(
@@ -89,7 +89,7 @@ public final class Driver {
         default -> throw new IllegalArgumentException("Unsupported remote browser: " + browser);
       }
       driver.set(new RemoteWebDriver(
-              new URL(ReadPropertiesFile.getProperty("SELENOID_URL")), capabilities));
+              new URL(ConstantsClass.SELENOID_URL), capabilities));
 
     } catch (MalformedURLException e) {
       throw new RuntimeException("Invalid Selenoid URL", e);
