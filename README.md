@@ -2,7 +2,7 @@
 **Проект содержит автоматизированные тесты для UI, web-приложения https://opensource-demo.orangehrmlive.com, реализованные с использованием Java, Maven, JUnit и Rest-Assured.**
 
 ## Используемые технологии
-- **Java 21:** Язык программирования.
+- **Java 17:** Язык программирования.
 - **Maven:** Система сборки и управления зависимостями.
 - **Selenium WebDriver:** Фреймворк для взаимодействия с браузером. 
 - **JUnit:** Фреймворк для написания тестов.
@@ -43,4 +43,13 @@ mvn clean test -Dgroups=leave
 mvn clean test -Dgroups=recruitment
 ### Страница PIM
 mvn clean test -Dgroups=employee
+
+
+
+### CLI Testng
+mvn test -DsuiteXmlFile="src/test/resources/testng.xml" -Dthread-count=3 -Dbrowser="Firefox"
+
+
+
+  
 
