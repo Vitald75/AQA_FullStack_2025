@@ -23,7 +23,7 @@ public final class Driver {
 
    if (driver.get() == null) {
         String browser = System.getProperty("browser").toLowerCase();
-        if (Boolean.parseBoolean(System.getProperty("SELENOID_ENABLE"))) {
+        if (Boolean.parseBoolean(ConstantsClass.SELENOID_ENABLE)) {
           initRemoteDriver(browser);
         } else {
           initLocalDriver(browser);
