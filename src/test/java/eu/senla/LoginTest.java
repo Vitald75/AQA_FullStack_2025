@@ -35,7 +35,7 @@ public final class LoginTest {
     LoginPage loginPage = new LoginPage().loginAsInvalidUser(userName, password);
 
     Assert.assertEquals(
-        ConstantsClass.MAIN_URL + ConstantsClass.WEB_EP + ConstantsClass.AUTH_LOGIN_URL +" 1",
+        ConstantsClass.MAIN_URL + ConstantsClass.WEB_EP + ConstantsClass.AUTH_LOGIN_URL,
         loginPage.getCurrentUrl(),
         "Unexpected Successful login");
 

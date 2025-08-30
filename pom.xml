@@ -29,6 +29,7 @@
     <allure.version>2.29.1</allure.version>
     <allure.maven.version>2.15.2</allure.maven.version>
     <aspectj.version>1.9.24</aspectj.version>
+    <jxr.plugin.version>3.6.0</jxr.plugin.version>
     <browser.value>chrome</browser.value>
     <thread.count>3</thread.count>
     <parallel>classes</parallel>
@@ -252,5 +253,15 @@
 
     </plugins>
   </build>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jxr-plugin</artifactId>
+        <version>${jxr.plugin.version}</version>
+      </plugin>
+    </plugins>
+  </reporting>
 
 </project>
