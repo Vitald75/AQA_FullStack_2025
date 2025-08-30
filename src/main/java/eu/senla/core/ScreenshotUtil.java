@@ -1,5 +1,6 @@
 package eu.senla.core;
 
+import io.qameta.allure.Attachment;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.OutputType;
@@ -16,22 +17,46 @@ import java.util.Date;
 @UtilityClass
 public class ScreenshotUtil {
 
-    public static void takeScreenshot(WebDriver driver) {
-        File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        String timestamp = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new Date());
-        String dirPath = "target/screenshots/";
+    @Attachment(value = "Screenshot", type = "image/png")
+    public static byte[] takeScreenshot(WebDriver driver) {
 
-        File dir = new File(dirPath);
-        if (!dir.exists()) {
-            dir.mkdirs();
-        }
-
-        File dest = new File(dirPath + timestamp + ".png");
+//        File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+//        String timestamp = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new Date());
+//        String dirPath = "target/screenshots/";
+//
+//        File dir = new File(dirPath);
+//        if (!dir.exists()) {
+//            dir.mkdirs();
+//        }
+//
+//        File dest = new File(dirPath + timestamp + ".png");
+//        try {
+//            Files.copy(screenshot.toPath(), dest.toPath());
+//            log.info("Saved screenshot to: {}", dest.getAbsolutePath());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+        byte[] screenshotBytes = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+        // save to disk
         try {
-            Files.copy(screenshot.toPath(), dest.toPath());
+            File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            String timestamp = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new Date());
+
+            String dirPath = "target/screenshots/";
+
+            File dir = new File(dirPath);
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+                File dest = new File(dirPath + timestamp + ".png");
+            dest.getParentFile().mkdirs();
+            Files.copy(screenshotFile.toPath(), dest.toPath());
             log.info("Saved screenshot to: {}", dest.getAbsolutePath());
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        return screenshotBytes;
     }
 }

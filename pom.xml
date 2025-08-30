@@ -26,6 +26,9 @@
     <maven.compiler.plugin.version>3.14.0</maven.compiler.plugin.version>
     <jsoup.version>1.20.1</jsoup.version>
     <jackson.version>2.19.0</jackson.version>
+    <allure.version>2.29.1</allure.version>
+    <allure.maven.version>2.15.2</allure.maven.version>
+    <aspectj.version>1.9.24</aspectj.version>
     <browser.value>chrome</browser.value>
     <thread.count>3</thread.count>
     <parallel>classes</parallel>
@@ -107,6 +110,34 @@
       <version>3.5.3</version>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-maven -->
+    <dependency>
+      <groupId>io.qameta.allure</groupId>
+      <artifactId>allure-maven</artifactId>
+      <version>${allure.maven.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>io.qameta.allure</groupId>
+      <artifactId>allure-testng</artifactId>
+      <version>${allure.version}</version>
+    </dependency>
+
+    <!-- Optional: Allure Selenium integration (if needed) -->
+<!--    <dependency>-->
+<!--      <groupId>io.qameta.allure</groupId>-->
+<!--      <artifactId>allure-java-commons</artifactId>-->
+<!--      <version>${allure.version}</version>-->
+<!--    </dependency>-->
+
+    <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjweaver</artifactId>
+      <version>${aspectj.version}</version>
+      <!--            <scope>runtime</scope>-->
+    </dependency>
+
   </dependencies>
 
   <build>
@@ -127,6 +158,17 @@
             <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
           </suiteXmlFiles>
 
+          <argLine>
+            -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+          </argLine>
+
+          <!-- Enable Allure adapter in Surefire -->
+          <properties>
+            <property>
+              <name>listeners</name>
+              <value>io.qameta.allure.testng.AllureTestNg</value>
+            </property>
+          </properties>
         </configuration>
 
         <executions>
@@ -139,6 +181,26 @@
           </execution>
         </executions>
       </plugin>
+
+      <!-- Allure Maven plugin for generating reports -->
+      <plugin>
+        <groupId>io.qameta.allure</groupId>
+        <artifactId>allure-maven</artifactId>
+        <version>${allure.maven.version}</version>
+        <executions>
+          <execution>
+            <configuration>
+              <reportVersion>${allure.maven.version}</reportVersion>
+              <resultsDirectory>${project.build.directory}/allure-results</resultsDirectory>
+              <reportDirectory>${project.build.directory}/allure-report</reportDirectory>
+            </configuration>
+            <goals>
+              <goal>report</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

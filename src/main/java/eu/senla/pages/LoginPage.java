@@ -3,6 +3,9 @@ package eu.senla.pages;
 import eu.senla.core.ConstantsClass;
 import eu.senla.core.Driver;
 import eu.senla.core.Wait;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 public class LoginPage extends BasePage { // extends BasePage{
@@ -26,23 +29,32 @@ public class LoginPage extends BasePage { // extends BasePage{
     return this;
   }
 
+  @Step("Enter password")
   public final LoginPage enterPassword(String password) {
     Wait.waitVisibilityOfElementLocated(passwordField).sendKeys(password);
     return this;
   }
 
+  @Step("Click submit button")
   public final LoginPage clickSubmitButton() {
     Wait.waitVisibilityOfElementLocated(submitButton).click();
     return this;
   }
 
+  @Step("Login as valid user")
+  @Severity(SeverityLevel.CRITICAL)
   public final DashBoardPage loginAsValidUser(String userName, String password) {
-    enterUserName(userName).enterPassword(password).clickSubmitButton();
+    enterUserName(userName)
+            .enterPassword(password)
+            .clickSubmitButton();
     return new DashBoardPage();
   }
 
+  @Step("Login with invalid credentials")
   public final LoginPage loginAsInvalidUser(String userName, String password) {
-    enterUserName(userName).enterPassword(password).clickSubmitButton();
+    enterUserName(userName)
+            .enterPassword(password)
+            .clickSubmitButton();
 
     if (userName.isEmpty()) {
       Wait.waitVisibilityOfElementLocated(userNameRequired);

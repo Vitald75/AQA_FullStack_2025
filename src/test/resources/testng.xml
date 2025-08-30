@@ -5,12 +5,13 @@
     <listeners>
         <listener class-name="eu.senla.listeners.SuiteXmlTransformer"/>
         <listener class-name="eu.senla.listeners.ScreenshotListener"/>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg" />
     </listeners>
 
     <test name="Smoke">
         <classes>
-            <class name="eu.senla.AddRecruitmentCandidateTest"/>
-            <class name="eu.senla.AddDeleteJobTitlesTest"/>
+            <class name="eu.senla.LoginTest"/>
+            <class name="eu.senla.LogoutTest"/>
         </classes>
     </test>
 </suite>
