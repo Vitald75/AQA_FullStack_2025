@@ -4,14 +4,12 @@ import com.github.javafaker.Faker;
 import eu.senla.dataUi.JobTitle;
 import eu.senla.elements.SidePanel;
 import eu.senla.pages.admin.AdminViewJobTitlesListPage;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
+import org.testng.annotations.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
 
-@Tag("jobtitles")
+
 public final class AddDeleteJobTitlesTest extends BaseTest {
 
     JobTitle generateTestData() {
@@ -36,7 +34,7 @@ public final class AddDeleteJobTitlesTest extends BaseTest {
                         .clickSaveButton()
                         .isConfirmed();
 
-        assertTrue(jobTitlesListPage.checkIfJobTitleExists(jobTitle.getJobTitle()), "Не добавлен в список");
+      assertTrue(jobTitlesListPage.checkIfJobTitleExists(jobTitle.getJobTitle()), "Не добавлен в список");
             }
 
     public void deleteJobTitle(JobTitle jobTitle) {
@@ -54,9 +52,8 @@ public final class AddDeleteJobTitlesTest extends BaseTest {
 
     //Добавление и удаление трех можно сделать через repeatedTest оставив BeforeEach для generateTestData, хотя смысла в этом не вижу
     //@RepeatedTest(value = 1, name = "{displayName} - повтор {currentRepetition}/{totalRepetitions}")
-    @DisplayName("Успешное добавление и удаление n Job Title")
-    @Test
-    @Tag("smoke")
+
+    @Test (testName = "Успешное добавление и удаление n Job Title", groups = {"smoke"})
     public void testPositiveAddJobTitle() {
 
         final int repetitions = 1;

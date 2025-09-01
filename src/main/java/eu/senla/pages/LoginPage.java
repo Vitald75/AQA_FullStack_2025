@@ -55,6 +55,6 @@ public class LoginPage extends BasePage { // extends BasePage{
     if ((userName.length() > 0) && (password.length() > 0)) {
       Wait.waitVisibilityOfElementLocated(invalidCredentialsAlert);
     }
-    return new LoginPage();
+    return this;
   }
 }

@@ -12,21 +12,17 @@ import eu.senla.pages.leave.AssignLeavePage;
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
+import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@Tag("leave")
 public class AssignLeaveTest extends BaseTest {
 
     private Employee employee;
 
-
-    @BeforeEach
+    @BeforeTest
     final void generateTestData() {
         Faker faker = new Faker();
         employee =
@@ -54,16 +50,14 @@ public class AssignLeaveTest extends BaseTest {
                 requestPostSpecification, ConstantsClass.MAIN_URL + ConstantsClass.API_EP + ConstantsClass.LEAVE_API_URL);
     }
 
-    @Test
-    @DisplayName("Успешный Assign Leave")
-    @Tag("smoke")
+    @Test (testName = "Успешный Assign Leave", groups = {"smoke"})
     public void testPositiveAssignLeave() {
 
         //добавление нового PIM Employee
         PIMAddEmployeePage pimAddEmployeePage = new PIMAddEmployeePage();
         pimAddEmployeePage.addPIMEmployeeSuccessful(employee);
 
-        assertTrue(
+        Assert.assertTrue(
                 pimAddEmployeePage.getCurrentUrl().contains(ConstantsClass.MAIN_URL
                         + ConstantsClass.WEB_EP + ConstantsClass.PIM_DETAILS_URL),
                 "Unexpected Url");
@@ -81,19 +75,17 @@ public class AssignLeaveTest extends BaseTest {
                         .clickAssignButton()
                         .isConfirmed();
 
-        assertTrue(isAssignConfirmed, "Assing wasn't confirmed");
+        Assert.assertTrue(isAssignConfirmed, "Assing wasn't confirmed");
     }
 
-    @Test
-    @DisplayName("Проверка формы Assign Leave незаполненные Required fields")
-    @Tag("extended")
+    @Test (testName = "Проверка формы Assign Leave незаполненные Required fields", groups = {"extended"})
     public void testNegativeAssignLeaveRequiredFields() {
 
         //добавление нового PIM Employee
         PIMAddEmployeePage pimAddEmployeePage = new PIMAddEmployeePage();
         pimAddEmployeePage.addPIMEmployeeSuccessful(employee);
 
-        assertTrue(
+        Assert.assertTrue(
                 pimAddEmployeePage.getCurrentUrl().contains(ConstantsClass.MAIN_URL
                         + ConstantsClass.WEB_EP + ConstantsClass.PIM_DETAILS_URL),
                 "Unexpected Url");
@@ -112,19 +104,17 @@ public class AssignLeaveTest extends BaseTest {
 
         System.out.println(" ");
 
-        assertTrue(assignLeavePage.getCurrentUrl().contains(assignLeavePage.getOwnPageUrl()), "Wrong Url");
+        Assert.assertTrue(assignLeavePage.getCurrentUrl().contains(assignLeavePage.getOwnPageUrl()), "Wrong Url");
     }
 
-    @Test
-    @DisplayName("Проверка формы Assign Leave Balance not sufficient")
-    @Tag("extended")
+    @Test (testName = "Проверка формы Assign Leave Balance not sufficient", groups = {"extended"})
     public void testNegativeAssignLeaveNotSufficientBalance() {
 
         //добавление нового PIM Employee
         PIMAddEmployeePage pimAddEmployeePage = new PIMAddEmployeePage();
         pimAddEmployeePage.addPIMEmployeeSuccessful(employee);
 
-        assertTrue(
+        Assert.assertTrue(
                 pimAddEmployeePage.getCurrentUrl().contains(ConstantsClass.MAIN_URL
                         + ConstantsClass.WEB_EP + ConstantsClass.PIM_DETAILS_URL),
                 "Unexpected Url");
@@ -143,21 +133,18 @@ public class AssignLeaveTest extends BaseTest {
                         .isNotEnoughBalance()
                         .isAssignButtonDisabled();
 
-        System.out.println(" ");
+        Assert.assertTrue(isAssignButtonDisabled, "Assign button is enabled, though it shouldn't be");
 
-        assertTrue(isAssignButtonDisabled, "Assign button is enabled, though it shouldn't be");
     }
 
-    @Test
-    @DisplayName("Проверка формы Assign Leave FromDate more than ToDate")
-    @Tag("extended")
+    @Test (testName = "Проверка формы Assign Leave FromDate more than ToDate", groups = {"extended"})
     public void testNegativeAssignLeaveWrongDates() {
 
         //добавление нового PIM Employee
         PIMAddEmployeePage pimAddEmployeePage = new PIMAddEmployeePage();
         pimAddEmployeePage.addPIMEmployeeSuccessful(employee);
 
-        assertTrue(
+        Assert.assertTrue(
                 pimAddEmployeePage.getCurrentUrl().contains(ConstantsClass.MAIN_URL
                         + ConstantsClass.WEB_EP + ConstantsClass.PIM_DETAILS_URL),
                 "Unexpected Url");
@@ -176,6 +163,7 @@ public class AssignLeaveTest extends BaseTest {
                         .isWrongDates();
 
 
-        assertTrue(isWrongDate, "Assign button is enabled, though it shouldn't be");
+        Assert.assertTrue(isWrongDate, "Assign button is enabled, though it shouldn't be");
+       //ScreenshotUtil.takeScreenshot(Driver.getInstance());
     }
 }

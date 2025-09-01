@@ -1,6 +1,5 @@
 package eu.senla;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.github.javafaker.Faker;
 import eu.senla.client.OrangeHRMClient;
@@ -13,17 +12,16 @@ import eu.senla.dataUi.Employee;
 import eu.senla.pages.PIM.PIMAddEmployeePage;
 import eu.senla.pages.PIM.PIMPersonalDetailsPage;
 import lombok.SneakyThrows;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
+import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
-@Tag("employee")
+
 public class PimAddEmployeeTest extends BaseTest {
 
   private Employee employee;
 
-  @BeforeEach
+  @BeforeMethod
   final void generateTestData() {
     Faker faker = new Faker();
     employee =
@@ -59,9 +57,7 @@ public class PimAddEmployeeTest extends BaseTest {
   }
 
   @SneakyThrows
-  @DisplayName("Успешное добавление PIM employee, проверка формы Employee Details, сравнение данных c API")
-  @Test
-  @Tag("smoke")
+  @Test (testName = "Успешное добавление PIM employee, проверка формы Employee Details, сравнение данных c API", groups = {"smoke"})
   public void testPimAddEmployee() {
 
     //добавление нового PIM Employee
@@ -73,11 +69,11 @@ public class PimAddEmployeeTest extends BaseTest {
             .isConfirmed()
             .isPersonalInformationPage();
 
-    assertTrue(pimAddEmployeePage.getCurrentUrl().contains(ConstantsClass.PIM_DETAILS_URL), "Unexpected Url");
+    Assert.assertTrue(pimAddEmployeePage.getCurrentUrl().contains(ConstantsClass.PIM_DETAILS_URL), "Unexpected Url");
 
     //заполнение Personal Details
     PIMPersonalDetailsPage pimPersonalDetailsPage = new PIMPersonalDetailsPage();
-    assertTrue(pimPersonalDetailsPage.isPersonalDetailsDisplayed(employee.getFirstName()));
+    Assert.assertTrue(pimPersonalDetailsPage.isPersonalDetailsDisplayed(employee.getFirstName()));
 
     pimPersonalDetailsPage
             .inputDriversLicenseId(employee.getDrivingLicenseNo())
@@ -89,12 +85,12 @@ public class PimAddEmployeeTest extends BaseTest {
             .chooseGender(employee.getGender())
             .saveFirstBlock()
             .isConfirmed()
-            .chooseBloodType("AB+")
+            //.chooseBloodType("AB+")
             .saveSecondBlock()
             .isConfirmed();
 
     String currentUrl = pimPersonalDetailsPage.getCurrentUrl();
-    assertTrue(currentUrl.contains(ConstantsClass.PIM_DETAILS_URL), "Unexpected Url");
+    Assert.assertTrue(currentUrl.contains(ConstantsClass.PIM_DETAILS_URL), "Unexpected Url");
 
     String empNumber = currentUrl.substring(currentUrl.lastIndexOf("/") + 1);
 
@@ -110,7 +106,7 @@ public class PimAddEmployeeTest extends BaseTest {
                     GetEmployeeResponse.class);
 
     // сравнение исходного Employee с полученным через API
-    assertTrue(compareUiAndApiEmployee(employee, response.getData()));
+    Assert.assertTrue(compareUiAndApiEmployee(employee, response.getData()));
 
   }
 }

@@ -6,19 +6,15 @@ import eu.senla.elements.SidePanel;
 import eu.senla.pages.recruitment.AddCandidatePage;
 import eu.senla.pages.recruitment.RecruitmentPage;
 import lombok.SneakyThrows;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
+import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-@Tag("recruitment")
 public final class AddRecruitmentCandidateTest extends BaseTest {
     private RecruitmentCandidate candidate;
 
-    @BeforeEach
+    @BeforeTest
     void generateTestData() {
         Faker faker = new Faker();
         candidate = RecruitmentCandidate.builder()
@@ -34,9 +30,7 @@ public final class AddRecruitmentCandidateTest extends BaseTest {
 
 
     @SneakyThrows
-    @Test
-    @DisplayName("Успешное добавление кандидата все поля заполнены")
-    @Tag("smoke")
+    @Test (testName = "Успешное добавление кандидата все поля заполнены", groups = {"smoke"})
     public void testPositiveAddRecruitmentCandidate() {
 
         AddCandidatePage addCandidatePage =
@@ -47,16 +41,14 @@ public final class AddRecruitmentCandidateTest extends BaseTest {
                         .clickSaveButton()
                         .isConfirmed();
 
-        assertTrue(
+        Assert.assertTrue(
                 addCandidatePage.getCurrentUrl().contains(
                         addCandidatePage.getOwnPageUrl()),
                 "Unexpected Url");
     }
 
 
-    @DisplayName("Проверка формы добавления кандидата с незаполненными обязательными полями")
-    @Tag("extended")
-    @Test
+    @Test (testName = "Проверка формы добавления кандидата с незаполненными обязательными полями", groups = {"extended"})
     public void testNegativeAddRecruitmentCandidate() {
 
         AddCandidatePage addCandidatePage = new SidePanel()
@@ -71,17 +63,14 @@ public final class AddRecruitmentCandidateTest extends BaseTest {
                 .isRequiredLastName()
                 .isRequiredEmail();
 
-        assertTrue(
+        Assert.assertTrue(
                 addCandidatePage.getCurrentUrl().contains(
                         addCandidatePage.getOwnPageUrl()),
                 "Unexpected Url");
 
     }
 
-
-    @DisplayName("Проверка формы добавления кандидата с невалидным Email")
-    @Tag("extended")
-    @Test
+    @Test (testName = "Проверка формы добавления кандидата с невалидным Email", groups = {"extended"})
     public void testNegativeEmailAddRecruitmentCandidate() {
 
         AddCandidatePage addCandidatePage = new SidePanel()
@@ -93,16 +82,14 @@ public final class AddRecruitmentCandidateTest extends BaseTest {
                 .isValidEmail();
 
 
-        assertTrue(
+        Assert.assertTrue(
                 addCandidatePage.getCurrentUrl().contains(
                         addCandidatePage.getOwnPageUrl()),
                 "Unexpected Url");
 
     }
 
-    @DisplayName("Проверка формы добавления кандидата только c заполненными обязательными полями")
-    @Tag("extended")
-    @Test
+    @Test (testName = "Проверка формы добавления кандидата только c заполненными обязательными полями", groups = {"extended"})
     public void testAddRecruitmentCandidateOnlyRequiredFields() {
         AddCandidatePage addCandidatePage = new SidePanel()
                 .openRecruitmentPage()
@@ -113,16 +100,15 @@ public final class AddRecruitmentCandidateTest extends BaseTest {
                 .clickSaveButton()
                 .isConfirmed();
 
-        assertTrue(
+        Assert.assertTrue(
                 addCandidatePage.getCurrentUrl().contains(
                         addCandidatePage.getOwnPageUrl()),
                 "Unexpected Url");
 
     }
 
-    @DisplayName("Проверка отмены добавления кандидата")
-    @Tag("extended")
-    @Test
+
+    @Test (testName = "Проверка отмены добавления кандидата", groups = {"extended"})
     public void testCancelAddRecruitmentCandidate() {
 
         RecruitmentPage viewCandidatesPage = new SidePanel()
@@ -131,7 +117,7 @@ public final class AddRecruitmentCandidateTest extends BaseTest {
                 .fillNewCandidateForm(candidate)
                 .clickCancelButton();
 
-        assertTrue(
+        Assert.assertTrue(
                 viewCandidatesPage.getCurrentUrl().contains(
                         viewCandidatesPage.getOwnPageUrl()),
                 "Unexpected Url");
