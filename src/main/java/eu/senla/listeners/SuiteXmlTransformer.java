@@ -10,7 +10,7 @@ public final class SuiteXmlTransformer implements IAlterSuiteListener {
     public void alter(List<XmlSuite> suites) {
         String threadCount = System.getProperty("thread-count", "4");
         String parallel = System.getProperty("parallel", "classes");
-        System.out.println("11111111 - " + threadCount);
+        //System.out.println("11111111 - " + threadCount);
 
         for (XmlSuite suite : suites) {
             suite.setThreadCount(Integer.parseInt(threadCount));

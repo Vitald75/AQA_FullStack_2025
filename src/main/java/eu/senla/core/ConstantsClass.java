@@ -14,9 +14,16 @@ public final class ConstantsClass {
     public static final String RECRUITMENT_ADD_URL = "/recruitment/addCandidate";
     public static final String ASSIGN_LEAVE_URL = "/leave/assignLeave";
 
+    public static final String HEADLESS = System.setProperty("headless", ReadPropertiesFile.getProperty("HEADLESS"));
+    public static final String SELENOID_ENABLE = System.setProperty("selenoid_enable", ReadPropertiesFile.getProperty("SELENOID_ENABLE"));
+    public static final String SELENOID_URL = ReadPropertiesFile.getProperty("SELENOID_URL");
+    public static final String LOGIN_STRATEGY = ReadPropertiesFile.getProperty("LOGIN_STRATEGY");
+
     public static final String API_EP = "/web/index.php/api/v2";
     public static final String LEAVE_API_URL = "/leave/leave-entitlements";
     public static final String PIM_EMPLOYEE_API_URL = "/pim/employees/";
+
+
 
     private  ConstantsClass() {
         // Предотвращение создания экземпляра

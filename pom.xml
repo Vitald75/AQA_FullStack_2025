@@ -26,9 +26,11 @@
     <maven.compiler.plugin.version>3.14.0</maven.compiler.plugin.version>
     <jsoup.version>1.20.1</jsoup.version>
     <jackson.version>2.19.0</jackson.version>
-    <browser>chrome</browser>
-    <thread.count>2</thread.count>
+    <browser.value>chrome</browser.value>
+    <thread.count>3</thread.count>
     <parallel>classes</parallel>
+    <selenoid_enable.value>false</selenoid_enable.value>
+    <headless.value>false</headless.value>
     <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
 
   </properties>
@@ -115,9 +117,11 @@
         <version>${surefire.version}</version>
         <configuration>
           <systemPropertyVariables>
-            <browser>${browser}</browser>
+            <browser>${browser.value}</browser>
             <thread-count>${thread.count}</thread-count>
             <parallel>${parallel}</parallel>
+            <selenoid_enable>${selenoid_enable.value}</selenoid_enable>
+            <headless>${headless.value}</headless>
           </systemPropertyVariables>
           <suiteXmlFiles>
             <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
